@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หน้าหลัก | Siam Hamster Breeder Association</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🐹</div>
+      <div class="nav-logo-text">SHBA<span>Siam Hamster Breeder Association</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="membership.html"   class="nav-link" data-page="membership">สมาชิก</a></li>
+      <li><a href="competitions.html" class="nav-link" data-page="competitions">การประกวด</a></li>
+      <li><a href="genetics.html"     class="nav-link" data-page="genetics">คลังยีน</a></li>
+      <li><a href="knowledge.html"    class="nav-link" data-page="knowledge">คลังความรู้</a></li>
+      <li><a href="news.html"         class="nav-link" data-page="news">ข่าวสาร</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-outline-gold btn-sm" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+      <a href="membership.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-plus"></i> สมัครสมาชิก</a>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="เปลี่ยนธีม"><i class="fa-solid fa-sun"></i></button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+  <a href="membership.html"   class="nav-link">สมาชิก</a>
+  <a href="competitions.html" class="nav-link">การประกวด</a>
+  <a href="genetics.html"     class="nav-link">คลังยีน</a>
+  <a href="knowledge.html"    class="nav-link">คลังความรู้</a>
+  <a href="news.html"         class="nav-link">ข่าวสาร</a>
+  <a href="membership.html" class="btn btn-gold">สมัครสมาชิก</a>
+</div>
+
+<!-- BANNER SLIDER -->
+<section id="banner-slider">
+  <div class="slider-track" id="sliderTrack">
+
+    <!-- Slide 1 -->
+    <div class="slide" style="background:linear-gradient(135deg,#0D0D0D 0%,#1a0a00 50%,#0D0D0D 100%)">
+      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(13,13,13,.85) 40%,transparent 100%)"></div>
+      <div class="slide-visual">
+        <div class="slide-trophy-wrap">
+          <div class="slide-trophy">🏆</div>
+          <div class="slide-glow-ring"></div>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-tag">🗓 14–15 มิถุนายน 2026</div>
+        <h2 class="slide-title">SHBA Summer<br><span class="text-gradient-gold">Championship 2026</span></h2>
+        <p class="slide-sub">งานประกวดแฮมสเตอร์ระดับชาติ มาตรฐาน NHC Standard<br>ณ ศูนย์การประชุมแห่งชาติสิริกิติ์ กรุงเทพฯ</p>
+        <div class="slide-actions">
+          <a href="competitions.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-trophy"></i> สมัครแข่งขัน</a>
+          <a href="competitions.html" class="btn btn-outline-orange btn-lg"><i class="fa-regular fa-calendar"></i> ดูรายละเอียด</a>
+        </div>
+        <div class="slide-badges">
+          <span class="slide-badge"><i class="fa-solid fa-users"></i> 200+ ผู้เข้าแข่งขัน</span>
+          <span class="slide-badge"><i class="fa-solid fa-star"></i> รางวัลรวม 50,000 บาท</span>
+          <span class="slide-badge"><i class="fa-solid fa-crown"></i> Best in Show Award</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" style="background:linear-gradient(135deg,#0D0D0D 0%,#00101a 50%,#0D0D0D 100%)">
+      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(13,13,13,.85) 40%,transparent 100%)"></div>
+      <div class="slide-visual">
+        <div class="slide-trophy-wrap">
+          <div class="slide-trophy">🧬</div>
+          <div class="slide-glow-ring" style="border-color:var(--orange)"></div>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-tag" style="border-color:var(--orange);color:var(--orange)">🆕 อัปเดตใหม่</div>
+        <h2 class="slide-title">คลังข้อมูลยีน<br><span class="text-gradient-orange">ครบครันที่สุด</span></h2>
+        <p class="slide-sub">ฐานข้อมูลพันธุกรรมแฮมสเตอร์กว่า 27 สี พร้อมเครื่องคำนวณ Genetics Pairing<br>สำหรับผู้เพาะพันธุ์มืออาชีพ</p>
+        <div class="slide-actions">
+          <a href="genetics.html" class="btn btn-orange btn-lg"><i class="fa-solid fa-dna"></i> เปิดคลังยีน</a>
+          <a href="genetics.html#calculator" class="btn btn-outline-gold btn-lg"><i class="fa-solid fa-calculator"></i> Genetics Calculator</a>
+        </div>
+        <div class="slide-badges">
+          <span class="slide-badge" style="border-color:var(--orange);color:var(--orange)"><i class="fa-solid fa-palette"></i> Syrian 18+ สี</span>
+          <span class="slide-badge" style="border-color:var(--orange);color:var(--orange)"><i class="fa-solid fa-snowflake"></i> Dwarf 3 สายพันธุ์</span>
+          <span class="slide-badge" style="border-color:var(--orange);color:var(--orange)"><i class="fa-solid fa-microscope"></i> Pattern & Coat</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" style="background:linear-gradient(135deg,#0D0D0D 0%,#0a0a00 50%,#0D0D0D 100%)">
+      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(13,13,13,.85) 40%,transparent 100%)"></div>
+      <div class="slide-visual">
+        <div class="slide-trophy-wrap">
+          <div class="slide-trophy">🪪</div>
+          <div class="slide-glow-ring" style="border-color:#C9A227"></div>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-tag">✨ สิทธิพิเศษสมาชิก</div>
+        <h2 class="slide-title">เป็นส่วนหนึ่งของ<br><span class="text-gradient-gold">ชุมชน SHBA</span></h2>
+        <p class="slide-sub">สมัครสมาชิก 4 ประเภท รับบัตรดิจิทัล QR Code ส่วนลดค่าสมัครงานประกวด<br>และสิทธิ์เข้าถึงข้อมูลพิเศษก่อนใคร</p>
+        <div class="slide-actions">
+          <a href="membership.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-id-card"></i> สมัครสมาชิก</a>
+          <a href="membership.html#plans" class="btn btn-outline-gold btn-lg"><i class="fa-solid fa-list"></i> ดูแผนทั้งหมด</a>
+        </div>
+        <div class="slide-badges">
+          <span class="slide-badge"><i class="fa-solid fa-check"></i> Hobbyist เริ่มต้น ฟรี</span>
+          <span class="slide-badge"><i class="fa-solid fa-gem"></i> Premium ส่วนลด 20%</span>
+          <span class="slide-badge"><i class="fa-solid fa-building"></i> Professional & Kennel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" style="background:linear-gradient(135deg,#0D0D0D 0%,#120500 50%,#0D0D0D 100%)">
+      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(13,13,13,.85) 40%,transparent 100%)"></div>
+      <div class="slide-visual">
+        <div class="slide-trophy-wrap">
+          <div class="slide-trophy">👑</div>
+          <div class="slide-glow-ring" style="border-color:#C9A227;animation-duration:2s"></div>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="slide-tag">🏅 Hall of Fame 2025</div>
+        <h2 class="slide-title">ผู้ชนะ Best in Show<br><span class="text-gradient-gold">"Golden Sunrise"</span></h2>
+        <p class="slide-sub">Syrian Cinnamon Satin Long Hair | คะแนน 99.2/100<br>โดย ฟาร์มรุ่งอรุณ — แชมป์เปี้ยนที่ยิ่งใหญ่แห่งปี 2025</p>
+        <div class="slide-actions">
+          <a href="competitions.html#hall-of-fame" class="btn btn-gold btn-lg"><i class="fa-solid fa-crown"></i> Hall of Fame</a>
+          <a href="competitions.html#results" class="btn btn-outline-gold btn-lg"><i class="fa-solid fa-chart-bar"></i> ผลการแข่งขัน</a>
+        </div>
+        <div class="slide-badges">
+          <span class="slide-badge"><i class="fa-solid fa-medal"></i> Score 99.2/100</span>
+          <span class="slide-badge"><i class="fa-solid fa-paw"></i> Syrian Cinnamon Satin</span>
+          <span class="slide-badge"><i class="fa-solid fa-star"></i> Grand Champion</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.slider-track -->
+
+  <!-- Arrows -->
+  <button class="slider-arrow slider-prev" id="sliderPrev" aria-label="ก่อนหน้า">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button class="slider-arrow slider-next" id="sliderNext" aria-label="ถัดไป">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <!-- Dots -->
+  <div class="slider-dots" id="sliderDots">
+    <button class="slider-dot active" data-idx="0"></button>
+    <button class="slider-dot" data-idx="1"></button>
+    <button class="slider-dot" data-idx="2"></button>
+    <button class="slider-dot" data-idx="3"></button>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="slider-progress"><div class="slider-progress-bar" id="sliderProgress"></div></div>
+</section>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-left fade-in-up">
+        <div class="hero-tag"><span></span> สมาคมสยามแฮมสเตอร์บรีดเดอร์ อย่างเป็นทางการ</div>
+        <h1 class="hero-title">
+          <span class="line1">SHBA</span>
+          <span class="line2">Siam Hamster Breeder Association</span>
+          <span class="line3">ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</span>
+        </h1>
+        <p class="hero-sub">องค์กรมาตรฐานสากลสำหรับผู้เพาะพันธุ์ ผู้เลี้ยง และผู้ตัดสิน ครอบคลุมระบบประกวด ฐานข้อมูลพันธุกรรม และชุมชนผู้รักแฮมสเตอร์ทั่วประเทศ</p>
+        <div class="hero-actions">
+          <a href="membership.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-id-card"></i> สมัครสมาชิก</a>
+          <a href="competitions.html" class="btn btn-outline-orange btn-lg"><i class="fa-solid fa-trophy"></i> ดูการประกวด</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num" id="stat-members">0</div><div class="hero-stat-label">สมาชิก</div></div>
+          <div class="hero-stat"><div class="hero-stat-num" id="stat-shows">0</div><div class="hero-stat-label">งานประกวด</div></div>
+          <div class="hero-stat"><div class="hero-stat-num" id="stat-breeders">0</div><div class="hero-stat-label">ผู้เพาะพันธุ์</div></div>
+          <div class="hero-stat"><div class="hero-stat-num" id="stat-years">0</div><div class="hero-stat-label">ปีแห่งความเป็นเลิศ</div></div>
+        </div>
+      </div>
+      <div class="hero-visual fade-in-up">
+        <div class="hero-card-main glow-gold">
+          <div class="hero-card-badge">
+            <div class="hero-card-avatar">🐹</div>
+            <div class="hero-card-info"><h4>Cinnamon Banded</h4><span>Best in Show 2025</span></div>
+          </div>
+          <div class="hero-card-medal">
+            <div class="medal-icon">🏆</div>
+            <h3>Grand Champion</h3>
+            <p>Siam Hamster Breeder Show 2025</p>
+          </div>
+          <div class="hero-card-stats">
+            <div class="hero-card-stat"><div class="val">98.5</div><div class="lbl">คะแนน</div></div>
+            <div class="hero-card-stat"><div class="val">Gold</div><div class="lbl">รางวัล</div></div>
+            <div class="hero-card-stat"><div class="val">Syrian</div><div class="lbl">สายพันธุ์</div></div>
+            <div class="hero-card-stat"><div class="val">16 สัปดาห์</div><div class="lbl">อายุ</div></div>
+          </div>
+        </div>
+        <div class="hero-float-badge top-right"><span class="dot"></span><span>Live Judging</span></div>
+        <div class="hero-float-badge bottom-left"><span>🔬</span><span>NHC Standard</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div id="countdown">
+  <div class="container">
+    <div class="countdown-inner">
+      <div class="countdown-label">
+        <h3><i class="fa-solid fa-clock"></i> งานถัดไป</h3>
+        <p>เตรียมพร้อมสำหรับงานประกวดประจำฤดูร้อน</p>
+      </div>
+      <div class="countdown-timer">
+        <div class="countdown-unit"><span class="num" id="cd-days">00</span><span class="lbl">วัน</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-hours">00</span><span class="lbl">ชั่วโมง</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-mins">00</span><span class="lbl">นาที</span></div>
+        <div class="countdown-unit"><span class="num" id="cd-secs">00</span><span class="lbl">วินาที</span></div>
+      </div>
+      <div class="countdown-event">
+        <div class="event-name">🏆 SHBA Summer Championship 2026</div>
+        <div class="event-date"><i class="fa-regular fa-calendar"></i> 14–15 มิถุนายน 2026</div>
+        <div class="event-place"><i class="fa-solid fa-location-dot"></i> ศูนย์การประชุมแห่งชาติสิริกิติ์</div>
+      </div>
+      <a href="competitions.html" class="btn btn-orange"><i class="fa-solid fa-arrow-right"></i> สมัครเลย</a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE CARDS -->
+<section class="section" style="background:var(--black-light)">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="tag">EXPLORE</div>
+      <h2>ทุกสิ่งที่คุณต้องการ<span class="text-gradient-gold">ในที่เดียว</span></h2>
+      <p>สมาคมสยามแฮมสเตอร์บรีดเดอร์รวบรวมทุกระบบที่ผู้รักแฮมสเตอร์ต้องการ</p>
+      <div class="divider"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+      <a href="membership.html" class="card" style="text-decoration:none;display:block">
+        <div style="font-size:2.5rem;margin-bottom:16px">🪪</div>
+        <h3 style="margin-bottom:8px">ระบบสมาชิก</h3>
+        <p>สมัครสมาชิก 4 ประเภท รับบัตรดิจิทัล QR Code และ Dashboard ส่วนตัว</p>
+        <div style="margin-top:16px;color:var(--gold);font-size:.88rem;font-weight:600">สมัครเลย <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="competitions.html" class="card card-orange" style="text-decoration:none;display:block">
+        <div style="font-size:2.5rem;margin-bottom:16px">🏆</div>
+        <h3 style="margin-bottom:8px">ระบบประกวด</h3>
+        <p>ปฏิทินงาน สมัครออนไลน์ ระบบตัดสิน NHC Standard และประกาศผลทันที</p>
+        <div style="margin-top:16px;color:var(--orange);font-size:.88rem;font-weight:600">ดูงานประกวด <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="genetics.html" class="card" style="text-decoration:none;display:block">
+        <div style="font-size:2.5rem;margin-bottom:16px">🧬</div>
+        <h3 style="margin-bottom:8px">คลังข้อมูลยีน</h3>
+        <p>ฐานข้อมูล 27+ สี พร้อมเครื่องคำนวณ Genetics สำหรับผู้เพาะพันธุ์</p>
+        <div style="margin-top:16px;color:var(--gold);font-size:.88rem;font-weight:600">เปิดคลังยีน <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="knowledge.html" class="card" style="text-decoration:none;display:block">
+        <div style="font-size:2.5rem;margin-bottom:16px">📚</div>
+        <h3 style="margin-bottom:8px">คลังความรู้</h3>
+        <p>บทความ คู่มือสายพันธุ์ อาหาร สุขภาพ สำหรับผู้เลี้ยงทุกระดับ</p>
+        <div style="margin-top:16px;color:var(--gold);font-size:.88rem;font-weight:600">อ่านบทความ <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="news.html" class="card card-orange" style="text-decoration:none;display:block">
+        <div style="font-size:2.5rem;margin-bottom:16px">📰</div>
+        <h3 style="margin-bottom:8px">ข่าวสาร &amp; ชุมชน</h3>
+        <p>ข่าวสารล่าสุด แกลเลอรี่ภาพถ่าย และลิงก์ Social Media ทั้งหมด</p>
+        <div style="margin-top:16px;color:var(--orange);font-size:.88rem;font-weight:600">ดูข่าวสาร <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST NEWS PREVIEW -->
+<section class="section" style="background:var(--black)">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="tag">LATEST NEWS</div>
+      <h2>ข่าวสาร<span class="text-gradient-orange">ล่าสุด</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="news-grid fade-in-up" id="news-grid"></div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="news.html" class="btn btn-outline-gold"><i class="fa-solid fa-newspaper"></i> ดูข่าวสารทั้งหมด</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOF PREVIEW -->
+<section class="section" style="background:var(--black-light)">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="tag">HALL OF FAME</div>
+      <h2>แชมป์เปี้ยน<span class="text-gradient-gold">ประจำปี</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="hof-winners fade-in-up" id="hof-grid"></div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="competitions.html#hall-of-fame" class="btn btn-gold"><i class="fa-solid fa-crown"></i> Hall of Fame เต็ม</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><div class="nav-logo-icon">🐹</div><div class="nav-logo-text">Siam Hamster Breeder Association<span>สมาคมสยามแฮมสเตอร์บรีดเดอร์</span></div></div>
+        <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย ส่งเสริมมาตรฐานการเพาะพันธุ์ การประกวด และการดูแลอย่างมีจริยธรรม</p>
+        <div class="social-links" style="margin-top:20px;justify-content:flex-start">
+          <a href="#" class="social-link"><i class="fa-brands fa-facebook-f text-gold"></i></a>
+          <a href="#" class="social-link"><i class="fa-brands fa-instagram text-gold"></i></a>
+          <a href="#" class="social-link"><i class="fa-brands fa-line text-gold"></i></a>
+          <a href="#" class="social-link"><i class="fa-brands fa-tiktok text-gold"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
+        <a href="membership.html" class="footer-link">สมัครสมาชิก</a>
+        <a href="membership.html#register" class="footer-link">ลงทะเบียน</a>
+        <a href="membership.html#dashboard" class="footer-link">Dashboard</a>
+      </div></div>
+      <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
+        <a href="competitions.html" class="footer-link">ปฏิทินประกวด</a>
+        <a href="competitions.html#results" class="footer-link">ผลการแข่งขัน</a>
+        <a href="competitions.html#hall-of-fame" class="footer-link">Hall of Fame</a>
+      </div></div>
+      <div class="footer-col"><h4>ความรู้</h4><div class="footer-links">
+        <a href="genetics.html" class="footer-link">คลังข้อมูลยีน</a>
+        <a href="knowledge.html" class="footer-link">คลังความรู้</a>
+        <a href="news.html" class="footer-link">ข่าวสาร</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Siam Hamster Breeder Association. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">นโยบายความเป็นส่วนตัว</a><a href="#">ข้อกำหนด</a><a href="#">ติดต่อเรา</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
+    <h3 style="margin-bottom:24px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ</h3>
+    <div class="form-group"><label>อีเมล</label><input type="email" class="form-control" placeholder="your@email.com" /></div>
+    <div class="form-group"><label>รหัสผ่าน</label><input type="password" class="form-control" placeholder="••••••••" /></div>
+    <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:8px" onclick="handleLogin()"><i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ</button>
+    <p style="text-align:center;margin-top:16px;font-size:.85rem">ยังไม่มีบัญชี? <a href="membership.html" style="color:var(--gold)">สมัครสมาชิก</a></p>
+  </div>
+</div>
+
+<button id="scroll-top" title="กลับด้านบน"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast-container" id="toast-container"></div>
+<script src="main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    SHBA.initNavbar('home');
+    SHBA.initTheme();
+    SHBA.initCountdown();
+    SHBA.initScrollAnimations();
+    SHBA.initScrollTop();
+    renderNews();
+    renderHOF();
+    // Counter animation
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          SHBA.animateCounter(document.getElementById('stat-members'), 1240);
+          SHBA.animateCounter(document.getElementById('stat-shows'),   48);
+          SHBA.animateCounter(document.getElementById('stat-breeders'),186);
+          SHBA.animateCounter(document.getElementById('stat-years'),   12);
+          obs.disconnect();
+        }
+      });
+    }, { threshold:0.5 });
+    const h = document.getElementById('hero');
+    if (h) obs.observe(h);
+
+    // ── BANNER SLIDER ──────────────────────────────────────
+    (function() {
+      const track    = document.getElementById('sliderTrack');
+      const slides   = track ? track.querySelectorAll('.slide') : [];
+      const dots     = document.querySelectorAll('.slider-dot');
+      const progress = document.getElementById('sliderProgress');
+      const prevBtn  = document.getElementById('sliderPrev');
+      const nextBtn  = document.getElementById('sliderNext');
+      if (!track || !slides.length) return;
+
+      let current  = 0;
+      let autoTimer, progressTimer;
+      const DURATION = 5500; // ms per slide
+      const TOTAL    = slides.length;
+
+      function goTo(idx) {
+        current = (idx + TOTAL) % TOTAL;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        resetProgress();
+      }
+
+      function resetProgress() {
+        if (progress) {
+          progress.style.transition = 'none';
+          progress.style.width = '0%';
+          setTimeout(() => {
+            progress.style.transition = `width ${DURATION}ms linear`;
+            progress.style.width = '100%';
+          }, 30);
+        }
+      }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), DURATION);
+        resetProgress();
+      }
+
+      function pause() { clearInterval(autoTimer); if (progress) { progress.style.width = progress.getBoundingClientRect().width / progress.parentElement.getBoundingClientRect().width * 100 + '%'; progress.style.transition = 'none'; } }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+      dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.idx); startAuto(); }));
+
+      // Pause on hover
+      const section = document.getElementById('banner-slider');
+      if (section) {
+        section.addEventListener('mouseenter', pause);
+        section.addEventListener('mouseleave', startAuto);
+      }
+
+      // Touch swipe
+      let touchX = 0;
+      track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = touchX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); startAuto(); }
+      });
+
+      // Init
+      goTo(0);
+      startAuto();
+    })();
+    // ───────────────────────────────────────────────────────
+  });
+</script>
+</body>
