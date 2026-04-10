@@ -43,6 +43,10 @@ const db       = getFirestore(app);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
+// Expose auth & db globally so other module scripts can use them
+window._firebaseAuth = auth;
+window._firebaseDb   = db;
+
 // ── Auth State ─────────────────────────────────────────────
 let currentUser = null;
 
@@ -244,8 +248,13 @@ const _memberBadges = {
   honorary: { icon: '⭐', label: 'Honorary',  color: '#a855f7' },
   breeder:  { icon: '🧬', label: 'Breeder',   color: '#f97316' },
 };
+function _normType(memberType) {
+  if (!memberType) return 'standard';
+  // normalize "Breeder Member" → "breeder", "Honorary Member" → "honorary" etc.
+  return memberType.toLowerCase().split(' ')[0];
+}
 function _getBadge(memberType) {
-  return _memberBadges[memberType] || { icon: '🐾', label: 'Standard', color: '#d4a843' };
+  return _memberBadges[_normType(memberType)] || { icon: '🐾', label: 'Standard', color: '#d4a843' };
 }
 
 // ── Update Navbar UI: Logged In ────────────────────────────

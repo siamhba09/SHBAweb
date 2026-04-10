@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>คลังข้อมูลยีน | Siam Hamster Breeder Association</title>
+  <title>เครื่องมือคำนวณยีน | Siam Hamster Breeder Association</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -45,7 +45,6 @@
           <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
           <a href="competitions.html#rules"     class="nav-dd-link"><i class="fa-solid fa-gavel"></i> กฎกติกาการประกวด</a>
           <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
-          <a href="competitions.html#gallery"   class="nav-dd-link"><i class="fa-solid fa-images"></i> แกลเลอรีภาพงานประกวด</a>
           <a href="competitions.html#judges"    class="nav-dd-link"><i class="fa-solid fa-user-tie"></i> ข้อมูลกรรมการตัดสิน</a>
         </div>
       </li>
@@ -53,11 +52,11 @@
       <li class="nav-item has-dropdown">
         <a href="knowledge.html" class="nav-link active" data-page="knowledge">คลังความรู้ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
         <div class="nav-dropdown">
-          <a href="genetics.html"          class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
+          <a href="genetics.html"            class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
           <a href="genescalculator.html"     class="nav-dd-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน</a>
-          <a href="knowledge.html#care"    class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
-          <a href="knowledge.html#species" class="nav-dd-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
-          <a href="knowledge.html#articles"class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
+          <a href="knowledge.html#care"      class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+          <a href="knowledge.html#species"   class="nav-dd-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
+          <a href="knowledge.html#articles"  class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
         </div>
       </li>
 
@@ -91,9 +90,8 @@
     <div class="mobile-nav-group">
       <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">สมาชิก <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
       <div class="mobile-nav-sub">
-        <a href="membership.html#membership"     class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
-        <a href="membership.html#register"        class="mobile-nav-sub-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
-        <a href="myaccount.html"                  class="mobile-nav-sub-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+        <a href="membership.html#membership"      class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
+        <a href="membership.html#upgrade-section" class="mobile-nav-sub-link"><i class="fa-solid fa-rotate"></i> ต่ออายุสมาชิก</a>
       </div>
     </div>
 
@@ -118,8 +116,8 @@
       </div>
     </div>
 
-    <a href="news.html"      class="mobile-nav-link">ข่าวสาร</a>
-    <a href="contact.html"   class="mobile-nav-link">ติดต่อเรา</a>
+    <a href="news.html"    class="mobile-nav-link">ข่าวสาร</a>
+    <a href="contact.html" class="mobile-nav-link">ติดต่อเรา</a>
 
     <div class="mobile-nav-divider"></div>
     <div class="mobile-nav-btns">
@@ -127,85 +125,103 @@
     </div>
   </div>
 </div>
-</div>
 
 <!-- PAGE HERO -->
 <div style="background:var(--gradient-hero);padding:120px 0 60px;position:relative;overflow:hidden">
   <div class="hero-bg"></div><div class="hero-grid"></div>
   <div class="container" style="position:relative;z-index:1;text-align:center">
-    <div class="tag" style="display:inline-block;margin-bottom:16px">GENETICS DATABASE</div>
-    <h1 style="margin-bottom:12px">คลังข้อมูล<span class="text-gradient-gold">ยีนแฮมสเตอร์</span></h1>
-    <p style="max-width:600px;margin:0 auto">ฐานข้อมูลพันธุกรรมครบถ้วน พร้อมเครื่องมือคำนวณจับคู่พ่อ-แม่พันธุ์</p>
+    <div class="tag" style="display:inline-block;margin-bottom:16px">GENETICS CALCULATOR</div>
+    <h1 style="margin-bottom:12px">🧮 เครื่องมือ<span class="text-gradient-gold">คำนวณยีน</span></h1>
+    <p style="color:var(--gray-500);max-width:560px;margin:0 auto">ป้อน genotype ของพ่อและแม่พันธุ์ เพื่อดูสัดส่วนสีและแพตเทิร์นที่เป็นไปได้ของลูก</p>
   </div>
 </div>
 
-<!-- GENETICS DATABASE -->
-<section class="section" style="background:var(--black)">
+<!-- LOCKED STATE (shown while checking / not authorized) -->
+<section id="calc-locked" class="section" style="background:var(--black-light);display:none">
+  <div class="container" style="text-align:center;padding:80px 24px">
+    <div style="font-size:3.5rem;margin-bottom:16px">🔒</div>
+    <h2 style="margin-bottom:12px">สิทธิ์เฉพาะสมาชิก <span class="text-gradient-gold">Breeder / Honorary</span></h2>
+    <p style="color:var(--gray-500);max-width:480px;margin:0 auto 32px">เครื่องมือคำนวณยีนสงวนไว้สำหรับ Breeder Member และ Honorary Member เท่านั้น</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="membership.html#upgrade-section" class="btn btn-gold"><i class="fa-solid fa-rotate"></i> อัปเกรดสมาชิก</a>
+      <button class="btn btn-outline-gold btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR SECTION -->
+<section id="calc-content" class="section" style="background:var(--black-light);display:none">
   <div class="container">
-    <!-- Tabs -->
-    <div class="genetics-tabs fade-in-up">
-      <button class="gen-tab active" onclick="switchGenTab('syrian',this)">Syrian — สี Agouti</button>
-      <button class="gen-tab" onclick="switchGenTab('syrian-self',this)">Syrian — สี Self</button>
-      <button class="gen-tab" onclick="switchGenTab('dwarf',this)">Dwarf Hamster</button>
-      <button class="gen-tab" onclick="switchGenTab('patterns',this)">แพตเทิร์น</button>
-      <button class="gen-tab" onclick="switchGenTab('coat',this)">ประเภทขน</button>
-    </div>
+    <div class="genetics-calc fade-in-up">
+      <div class="calc-grid">
+        <div class="calc-parent">
+          <h4>🐹 พ่อพันธุ์ (Sire)</h4>
+          <div class="form-group"><label>สี</label>
+            <select class="form-control" id="sire-color" onchange="calculateGenetics()">
+              <option value="Golden">Golden (aa)</option>
+              <option value="Cinnamon">Cinnamon (aa pp)</option>
+              <option value="Black">Black (A-)</option>
+              <option value="Cream">Cream (ee)</option>
+              <option value="Mink">Mink (pp)</option>
+              <option value="Chocolate">Chocolate (bb)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>แพตเทิร์น</label>
+            <select class="form-control" id="sire-pattern" onchange="calculateGenetics()">
+              <option value="Self">Self</option>
+              <option value="Banded">Banded (Dh/+)</option>
+              <option value="Dominant Spot">Dominant Spot (To/+)</option>
+              <option value="Roan">Roan (Ro/+)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>ประเภทขน</label>
+            <select class="form-control" id="sire-coat" onchange="calculateGenetics()">
+              <option value="Short">Short Hair (L/L)</option>
+              <option value="Long/Short">Carrier Long (L/l)</option>
+              <option value="Long">Long Hair (l/l)</option>
+              <option value="Rex">Rex (Re/+)</option>
+            </select>
+          </div>
+        </div>
 
-    <!-- Syrian Agouti -->
-    <div class="gen-panel active" id="panel-syrian">
-      <div class="section-header" style="text-align:left;margin-bottom:24px">
-        <div class="tag" style="display:inline-block">REQ-GEN-001</div>
-        <h3 style="margin-top:12px">Syrian Hamster — กลุ่มสี Agouti</h3>
-        <p>สีธรรมชาติที่มีลวดลายขนสองสีบนแกนเดียว ท้องสีอ่อน</p>
+        <div class="calc-x">✕</div>
+
+        <div class="calc-parent">
+          <h4>🐹 แม่พันธุ์ (Dam)</h4>
+          <div class="form-group"><label>สี</label>
+            <select class="form-control" id="dam-color" onchange="calculateGenetics()">
+              <option value="Golden">Golden (aa)</option>
+              <option value="Cinnamon">Cinnamon (aa pp)</option>
+              <option value="Black">Black (A-)</option>
+              <option value="Cream">Cream (ee)</option>
+              <option value="Mink">Mink (pp)</option>
+              <option value="Chocolate">Chocolate (bb)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>แพตเทิร์น</label>
+            <select class="form-control" id="dam-pattern" onchange="calculateGenetics()">
+              <option value="Self">Self</option>
+              <option value="Banded">Banded (Dh/+)</option>
+              <option value="Dominant Spot">Dominant Spot (To/+)</option>
+              <option value="Roan">Roan (Ro/+)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>ประเภทขน</label>
+            <select class="form-control" id="dam-coat" onchange="calculateGenetics()">
+              <option value="Short">Short Hair (L/L)</option>
+              <option value="Long/Short">Carrier Long (L/l)</option>
+              <option value="Long">Long Hair (l/l)</option>
+              <option value="Rex">Rex (Re/+)</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="color-grid" id="syrian-agouti-grid"></div>
-    </div>
 
-    <!-- Syrian Self -->
-    <div class="gen-panel" id="panel-syrian-self">
-      <div class="section-header" style="text-align:left;margin-bottom:24px">
-        <div class="tag" style="display:inline-block">REQ-GEN-001</div>
-        <h3 style="margin-top:12px">Syrian Hamster — กลุ่มสี Self</h3>
-        <p>สีเดียวตลอดตัว ไม่มีลวดลาย Agouti ทั้ง 9 สี</p>
+      <div class="calc-results">
+        <h4>📊 ผลการคำนวณ — ลูกที่เป็นไปได้</h4>
+        <div id="calc-output"></div>
       </div>
-      <div class="color-grid" id="syrian-self-grid"></div>
     </div>
-
-    <!-- Dwarf -->
-    <div class="gen-panel" id="panel-dwarf">
-      <div class="section-header" style="text-align:left;margin-bottom:24px">
-        <div class="tag" style="display:inline-block">REQ-GEN-002</div>
-        <h3 style="margin-top:12px">Dwarf Hamster — ฐานข้อมูลสีทั้งหมด</h3>
-      </div>
-      <h4 style="color:var(--gold);margin-bottom:20px">Winter White Dwarf (Phodopus sungorus)</h4>
-      <div class="color-grid" id="dwarf-ww-grid" style="margin-bottom:40px"></div>
-      <h4 style="color:var(--gold);margin-bottom:20px">Campbell's Dwarf (Phodopus campbelli)</h4>
-      <div class="color-grid" id="dwarf-camp-grid" style="margin-bottom:40px"></div>
-      <h4 style="color:var(--gold);margin-bottom:20px">Roborovski (Phodopus roborovskii)</h4>
-      <div class="color-grid" id="dwarf-robo-grid"></div>
-    </div>
-
-    <!-- Patterns -->
-    <div class="gen-panel" id="panel-patterns">
-      <div class="section-header" style="text-align:left;margin-bottom:24px">
-        <div class="tag" style="display:inline-block">REQ-GEN-003</div>
-        <h3 style="margin-top:12px">แพตเทิร์น (Patterns)</h3>
-        <p>ลวดลายสีขาวที่ปรากฏบนขนของแฮมสเตอร์ ควบคุมด้วยยีนแยกต่างหาก</p>
-      </div>
-      <div class="pattern-grid" id="patterns-grid"></div>
-    </div>
-
-    <!-- Coat Types -->
-    <div class="gen-panel" id="panel-coat">
-      <div class="section-header" style="text-align:left;margin-bottom:24px">
-        <div class="tag" style="display:inline-block">REQ-GEN-004</div>
-        <h3 style="margin-top:12px">ประเภทขน (Coat Types)</h3>
-        <p>ลักษณะเนื้อขนและความยาวขน ควบคุมด้วยยีนแยกจากสี</p>
-      </div>
-      <div class="pattern-grid" id="coat-grid"></div>
-    </div>
-
-
   </div>
 </section>
 
@@ -217,12 +233,10 @@
         <div class="logo"><img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/><div class="nav-logo-text">Siam Hamster Breeder Association<span>สมาคมสยามแฮมสเตอร์บรีดเดอร์</span></div></div>
         <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</p>
       </div>
-      <div class="footer-col"><h4>คลังยีน</h4><div class="footer-links">
-        <a href="#" onclick="switchGenTab('syrian',this)" class="footer-link">Syrian Agouti</a>
-        <a href="#" onclick="switchGenTab('syrian-self',this)" class="footer-link">Syrian Self</a>
-        <a href="#" onclick="switchGenTab('dwarf',this)" class="footer-link">Dwarf Hamster</a>
-        <a href="#" onclick="switchGenTab('patterns',this)" class="footer-link">แพตเทิร์น</a>
-        <a href="#" onclick="switchGenTab('calculator',this)" class="footer-link">🧮 เครื่องคำนวณยีน</a>
+      <div class="footer-col"><h4>คลังความรู้</h4><div class="footer-links">
+        <a href="genetics.html" class="footer-link">Genetics &amp; สีสัน</a>
+        <a href="genescalculator.html" class="footer-link">เครื่องมือคำนวณยีน</a>
+        <a href="knowledge.html" class="footer-link">บทความ &amp; วิจัย</a>
       </div></div>
       <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
         <a href="competitions.html" class="footer-link">ปฏิทินประกวด</a>
@@ -285,9 +299,6 @@
       <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
         <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
       </button>
-      <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)">
-        <i class="fa-solid fa-shield-halved" style="color:var(--gold)"></i> เริ่มต้นด้วยสมาชิกสามัญฟรี — อัปเกรดได้ภายหลัง
-      </p>
     </div>
   </div>
 </div>
@@ -296,14 +307,58 @@
 <div class="toast-container" id="toast-container"></div>
 <script type="module" src="firebase.js"></script>
 <script src="main.js"></script>
-<script>
+<script type="module">
+  import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+
+  // reuse existing app if already initialized
+  const app = getApps().length ? getApps()[0] : null;
+
   document.addEventListener('DOMContentLoaded', () => {
-    SHBA.initNavbar('genetics');
+    SHBA.initNavbar('knowledge');
     SHBA.initTheme();
     SHBA.initScrollAnimations();
     SHBA.initScrollTop();
-    renderGeneticsGrids();
+  });
+
+  function normType(t) {
+    return t ? t.toLowerCase().split(' ')[0] : 'standard';
+  }
+  const ALLOWED = ['breeder', 'honorary'];
+
+  function showCalc() {
+    document.getElementById('calc-locked').style.display  = 'none';
+    document.getElementById('calc-content').style.display = '';
     calculateGenetics();
+  }
+  function showLocked() {
+    document.getElementById('calc-locked').style.display  = '';
+    document.getElementById('calc-content').style.display = 'none';
+  }
+
+  // Wait for firebase.js to expose auth/db (it sets window._firebaseApp)
+  function waitForFirebase(cb, tries = 0) {
+    if (window._firebaseAuth && window._firebaseDb) return cb(window._firebaseAuth, window._firebaseDb);
+    if (tries > 40) return showLocked(); // timeout → show locked
+    setTimeout(() => waitForFirebase(cb, tries + 1), 150);
+  }
+
+  waitForFirebase((auth, db) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) return showLocked();
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        const memberType = snap.exists() ? snap.data().memberType || '' : '';
+        if (ALLOWED.includes(normType(memberType))) {
+          showCalc();
+        } else {
+          showLocked();
+        }
+      } catch {
+        showLocked();
+      }
+    });
   });
 </script>
 </body>
