@@ -16,15 +16,58 @@
       <div class="nav-logo-text">SHBA<span>Siam Hamster Breeder Association</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="membership.html"   class="nav-link" data-page="membership">สมาชิก</a></li>
-      <li><a href="competitions.html" class="nav-link" data-page="competitions">การประกวด</a></li>
-      <li><a href="genetics.html"     class="nav-link" data-page="genetics">คลังยีน</a></li>
-      <li><a href="knowledge.html"    class="nav-link" data-page="knowledge">คลังความรู้</a></li>
-      <li><a href="news.html"         class="nav-link" data-page="news">ข่าวสาร</a></li>
+      <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">หน้าหลัก</a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="about.html" class="nav-link" data-page="about">เกี่ยวกับ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="about.html#history"   class="nav-dd-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+          <a href="about.html#vision"    class="nav-dd-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+          <a href="about.html#committee" class="nav-dd-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+          <a href="about.html#ethics"    class="nav-dd-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+          <a href="about.html#rules"     class="nav-dd-link"><i class="fa-solid fa-file-lines"></i> ข้อบังคับสมาคม</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="membership.html" class="nav-link active" data-page="membership">สมาชิก <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="membership.html#membership"     class="nav-dd-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก &amp; สิทธิประโยชน์</a>
+          <a href="membership.html#register"        class="nav-dd-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิกออนไลน์</a>
+          <a href="membership.html#upgrade-section" class="nav-dd-link"><i class="fa-solid fa-rotate"></i> ต่ออายุสมาชิก</a>
+          <a href="myaccount.html"                  class="nav-dd-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="competitions.html" class="nav-link" data-page="competitions">การประกวด <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+          <a href="competitions.html#register"  class="nav-dd-link"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+          <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
+          <a href="competitions.html#rules"     class="nav-dd-link"><i class="fa-solid fa-gavel"></i> กฎกติกาการประกวด</a>
+          <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+          <a href="competitions.html#gallery"   class="nav-dd-link"><i class="fa-solid fa-images"></i> แกลเลอรีภาพงานประกวด</a>
+          <a href="competitions.html#judges"    class="nav-dd-link"><i class="fa-solid fa-user-tie"></i> ข้อมูลกรรมการตัดสิน</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="knowledge.html" class="nav-link" data-page="knowledge">คลังความรู้ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="genetics.html"          class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
+          <a href="knowledge.html#care"    class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+          <a href="knowledge.html#species" class="nav-dd-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
+          <a href="knowledge.html#articles"class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
+        </div>
+      </li>
+
+      <li class="nav-item"><a href="news.html" class="nav-link" data-page="news">ข่าวสาร</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link" data-page="community">ชุมชน</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">ติดต่อเรา</a></li>
     </ul>
     <div class="nav-cta">
-      <button class="btn btn-outline-gold btn-sm" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
-      <a href="#register" class="btn btn-gold btn-sm"><i class="fa-solid fa-plus"></i> สมัครสมาชิก</a>
+      <button class="btn btn-outline-gold btn-sm btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
     </div>
     <button id="theme-toggle" onclick="toggleTheme()" title="เปลี่ยนธีม"><i class="fa-solid fa-sun"></i></button>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
@@ -32,11 +75,60 @@
 </nav>
 <div class="mobile-nav" id="mobile-nav">
   <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
-  <a href="membership.html"   class="nav-link">สมาชิก</a>
-  <a href="competitions.html" class="nav-link">การประกวด</a>
-  <a href="genetics.html"     class="nav-link">คลังยีน</a>
-  <a href="knowledge.html"    class="nav-link">คลังความรู้</a>
-  <a href="news.html"         class="nav-link">ข่าวสาร</a>
+  <div class="mobile-nav-scroll">
+
+    <a href="index.html" class="mobile-nav-link">หน้าหลัก</a>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">เกี่ยวกับสมาคม <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="about.html#history"   class="mobile-nav-sub-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+        <a href="about.html#vision"    class="mobile-nav-sub-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+        <a href="about.html#committee" class="mobile-nav-sub-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+        <a href="about.html#ethics"    class="mobile-nav-sub-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+        <a href="about.html#rules"     class="mobile-nav-sub-link"><i class="fa-solid fa-file-lines"></i> ข้อบังคับสมาคม</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">สมาชิก <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="membership.html#membership"     class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
+        <a href="membership.html#register"        class="mobile-nav-sub-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+        <a href="myaccount.html"                  class="mobile-nav-sub-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">การประกวด <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="competitions.html#calendar"  class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+        <a href="competitions.html#results"   class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+        <a href="competitions.html#standards" class="mobile-nav-sub-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
+        <a href="competitions.html#judges"    class="mobile-nav-sub-link"><i class="fa-solid fa-user-tie"></i> กรรมการตัดสิน</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">คลังความรู้ <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="genetics.html"           class="mobile-nav-sub-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
+        <a href="knowledge.html#care"     class="mobile-nav-sub-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+        <a href="knowledge.html#species"  class="mobile-nav-sub-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
+        <a href="knowledge.html#articles" class="mobile-nav-sub-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
+      </div>
+    </div>
+
+    <a href="news.html"      class="mobile-nav-link">ข่าวสาร</a>
+    <a href="community.html" class="mobile-nav-link">ชุมชน</a>
+    <a href="contact.html"   class="mobile-nav-link">ติดต่อเรา</a>
+
+    <div class="mobile-nav-divider"></div>
+    <div class="mobile-nav-btns">
+      <button class="btn btn-outline-gold btn-login-trigger" onclick="closeMobileNav(); openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- PAGE HERO -->
@@ -54,210 +146,145 @@
   <div class="container">
     <div class="section-header fade-in-up">
       <div class="tag">ประเภทสมาชิก</div>
-      <h2>เลือก<span class="text-gradient-gold">แผนสมาชิก</span></h2>
-      <p>เลือกระดับที่เหมาะกับคุณ และรับสิทธิประโยชน์ที่ครบครัน</p>
+      <h2>ระดับ<span class="text-gradient-gold">สมาชิก SHBA</span></h2>
+      <p>เริ่มต้นด้วยสมาชิกสามัญฟรี แล้วอัปเกรดได้ตามความต้องการ</p>
       <div class="divider"></div>
     </div>
-    <div class="membership-grid">
-      <div class="mem-card standard fade-in-up">
+
+    <!-- Upgrade Flow Banner -->
+    <div class="mem-flow-banner fade-in-up">
+      <div class="mem-flow-step">
+        <div class="mem-flow-icon">🐾</div>
+        <div class="mem-flow-label">สมัครสมาชิกสามัญ<br/><span style="color:var(--gold);font-weight:700">ฟรี</span></div>
+      </div>
+      <div class="mem-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="mem-flow-step">
+        <div class="mem-flow-icon">🧬</div>
+        <div class="mem-flow-label">อัปเกรดเป็น Breeder<br/><span style="color:var(--orange);font-weight:700">฿2,000/ปี</span></div>
+      </div>
+      <div class="mem-flow-arrow dim"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="mem-flow-step dim">
+        <div class="mem-flow-icon">👑</div>
+        <div class="mem-flow-label">กิตติมศักดิ์<br/><span style="color:var(--gray-400);font-weight:700">เชิญเท่านั้น</span></div>
+      </div>
+    </div>
+
+    <div class="membership-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:960px;margin:0 auto">
+
+      <!-- Standard (starting point) -->
+      <div class="mem-card standard featured fade-in-up">
+        <div class="mem-featured-badge" style="background:var(--gold);color:#000">✅ จุดเริ่มต้น</div>
         <div class="mem-icon">🐾</div>
         <h3>สมาชิกสามัญ</h3><p class="mem-sub">Standard Member</p>
-        <div class="mem-price"><span class="price" style="color:var(--gray-300)">฿500</span><span class="per">/ปี</span></div>
-        <div class="mem-features">
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าชมงานประกวด</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> สมัครประกวดได้</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> บัตรสมาชิกดิจิทัล</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าถึงคลังความรู้</div>
-          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> สิทธิ์โหวตในที่ประชุม</div>
-          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> ป้าย Breeder Certified</div>
+        <div class="mem-price">
+          <span class="price text-gold">ฟรี</span>
+          <span class="per"> ตลอดชีพ</span>
         </div>
-        <button class="btn btn-outline-gold w-100" onclick="selectMemberType('standard');document.getElementById('register').scrollIntoView({behavior:'smooth'})">เลือกแผนนี้</button>
+        <div class="mem-features">
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> สมัครได้ทันที ไม่มีค่าใช้จ่าย</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> บัตรสมาชิกดิจิทัล + QR Code</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าชมและสมัครงานประกวด</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าถึงคลังความรู้ทั้งหมด</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าร่วมชุมชน SHBA</div>
+          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> ป้าย Breeder Certified</div>
+          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> ลงทะเบียนสายพันธุ์</div>
+        </div>
+        <button class="btn btn-gold w-100" onclick="openModal('login-modal'); switchAuthTab('signup')">
+          <i class="fa-solid fa-user-plus"></i> สมัครฟรีเลย
+        </button>
       </div>
 
-      <div class="mem-card breeder featured fade-in-up">
-        <div class="mem-featured-badge">⭐ ยอดนิยม</div>
+      <!-- Breeder (upgrade) -->
+      <div class="mem-card breeder fade-in-up">
+        <div class="mem-featured-badge">⬆️ อัปเกรดได้</div>
         <div class="mem-icon">🧬</div>
         <h3>สมาชิกผู้เพาะพันธุ์</h3><p class="mem-sub">Breeder Member</p>
-        <div class="mem-price"><span class="price text-orange">฿1,200</span><span class="per">/ปี</span></div>
+        <div class="mem-price">
+          <span class="price text-orange">฿2,000</span>
+          <span class="per">/ปี</span>
+        </div>
         <div class="mem-features">
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> ทุกสิทธิ์ของสมาชิกสามัญ</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ป้าย Breeder Certified</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> หน้า Public Profile</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ป้าย Breeder Certified บนโปรไฟล์</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> หน้า Public Profile ของฟาร์ม</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> ลงทะเบียนสายพันธุ์ไม่จำกัด</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> สิทธิ์โหวตในที่ประชุม</div>
-          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> สถานะกรรมการตัดสิน</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> สิทธิ์โหวตในที่ประชุม SHBA</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ส่วนลดค่าสมัครประกวด 20%</div>
         </div>
-        <button class="btn btn-orange w-100" onclick="selectMemberType('breeder');document.getElementById('register').scrollIntoView({behavior:'smooth'})">เลือกแผนนี้</button>
+        <button class="btn btn-outline-orange w-100" onclick="document.getElementById('upgrade-section').scrollIntoView({behavior:'smooth'})">
+          <i class="fa-solid fa-arrow-up"></i> ดูวิธีอัปเกรด
+        </button>
       </div>
 
+      <!-- Honorary -->
       <div class="mem-card honorary fade-in-up">
         <div class="mem-icon">👑</div>
         <h3>สมาชิกกิตติมศักดิ์</h3><p class="mem-sub">Honorary Member</p>
-        <div class="mem-price"><span class="price text-gold">ฟรี</span><span class="per"> (เฉพาะผู้ที่ได้รับเชิญ)</span></div>
+        <div class="mem-price">
+          <span class="price text-gold">เชิญ</span>
+          <span class="per"> โดยคณะกรรมการ</span>
+        </div>
         <div class="mem-features">
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ทุกสิทธิ์ของ Breeder</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ไม่มีค่าสมัครประกวด</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เกียรติบัตรพิเศษ</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ทุกสิทธิ์ของ Breeder Member</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ไม่มีค่าสมัครประกวดตลอดชีพ</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เกียรติบัตรพิเศษจาก SHBA</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> สิทธิ์นั่งบอร์ดที่ปรึกษา</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ชื่อใน Hall of Fame</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ชื่อใน Hall of Fame ตลอดกาล</div>
         </div>
-        <button class="btn btn-outline-gold w-100" disabled style="opacity:.5;cursor:not-allowed">โดยการเชิญเท่านั้น</button>
-      </div>
-
-      <div class="mem-card judge fade-in-up">
-        <div class="mem-icon">⚖️</div>
-        <h3>กรรมการตัดสิน</h3><p class="mem-sub">Licensed Judge</p>
-        <div class="mem-price"><span class="price" style="color:#9B59B6">฿2,000</span><span class="per">/ปี + ใบรับรอง</span></div>
-        <div class="mem-features">
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ใบอนุญาตตัดสินอย่างเป็นทางการ</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าถึง Judge's Handbook</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ระบบให้คะแนน NHC</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> บัตรกรรมการพิเศษ</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ค่าตอบแทนจากการตัดสิน</div>
-        </div>
-        <button class="btn btn-outline-gold w-100" onclick="openModal('judge-app-modal')">สมัครเป็นกรรมการ</button>
+        <button class="btn btn-outline-gold w-100" disabled style="opacity:.4;cursor:not-allowed">
+          <i class="fa-solid fa-envelope"></i> โดยการเชิญเท่านั้น
+        </button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REGISTER FORM -->
-<section id="register" class="section" style="background:var(--black-light)">
-  <div class="container">
-    <div class="register-grid">
-      <div class="register-info fade-in-up">
-        <div class="tag" style="display:inline-block;margin-bottom:16px">REQ-MEM-001</div>
-        <h2>ลงทะเบียน<br/><span class="text-gradient-gold">สมาชิกใหม่</span></h2>
-        <p>กรอกข้อมูลของคุณเพื่อเริ่มต้นเส้นทางการเป็นสมาชิกสมาคมสยามแฮมสเตอร์บรีดเดอร์</p>
-        <div class="register-steps" style="margin-top:32px">
-          <div class="register-step"><div class="step-num">1</div><div class="step-content"><h4>กรอกข้อมูลส่วนตัว</h4><p>ชื่อ-นามสกุล อีเมล เบอร์โทร ที่อยู่</p></div></div>
-          <div class="register-step"><div class="step-num">2</div><div class="step-content"><h4>ยืนยันอีเมล (REQ-MEM-002)</h4><p>ระบบส่งลิงก์ยืนยันตัวตนไปยังอีเมล</p></div></div>
-          <div class="register-step"><div class="step-num">3</div><div class="step-content"><h4>รับบัตรสมาชิกดิจิทัล (REQ-MEM-003)</h4><p>บัตรดิจิทัลพร้อม QR Code</p></div></div>
-          <div class="register-step"><div class="step-num">4</div><div class="step-content"><h4>เข้าสู่ Dashboard (REQ-MEM-004)</h4><p>ดูสถานะ ประวัติ และรางวัลทั้งหมด</p></div></div>
-        </div>
-      </div>
-      <div class="form-card fade-in-up">
-        <h3 class="form-title"><i class="fa-solid fa-id-card text-gold"></i> แบบฟอร์มสมัครสมาชิก</h3>
-        <form id="register-form" onsubmit="handleRegister(event)">
-          <div class="form-row">
-            <div class="form-group"><label>ชื่อ <span class="req">*</span></label><input type="text" class="form-control" placeholder="ชื่อจริง" required id="reg-firstname" /></div>
-            <div class="form-group"><label>นามสกุล <span class="req">*</span></label><input type="text" class="form-control" placeholder="นามสกุล" required /></div>
-          </div>
-          <div class="form-group"><label>อีเมล <span class="req">*</span></label><input type="email" class="form-control" placeholder="your@email.com" required id="reg-email" /></div>
-          <div class="form-group"><label>เบอร์โทรศัพท์ <span class="req">*</span></label><input type="tel" class="form-control" placeholder="0XX-XXX-XXXX" required /></div>
-          <div class="form-group"><label>ที่อยู่</label><textarea class="form-control" placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์" rows="3"></textarea></div>
-          <div class="form-group"><label>ชื่อฟาร์ม/ร้าน (ถ้ามี)</label><input type="text" class="form-control" placeholder="ชื่อฟาร์มหรือร้าน" /></div>
-          <div class="form-group">
-            <label>ประเภทสมาชิกที่ต้องการ <span class="req">*</span></label>
-            <div class="mem-type-selector">
-              <div class="mem-type-opt"><input type="radio" name="mem-type" id="mt-standard" value="standard" checked /><label class="mem-type-label" for="mt-standard">🐾 สมาชิกสามัญ</label></div>
-              <div class="mem-type-opt"><input type="radio" name="mem-type" id="mt-breeder"  value="breeder"  /><label class="mem-type-label" for="mt-breeder">🧬 ผู้เพาะพันธุ์</label></div>
-              <div class="mem-type-opt"><input type="radio" name="mem-type" id="mt-judge"    value="judge"    /><label class="mem-type-label" for="mt-judge">⚖️ กรรมการตัดสิน</label></div>
-              <div class="mem-type-opt"><input type="radio" name="mem-type" id="mt-honorary" value="honorary" disabled /><label class="mem-type-label" for="mt-honorary" style="opacity:.4;cursor:not-allowed">👑 กิตติมศักดิ์</label></div>
-            </div>
-          </div>
-          <div class="form-group"><label><input type="checkbox" required style="margin-right:8px;accent-color:var(--gold)" /> ยอมรับ <a href="#" style="color:var(--gold)">ข้อกำหนดและเงื่อนไข</a> ของสมาคม</label></div>
-          <button type="submit" class="btn btn-gold w-100"><i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- DIGITAL MEMBERSHIP CARD -->
-<section id="digital-card" class="section" style="background:var(--black)">
+<!-- UPGRADE TO BREEDER -->
+<section id="upgrade-section" class="section" style="background:var(--black-light)">
   <div class="container">
     <div class="section-header fade-in-up">
-      <div class="tag">REQ-MEM-003</div>
-      <h2>บัตรสมาชิก<span class="text-gradient-gold">ดิจิทัล</span></h2>
-      <p>บัตรประจำตัวดิจิทัลพร้อม QR Code สำหรับ Check-in ในงานประกวด</p>
+      <div class="tag">UPGRADE</div>
+      <h2>อัปเกรดเป็น<span class="text-gradient-orange">Breeder Member</span></h2>
+      <p>สำหรับสมาชิกสามัญที่ต้องการสิทธิ์เพิ่มเติมในฐานะผู้เพาะพันธุ์</p>
       <div class="divider"></div>
     </div>
-    <div class="digital-card glow-gold" style="max-width:440px;margin:0 auto">
-      <div class="card-header-row"><span class="card-org">THAILAND HAMSTER ASSOCIATION</span><span class="card-year">2026</span></div>
-      <div class="card-member-row">
-        <div class="card-avatar">🐹</div>
-        <div class="card-member-info">
-          <div class="name">สมชาย รักแฮมสเตอร์</div>
-          <div class="mem-type">Breeder Member</div>
-          <div class="mem-id">ID: SHBA-2026-0842</div>
-        </div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-qr-row">
-        <div class="card-qr-box">
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <rect width="68" height="68" fill="white"/>
-            <rect x="4" y="4" width="22" height="22" fill="black"/><rect x="7" y="7" width="16" height="16" fill="white"/><rect x="10" y="10" width="10" height="10" fill="black"/>
-            <rect x="42" y="4" width="22" height="22" fill="black"/><rect x="45" y="7" width="16" height="16" fill="white"/><rect x="48" y="10" width="10" height="10" fill="black"/>
-            <rect x="4" y="42" width="22" height="22" fill="black"/><rect x="7" y="45" width="16" height="16" fill="white"/><rect x="10" y="48" width="10" height="10" fill="black"/>
-            <rect x="28" y="4" width="4" height="4" fill="black"/><rect x="34" y="4" width="4" height="4" fill="black"/>
-            <rect x="28" y="10" width="4" height="4" fill="black"/><rect x="32" y="16" width="4" height="4" fill="black"/>
-            <rect x="28" y="28" width="4" height="4" fill="black"/><rect x="34" y="28" width="4" height="4" fill="black"/>
-            <rect x="40" y="28" width="4" height="4" fill="black"/><rect x="46" y="28" width="4" height="4" fill="black"/>
-            <rect x="28" y="34" width="4" height="4" fill="black"/><rect x="40" y="34" width="4" height="4" fill="black"/>
-            <rect x="28" y="40" width="4" height="4" fill="black"/><rect x="34" y="40" width="4" height="4" fill="black"/>
-            <rect x="34" y="52" width="4" height="4" fill="black"/><rect x="40" y="52" width="4" height="4" fill="black"/>
-            <rect x="28" y="58" width="4" height="4" fill="black"/><rect x="52" y="58" width="4" height="4" fill="black"/>
-          </svg>
-        </div>
-        <div class="card-qr-info">
-          <p style="color:var(--gray-300);font-size:.78rem;margin-bottom:6px">สแกนเพื่อยืนยันตัวตน</p>
-          <p class="expires">หมดอายุ: 31 ธ.ค. 2026</p>
-          <p style="font-size:.72rem;color:var(--gray-500);margin-top:4px"><i class="fa-solid fa-shield-halved" style="color:var(--gold)"></i> ยืนยันแล้วโดย THA</p>
-        </div>
-      </div>
-      <div class="card-chip"></div>
-    </div>
-  </div>
-</section>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto" class="fade-in-up">
 
-<!-- DASHBOARD -->
-<section id="dashboard" class="section" style="background:var(--black-light)">
-  <div class="container">
-    <div class="section-header fade-in-up">
-      <div class="tag">REQ-MEM-004</div>
-      <h2>Member <span class="text-gradient-gold">Dashboard</span></h2>
-      <p>ภาพรวมของสมาชิก ประวัติการประกวด และรางวัลที่ได้รับ</p>
-      <div class="divider"></div>
-    </div>
-    <div class="dashboard-card fade-in-up">
-      <div class="dashboard-header">
-        <div class="dashboard-user">
-          <div class="dashboard-avatar">🐹</div>
-          <div class="dashboard-user-info">
-            <h3>สมชาย รักแฮมสเตอร์</h3>
-            <span class="mem-type">🧬 Breeder Member · SHBA-2026-0842</span>
+      <!-- What you get -->
+      <div class="card" style="padding:32px">
+        <h3 style="color:var(--orange);margin-bottom:20px"><i class="fa-solid fa-star"></i> สิทธิ์ที่ได้รับเพิ่ม</h3>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ป้าย <strong>Breeder Certified</strong> บนโปรไฟล์</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> หน้า <strong>Public Profile</strong> ของฟาร์มคุณ</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ลงทะเบียนสายพันธุ์ไม่จำกัด</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> สิทธิ์โหวตในที่ประชุม SHBA</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ส่วนลดค่าสมัครประกวด <strong>20%</strong></div>
+        <div style="margin-top:24px;padding:16px;background:rgba(255,100,0,.1);border-radius:10px;border:1px solid rgba(255,100,0,.3)">
+          <div style="font-size:1.6rem;font-weight:800;color:var(--orange)">฿2,000</div>
+          <div style="font-size:.85rem;color:var(--text-muted)">/ปี (ต่ออายุทุกปี)</div>
+        </div>
+      </div>
+
+      <!-- How to upgrade -->
+      <div class="card" style="padding:32px">
+        <h3 style="color:var(--gold);margin-bottom:20px"><i class="fa-solid fa-arrow-up"></i> วิธีอัปเกรด</h3>
+        <div class="register-step" style="margin-bottom:16px">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>เข้าสู่ระบบ</h4><p>ล็อกอินด้วยบัญชีสมาชิกสามัญของคุณ</p></div>
+        </div>
+        <div class="register-step" style="margin-bottom:16px">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>โอนเงิน ฿2,000</h4>
+            <p>ธนาคารกสิกรไทย: <strong>123-4-56789-0</strong><br/>ชื่อ: สมาคมสยามแฮมสเตอร์บรีดเดอร์</p>
           </div>
         </div>
-        <div style="display:flex;gap:10px">
-          <button class="btn btn-outline-gold btn-sm"><i class="fa-solid fa-pen"></i> แก้ไขโปรไฟล์</button>
-          <button class="btn btn-gold btn-sm"><i class="fa-solid fa-id-card"></i> บัตรสมาชิก</button>
+        <div class="register-step" style="margin-bottom:20px">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>ส่งหลักฐาน</h4><p>ส่งสลิปโอนเงินพร้อมระบุ Member ID ทาง Line</p></div>
         </div>
-      </div>
-      <div class="dashboard-stats">
-        <div class="dash-stat"><div class="num">14</div><div class="lbl">งานที่ลงแข่ง</div></div>
-        <div class="dash-stat"><div class="num">7</div><div class="lbl">รางวัลที่ได้รับ</div></div>
-        <div class="dash-stat"><div class="num">3</div><div class="lbl">Best in Show</div></div>
-        <div class="dash-stat"><div class="num">23</div><div class="lbl">แฮมสเตอร์ที่ลงทะเบียน</div></div>
-      </div>
-      <h4 style="margin-bottom:16px;color:var(--gold)"><i class="fa-solid fa-clock-rotate-left"></i> ประวัติกิจกรรมล่าสุด</h4>
-      <div class="activity-list">
-        <div class="activity-item">
-          <div class="activity-icon">🏆</div>
-          <div class="activity-info"><h4>Best Syrian — SHBA Spring Show 2026</h4><p>Cinnamon Satin Long Hair · คะแนน 96.5</p></div>
-          <div class="activity-date">15 มี.ค. 2026</div>
-        </div>
-        <div class="activity-item" style="border-left-color:var(--orange)">
-          <div class="activity-icon">🥈</div>
-          <div class="activity-info"><h4>2nd Place Best Dwarf — SHBA Winter Show 2025</h4><p>Winter White Pearl · คะแนน 92.0</p></div>
-          <div class="activity-date">12 ธ.ค. 2025</div>
-        </div>
-        <div class="activity-item" style="border-left-color:var(--gray-700)">
-          <div class="activity-icon">📋</div>
-          <div class="activity-info"><h4>ลงทะเบียนแฮมสเตอร์ใหม่</h4><p>Black Banded Syrian · THA-HAM-2025-0982</p></div>
-          <div class="activity-date">8 พ.ย. 2025</div>
-        </div>
+        <a href="#" class="btn btn-orange w-100" onclick="openModal('login-modal')">
+          <i class="fa-brands fa-line"></i> ติดต่อผ่าน Line Official
+        </a>
       </div>
     </div>
   </div>
@@ -279,9 +306,8 @@
       </div>
       <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
         <a href="#membership" class="footer-link">ประเภทสมาชิก</a>
-        <a href="#register"   class="footer-link">ลงทะเบียน</a>
-        <a href="#dashboard"  class="footer-link">Dashboard</a>
-        <a href="#digital-card" class="footer-link">บัตรดิจิทัล</a>
+        <a href="#" onclick="openModal('login-modal'); switchAuthTab('signup'); return false;" class="footer-link">ลงทะเบียน</a>
+        <a href="myaccount.html" class="footer-link">My Account</a>
       </div></div>
       <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
         <a href="competitions.html" class="footer-link">ปฏิทินประกวด</a>
@@ -305,12 +331,52 @@
 <div class="modal-overlay" id="login-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
-    <h3 style="margin-bottom:24px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ</h3>
-    <div class="form-group"><label>อีเมล</label><input type="email" class="form-control" placeholder="your@email.com" /></div>
-    <div class="form-group"><label>รหัสผ่าน</label><input type="password" class="form-control" placeholder="••••••••" /></div>
-    <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:8px" onclick="handleLogin()"><i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ</button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.2rem;margin-bottom:6px">🐹</div>
+      <h3 style="margin-bottom:4px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ / สมัครสมาชิก</h3>
+      <p style="font-size:.82rem;color:var(--text-muted)">Siam Hamster Breeder Association</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+      <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">สมัครสมาชิกใหม่</button>
+    </div>
+    <div id="auth-panel-login">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        เข้าสู่ระบบด้วย Google
+      </button>
+      <div class="auth-divider"><span>หรือใช้อีเมล</span></div>
+      <div class="form-group"><label>อีเมล</label><input type="email" id="li-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน</label><input type="password" id="li-password" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleEmailLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
+      </button>
+      <p style="text-align:center;margin-top:12px;font-size:.82rem">
+        <a href="#" style="color:var(--text-muted)" onclick="handleForgotPassword(event)">ลืมรหัสผ่าน?</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        สมัครด้วย Google (แนะนำ)
+      </button>
+      <div class="auth-divider"><span>หรือสมัครด้วยอีเมล</span></div>
+      <div class="form-row">
+        <div class="form-group"><label>ชื่อ <span class="req">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
+        <div class="form-group"><label>นามสกุล <span class="req">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
+      </div>
+      <div class="form-group"><label>อีเมล <span class="req">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
+      <div class="form-group"><label>ยืนยันรหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
+        <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
+      </button>
+      <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)">
+        <i class="fa-solid fa-shield-halved" style="color:var(--gold)"></i> เริ่มต้นด้วยสมาชิกสามัญฟรี — อัปเกรดได้ภายหลัง
+      </p>
+    </div>
   </div>
-</div>
+</div></div>
 <div class="modal-overlay" id="judge-app-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('judge-app-modal')"><i class="fa-solid fa-xmark"></i></button>
@@ -325,15 +391,16 @@
 
 <button id="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 <div class="toast-container" id="toast-container"></div>
+<script type="module" src="firebase.js"></script>
 <script src="main.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     SHBA.initNavbar('membership');
     SHBA.initTheme();
     SHBA.initScrollAnimations();
     SHBA.initScrollTop();
-    // Scroll to #register if hash
-    if (window.location.hash === '#register') document.getElementById('register')?.scrollIntoView();
+    if (window.location.hash === '#register') { openModal('login-modal'); switchAuthTab('signup'); }
   });
 </script>
 </body>

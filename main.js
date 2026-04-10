@@ -154,6 +154,26 @@ function initNavbar(activePage) {
   if (mobileClose) mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
 }
 
+/* close mobile nav from button inside nav */
+window.closeMobileNav = function() {
+  const mobileNav = document.getElementById('mobile-nav');
+  if (mobileNav) mobileNav.classList.remove('open');
+};
+
+/* toggle accordion group in mobile nav */
+window.toggleMobileGroup = function(btn) {
+  const sub   = btn.nextElementSibling;
+  const isOpen = sub.classList.contains('open');
+  // Close all open groups
+  document.querySelectorAll('.mobile-nav-sub').forEach(s => s.classList.remove('open'));
+  document.querySelectorAll('.mobile-nav-group-btn').forEach(b => b.classList.remove('open'));
+  // Toggle clicked group
+  if (!isOpen) {
+    sub.classList.add('open');
+    btn.classList.add('open');
+  }
+};
+
 /* ─── COUNTDOWN ─────────────────────────────────────────────────── */
 function initCountdown() {
   const target = new Date('2026-06-14T09:00:00');
@@ -470,20 +490,62 @@ window.renderResults = function() {
 };
 
 /* ─── FORMS ──────────────────────────────────────────────────────── */
-window.handleRegister = (e) => {
-  e.preventDefault();
-  const fn = document.getElementById('reg-firstname')?.value;
-  const em = document.getElementById('reg-email')?.value;
-  if (!fn || !em) { showToast('error', '❌ กรุณากรอกข้อมูลที่จำเป็นให้ครบ'); return; }
-  const btn = e.target.querySelector('[type="submit"]');
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังดำเนินการ...'; btn.disabled = true;
-  setTimeout(() => {
-    showToast('success', `✅ สมัครสำเร็จ! ส่งอีเมลยืนยันไปที่ ${em} แล้ว`);
-    e.target.reset();
-    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร'; btn.disabled = false;
-  }, 1800);
+// handleRegister is defined in membership.html as a Firebase module
+window.handleRegister = window.handleRegister || ((e) => { e.preventDefault(); });
+window.handleLogin = () => { closeModal('login-modal'); };
+
+// Email/Password login
+window.handleEmailLogin = async function() {
+  const email    = document.getElementById('li-email')?.value.trim();
+  const password = document.getElementById('li-password')?.value;
+  if (!email || !password) { showToast('error', 'กรุณากรอกอีเมลและรหัสผ่าน'); return; }
+  if (typeof window.signInWithEmail === 'function') {
+    await window.signInWithEmail(email, password);
+  }
 };
-window.handleLogin = () => { showToast('success', '✅ เข้าสู่ระบบสำเร็จ!'); closeModal('login-modal'); };
+
+// Forgot password
+window.handleForgotPassword = function(e) {
+  e.preventDefault();
+  const email = document.getElementById('li-email')?.value.trim();
+  if (typeof window.resetPassword === 'function') {
+    window.resetPassword(email);
+  }
+};
+
+// Quick signup from modal (Standard member)
+window.handleQuickSignup = async function() {
+  const fn  = document.getElementById('su-firstname')?.value.trim();
+  const ln  = document.getElementById('su-lastname')?.value.trim();
+  const em  = document.getElementById('su-email')?.value.trim();
+  const pw  = document.getElementById('su-password')?.value;
+  const pw2 = document.getElementById('su-password2')?.value;
+  if (!fn || !ln || !em || !pw) { showToast('error', 'กรุณากรอกข้อมูลให้ครบ'); return; }
+  if (pw !== pw2) { showToast('error', 'รหัสผ่านไม่ตรงกัน'); return; }
+  if (pw.length < 6) { showToast('error', 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร'); return; }
+  if (typeof window.signUpWithEmail === 'function') {
+    await window.signUpWithEmail(fn, ln, em, pw);
+  }
+};
+
+// Switch auth tab (login / signup)
+window.switchAuthTab = function(tab) {
+  const loginPanel  = document.getElementById('auth-panel-login');
+  const signupPanel = document.getElementById('auth-panel-signup');
+  const tabLogin    = document.getElementById('tab-login');
+  const tabSignup   = document.getElementById('tab-signup');
+  if (tab === 'login') {
+    if (loginPanel)  loginPanel.style.display  = '';
+    if (signupPanel) signupPanel.style.display = 'none';
+    if (tabLogin)    tabLogin.classList.add('active');
+    if (tabSignup)   tabSignup.classList.remove('active');
+  } else {
+    if (loginPanel)  loginPanel.style.display  = 'none';
+    if (signupPanel) signupPanel.style.display = '';
+    if (tabLogin)    tabLogin.classList.remove('active');
+    if (tabSignup)   tabSignup.classList.add('active');
+  }
+};
 window.submitJudgeApp = () => { showToast('info', '📋 ส่งใบสมัครแล้ว เจ้าหน้าที่จะติดต่อกลับภายใน 7 วัน'); closeModal('judge-app-modal'); };
 window.selectMemberType = (type) => { const r = document.getElementById(`mt-${type}`); if (r) r.checked = true; };
 
@@ -527,3 +589,4 @@ if (window.SHBA) window.SHBA.initTheme = initTheme;
   const saved = localStorage.getItem('shba-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
 })();
+
