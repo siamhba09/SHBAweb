@@ -238,7 +238,17 @@ window.showToast = (type, msg) => {
 /* ─── MODALS ────────────────────────────────────────────────────── */
 window.openModal = (id) => { const m = document.getElementById(id); if (m) m.classList.add('open'); };
 window.closeModal = (id) => { const m = document.getElementById(id); if (m) m.classList.remove('open'); };
-document.addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); });
+// Close modal only when mousedown AND mouseup both land on the overlay (not a click-drag from inside)
+let _modalMousedownTarget = null;
+document.addEventListener('mousedown', e => { _modalMousedownTarget = e.target; });
+document.addEventListener('click', e => {
+  if (
+    e.target.classList.contains('modal-overlay') &&
+    _modalMousedownTarget === e.target
+  ) {
+    e.target.classList.remove('open');
+  }
+});
 
 /* ─── RENDER: COLOR CARD ─────────────────────────────────────────── */
 function renderColorCard(c) {

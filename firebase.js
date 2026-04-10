@@ -21,6 +21,7 @@ import {
   doc,
   getDoc,
   setDoc,
+  runTransaction,
   serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
@@ -78,18 +79,28 @@ window.signUpWithEmail = async function(firstname, lastname, email, password) {
   const displayName = [firstname, lastname].filter(Boolean).join(' ');
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
-    // Set displayName in Firebase Auth
+    // 1) Set displayName in Firebase Auth
     await updateProfile(result.user, { displayName });
-    // Save firstname, lastname, displayName to Firestore
-    await setDoc(doc(db, 'users', result.user.uid), {
+    // 2) Generate memberID
+    const memberID = await _generateMemberID();
+    // 3) Read existing doc first (to preserve createdAt/memberID if race with _ensureUserProfile)
+    const ref      = doc(db, 'users', result.user.uid);
+    const existing = (await getDoc(ref)).data() || {};
+    // 4) Write ALL required fields in one shot
+    await setDoc(ref, {
+      uid:        result.user.uid,
+      memberID:   existing.memberID   || memberID,
+      displayName,
       firstname,
       lastname,
-      displayName,
       email,
-      memberType:  'standard',
-      createdAt:   serverTimestamp(),
-    }, { merge: true });
-    // Send verification email
+      memberType: existing.memberType || 'standard',
+      photoURL:   result.user.photoURL || '',
+      provider:   'password',
+      createdAt:  existing.createdAt  || serverTimestamp(),
+      updatedAt:  serverTimestamp(),
+    });
+    // 5) Send verification email
     await sendEmailVerification(result.user);
     closeModal('login-modal');
     if (typeof showToast === 'function') {
@@ -156,24 +167,72 @@ window.signOutUser = async function () {
 // ── Get Current User ───────────────────────────────────────
 window.getCurrentUser = function () { return currentUser; };
 
+
+// ── Generate memberID: SHBA-YYYY-NNNNN ────────────────────
+async function _generateMemberID() {
+  const year = new Date().getFullYear();
+  try {
+    const counterRef = doc(db, 'meta', 'memberCounter');
+    const nextNum    = await runTransaction(db, async (tx) => {
+      const snap    = await tx.get(counterRef);
+      const current = snap.exists() ? (snap.data().count || 0) : 0;
+      const next    = current + 1;
+      tx.set(counterRef, { count: next }, { merge: true });
+      return next;
+    });
+    return `SHBA-${year}-${String(nextNum).padStart(5, '0')}`;
+  } catch {
+    // Fallback: timestamp-based unique number
+    const num = Math.floor(Date.now() / 1000) % 100000;
+    return `SHBA-${year}-${String(num).padStart(5, '0')}`;
+  }
+}
+
 // ── Create/Update User Profile in Firestore ────────────────
+// Fields stored: uid, memberID, displayName, firstname, lastname,
+//                email, memberType, photoURL, provider, createdAt, updatedAt
 async function _ensureUserProfile(user) {
   try {
-    const ref  = doc(db, 'users', user.uid);
-    const snap = await getDoc(ref);
-    if (!snap.exists()) {
+    const ref      = doc(db, 'users', user.uid);
+    const snap     = await getDoc(ref);
+    const existing = snap.exists() ? snap.data() : null;
+
+    // Parse firstname / lastname from Auth displayName
+    const rawName   = (user.displayName || '').trim();
+    const parts     = rawName.split(/\s+/);
+    const firstName = parts[0] || '';
+    const lastName  = parts.slice(1).join(' ') || '';
+    const provider  = user.providerData?.[0]?.providerId || 'unknown';
+
+    if (!existing) {
+      // ── New user: generate memberID + write all required fields ──
+      const memberID = await _generateMemberID();
       await setDoc(ref, {
         uid:         user.uid,
-        displayName: user.displayName,
-        email:       user.email,
-        photoURL:    user.photoURL,
-        provider:    'google',
-        memberType:  null,
+        memberID,
+        displayName: rawName,
+        firstname:   firstName,
+        lastname:    lastName,
+        email:       user.email    || '',
+        memberType:  'standard',
+        photoURL:    user.photoURL || '',
+        provider,
         createdAt:   serverTimestamp(),
-        updatedAt:   serverTimestamp()
+        updatedAt:   serverTimestamp(),
       });
     } else {
-      await setDoc(ref, { updatedAt: serverTimestamp() }, { merge: true });
+      // ── Existing user: patch only null/missing fields ──
+      const patch = { updatedAt: serverTimestamp() };
+      if (!existing.memberID)                          patch.memberID    = await _generateMemberID();
+      if (!existing.uid)                               patch.uid         = user.uid;
+      if (!existing.displayName && rawName)            patch.displayName = rawName;
+      if (!existing.firstname   && firstName)          patch.firstname   = firstName;
+      if (!existing.lastname    && lastName)            patch.lastname    = lastName;
+      if (!existing.email       && user.email)          patch.email       = user.email;
+      if (!existing.memberType)                         patch.memberType  = 'standard';
+      if (!existing.photoURL    && user.photoURL)       patch.photoURL    = user.photoURL;
+      if (!existing.provider)                           patch.provider    = provider;
+      await setDoc(ref, patch, { merge: true });
     }
   } catch (err) {
     console.warn('Firestore profile update skipped:', err.message);
@@ -232,8 +291,8 @@ async function _renderLoggedIn(user) {
         </div>
         <div class="user-dropdown-divider"></div>
         <a href="myaccount.html" class="user-dropdown-item"><i class="fa-solid fa-gauge"></i> My Account</a>
-        <a href="membership.html" class="user-dropdown-item"><i class="fa-solid fa-id-card"></i> บัตรสมาชิก</a>
-        <a href="competitions.html" class="user-dropdown-item"><i class="fa-solid fa-trophy"></i> การประกวดของฉัน</a>
+        <a href="myaccount.html#membership" class="user-dropdown-item"><i class="fa-solid fa-id-card"></i> บัตรสมาชิก</a>
+        <a href="myaccount.html#activity" class="user-dropdown-item"><i class="fa-solid fa-trophy"></i> การประกวดของฉัน</a>
         <div class="user-dropdown-divider"></div>
         <button class="user-dropdown-item text-danger" onclick="signOutUser()">
           <i class="fa-solid fa-arrow-right-from-bracket"></i> ออกจากระบบ
