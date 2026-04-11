@@ -312,10 +312,60 @@ window.openEntryForm = (id) => {
   if (el) el.textContent = num;
   form.scrollIntoView({ behavior:'smooth', block:'start' });
 };
-window.submitCompEntry = () => {
-  showToast('success', '✅ ส่งใบสมัครสำเร็จ! กรุณาชำระเงินภายใน 3 วัน');
-  const f = document.getElementById('comp-register-form');
-  if (f) f.classList.remove('open');
+// ── ใส่ URL ของ Google Apps Script ที่ Deploy แล้วตรงนี้ ──
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNbogcORZ-lzcdBcNSVuYyYQK61NtVy43-Z9ZbNV3kJjjIEUThOgL1nTAK2hUvb3BHcA/exec';
+
+window.submitCompEntry = async () => {
+  const g = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+
+  // Validate required fields
+  if (!g('cf-owner'))   { showToast('error', 'กรุณากรอกชื่อ-นามสกุลเจ้าของ'); return; }
+  if (!g('cf-hamname')) { showToast('error', 'กรุณากรอกชื่อแฮมสเตอร์'); return; }
+
+  // Generate entry number
+  const entryNo = 'SHBA-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+  const entryEl = document.getElementById('entry-num');
+  if (entryEl) entryEl.textContent = entryNo;
+
+  const payload = {
+    entryNo,
+    submittedAt : new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' }),
+    owner       : g('cf-owner'),
+    memberId    : g('cf-memberid'),
+    hamsterName : g('cf-hamname'),
+    breed       : g('cf-breed'),
+    color       : g('cf-color'),
+    pattern     : g('cf-pattern'),
+    coat        : g('cf-coat'),
+    sex         : g('cf-sex'),
+    age         : g('cf-age'),
+    weight      : g('cf-weight'),
+    compClass   : g('cf-class'),
+  };
+
+  const btn = document.querySelector('#comp-register-form .btn-orange');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่ง...'; }
+
+  console.log('📤 Submitting to:', APPS_SCRIPT_URL);
+  console.log('📦 Payload:', payload);
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method : 'POST',
+      mode   : 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body   : JSON.stringify(payload),
+    });
+    console.log('✅ Fetch complete, status:', res.type);
+    showToast('success', `✅ ส่งใบสมัครสำเร็จ! หมายเลขประกวด: ${entryNo}`);
+    const f = document.getElementById('comp-register-form');
+    if (f) f.classList.remove('open');
+  } catch (err) {
+    console.error('❌ Fetch error:', err);
+    showToast('error', 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร + ชำระเงิน'; }
+  }
 };
 
 /* ─── RENDER: GENETICS ───────────────────────────────────────────── */
@@ -598,5 +648,5 @@ if (window.SHBA) window.SHBA.initTheme = initTheme;
 (function() {
   const saved = localStorage.getItem('shba-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
+  _updateThemeBtn(saved);
 })();
-

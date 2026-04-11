@@ -181,33 +181,33 @@
       </div>
       <h4 style="margin-bottom:16px;color:var(--gold)">ข้อมูลเจ้าของ</h4>
       <div class="hamster-form-grid">
-        <div class="form-group"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input type="text" class="form-control" placeholder="ชื่อเจ้าของ" /></div>
-        <div class="form-group"><label>หมายเลขสมาชิก</label><input type="text" class="form-control" placeholder="SHBA-XXXX-XXXX" /></div>
+        <div class="form-group"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input id="cf-owner" type="text" class="form-control" placeholder="ชื่อเจ้าของ" /></div>
+        <div class="form-group"><label>หมายเลขสมาชิก</label><input id="cf-memberid" type="text" class="form-control" placeholder="SHBA-XXXX-XXXX" /></div>
       </div>
       <h4 style="margin-bottom:16px;color:var(--gold);margin-top:8px">ข้อมูลแฮมสเตอร์</h4>
       <div class="hamster-form-grid">
-        <div class="form-group"><label>ชื่อแฮมสเตอร์ <span class="req">*</span></label><input type="text" class="form-control" placeholder="ชื่อ" /></div>
+        <div class="form-group"><label>ชื่อแฮมสเตอร์ <span class="req">*</span></label><input id="cf-hamname" type="text" class="form-control" placeholder="ชื่อ" /></div>
         <div class="form-group"><label>สายพันธุ์ <span class="req">*</span></label>
-          <select class="form-control"><option>Syrian Hamster</option><option>Winter White Dwarf</option><option>Campbell's Dwarf</option><option>Roborovski</option><option>Chinese Hamster</option></select>
+          <select id="cf-breed" class="form-control"><option>Syrian Hamster</option><option>Winter White Dwarf</option><option>Campbell's Dwarf</option><option>Roborovski</option><option>Chinese Hamster</option></select>
         </div>
         <div class="form-group"><label>สี <span class="req">*</span></label>
-          <select class="form-control"><option>Golden</option><option>Cinnamon</option><option>Black</option><option>Cream</option><option>Mink</option><option>Sable</option><option>Dove</option><option>Lilac</option><option>Chocolate</option></select>
+          <select id="cf-color" class="form-control"><option>Golden</option><option>Cinnamon</option><option>Black</option><option>Cream</option><option>Mink</option><option>Sable</option><option>Dove</option><option>Lilac</option><option>Chocolate</option></select>
         </div>
         <div class="form-group"><label>แพตเทิร์น</label>
-          <select class="form-control"><option>Self</option><option>Banded</option><option>Dominant Spot</option><option>Tortoiseshell</option><option>Roan</option></select>
+          <select id="cf-pattern" class="form-control"><option>Self</option><option>Banded</option><option>Dominant Spot</option><option>Tortoiseshell</option><option>Roan</option></select>
         </div>
         <div class="form-group"><label>ประเภทขน</label>
-          <select class="form-control"><option>Short Hair</option><option>Long Hair (Teddy)</option><option>Rex</option><option>Satin</option></select>
+          <select id="cf-coat" class="form-control"><option>Short Hair</option><option>Long Hair (Teddy)</option><option>Rex</option><option>Satin</option></select>
         </div>
         <div class="form-group"><label>เพศ</label>
-          <select class="form-control"><option>ตัวผู้ (Male)</option><option>ตัวเมีย (Female)</option></select>
+          <select id="cf-sex" class="form-control"><option>ตัวผู้ (Male)</option><option>ตัวเมีย (Female)</option></select>
         </div>
       </div>
       <div class="hamster-form-grid three-col" style="margin-top:-4px">
-        <div class="form-group"><label>อายุ (สัปดาห์)</label><input type="number" class="form-control" placeholder="เช่น 16" min="10" max="104" /></div>
-        <div class="form-group"><label>น้ำหนัก (กรัม)</label><input type="number" class="form-control" placeholder="เช่น 120" /></div>
+        <div class="form-group"><label>อายุ (สัปดาห์)</label><input id="cf-age" type="number" class="form-control" placeholder="เช่น 16" min="10" max="104" /></div>
+        <div class="form-group"><label>น้ำหนัก (กรัม)</label><input id="cf-weight" type="number" class="form-control" placeholder="เช่น 120" /></div>
         <div class="form-group"><label>ประเภทการแข่งขัน</label>
-          <select class="form-control"><option>Standards</option><option>Pet &amp; Fun</option></select>
+          <select id="cf-class" class="form-control"><option>Standards</option><option>Pet &amp; Fun</option></select>
         </div>
       </div>
       <div class="form-group">
