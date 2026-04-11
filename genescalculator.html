@@ -43,9 +43,7 @@
           <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
           <a href="competitions.html#register"  class="nav-dd-link"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
           <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
-          <a href="competitions.html#rules"     class="nav-dd-link"><i class="fa-solid fa-gavel"></i> กฎกติกาการประกวด</a>
           <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
-          <a href="competitions.html#judges"    class="nav-dd-link"><i class="fa-solid fa-user-tie"></i> ข้อมูลกรรมการตัดสิน</a>
         </div>
       </li>
 
@@ -101,7 +99,6 @@
         <a href="competitions.html#calendar"  class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
         <a href="competitions.html#results"   class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
         <a href="competitions.html#standards" class="mobile-nav-sub-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
-        <a href="competitions.html#judges"    class="mobile-nav-sub-link"><i class="fa-solid fa-user-tie"></i> กรรมการตัดสิน</a>
       </div>
     </div>
 
@@ -141,7 +138,7 @@
   <div class="container" style="text-align:center;padding:80px 24px">
     <div style="font-size:3.5rem;margin-bottom:16px">🔒</div>
     <h2 style="margin-bottom:12px">สิทธิ์เฉพาะสมาชิก <span class="text-gradient-gold">Breeder / Honorary</span></h2>
-    <p style="color:var(--gray-500);max-width:480px;margin:0 auto 32px">เครื่องมือคำนวณยีนสงวนไว้สำหรับ Breeder Member และ Honorary Member เท่านั้น</p>
+    <p style="color:var(--gray-500);max-width:480px;margin:0 auto 32px">เครื่องมือคำนวณยีนสงวนไว้สำหรับ Pro Member และ Breeder Member เท่านั้น</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <a href="membership.html#upgrade-section" class="btn btn-gold"><i class="fa-solid fa-rotate"></i> อัปเกรดสมาชิก</a>
       <button class="btn btn-outline-gold btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
@@ -323,9 +320,13 @@
   });
 
   function normType(t) {
-    return t ? t.toLowerCase().split(' ')[0] : 'standard';
+    if (!t) return 'standard';
+    const s = t.toLowerCase().trim();
+    if (s === 'breeder' || s === 'breeder member') return 'breeder';
+    if (s === 'pro'     || s === 'pro member')     return 'pro';
+    return 'standard';
   }
-  const ALLOWED = ['breeder', 'honorary'];
+  const ALLOWED = ['pro', 'breeder'];
 
   function showCalc() {
     document.getElementById('calc-locked').style.display  = 'none';

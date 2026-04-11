@@ -244,14 +244,17 @@ async function _ensureUserProfile(user) {
 }
 
 // ── Membership badge config ────────────────────────────────
+// Tiers: standard → pro → breeder
 const _memberBadges = {
-  honorary: { icon: '⭐', label: 'Honorary',  color: '#a855f7' },
-  breeder:  { icon: '🧬', label: 'Breeder',   color: '#f97316' },
+  pro:     { icon: '🧬', label: 'Pro',     color: '#f97316' },
+  breeder: { icon: '⭐', label: 'Breeder', color: '#a855f7' },
 };
 function _normType(memberType) {
   if (!memberType) return 'standard';
-  // normalize "Breeder Member" → "breeder", "Honorary Member" → "honorary" etc.
-  return memberType.toLowerCase().split(' ')[0];
+  const t = memberType.toLowerCase().trim();
+  if (t === 'breeder' || t === 'breeder member') return 'breeder';
+  if (t === 'pro'     || t === 'pro member')     return 'pro';
+  return 'standard';
 }
 function _getBadge(memberType) {
   return _memberBadges[_normType(memberType)] || { icon: '🐾', label: 'Standard', color: '#d4a843' };

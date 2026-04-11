@@ -187,10 +187,7 @@
           <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
           <a href="competitions.html#register"  class="nav-dd-link"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
           <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
-          <a href="competitions.html#rules"     class="nav-dd-link"><i class="fa-solid fa-gavel"></i> กฎกติกาการประกวด</a>
           <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
-          <a href="competitions.html#gallery"   class="nav-dd-link"><i class="fa-solid fa-images"></i> แกลเลอรีภาพงานประกวด</a>
-          <a href="competitions.html#judges"    class="nav-dd-link"><i class="fa-solid fa-user-tie"></i> ข้อมูลกรรมการตัดสิน</a>
         </div>
       </li>
       <li class="nav-item has-dropdown">
@@ -364,7 +361,7 @@
 <!-- Upgrade CTA (Standard only) -->
           <div id="upgrade-cta" class="profile-card" style="display:none">
             <div class="profile-card-title" style="color:var(--orange)"><i class="fa-solid fa-arrow-up"></i> อัปเกรดระดับสมาชิก</div>
-            <p style="color:var(--text-muted);margin-bottom:20px">อัปเกรดเป็น <strong style="color:var(--orange)">Breeder Member</strong> เพื่อรับสิทธิ์พิเศษสำหรับผู้เพาะพันธุ์</p>
+            <p style="color:var(--text-muted);margin-bottom:20px">อัปเกรดเป็น <strong style="color:var(--orange)">Pro Member</strong> เพื่อรับสิทธิ์พิเศษสำหรับผู้เพาะพันธุ์</p>
             <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px">
               <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-muted)"><i class="fa-solid fa-check" style="color:var(--gold)"></i> หน้า Public Profile ของฟาร์ม</div>
               <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-muted)"><i class="fa-solid fa-check" style="color:var(--gold)"></i> ป้าย Breeder Certified</div>
@@ -538,10 +535,16 @@ const db   = getFirestore(app);
 
 // ── Membership config ────────────────────────────────────────
 const MEM_CFG = {
-  honorary: { icon: '⭐', label: 'Honorary Member',  color: '#a855f7', desc: 'สมาชิกกิตติมศักดิ์ — ได้รับเชิญโดยคณะกรรมการ' },
-  breeder:  { icon: '🧬', label: 'Breeder Member',   color: '#f97316', desc: 'สมาชิกผู้เพาะพันธุ์ — สิทธิ์ครบสำหรับนักเพาะพันธุ์' },
+  pro:     { icon: '🧬', label: 'Pro Member',     color: '#f97316', desc: 'สมาชิก Pro — สิทธิ์ครบสำหรับนักเพาะพันธุ์' },
+  breeder: { icon: '⭐', label: 'Breeder Member', color: '#a855f7', desc: 'สมาชิก Breeder — ระดับสูงสุด ได้รับเชิญโดยคณะกรรมการ' },
 };
-function normType(t) { return t ? t.toLowerCase().split(' ')[0] : 'standard'; }
+function normType(t) {
+  if (!t) return 'standard';
+  const s = t.toLowerCase().trim();
+  if (s === 'breeder' || s === 'breeder member') return 'breeder';
+  if (s === 'pro'     || s === 'pro member')     return 'pro';
+  return 'standard';
+}
 function memCfg(type) { return MEM_CFG[normType(type)] || { icon: '🐾', label: 'Standard Member', color: '#d4a843', desc: 'สมาชิกสามัญ — เข้าถึงฟีเจอร์พื้นฐานของ SHBA' }; }
 
 // ── Populate all UI ──────────────────────────────────────────
@@ -603,7 +606,7 @@ function fillUI(data, user) {
 
   // Show upgrade CTA for standard members
   const upCta = document.getElementById('upgrade-cta');
-  if (upCta) upCta.style.display = (normType(data.memberType) === 'standard') ? '' : 'none';
+  if (upCta) upCta.style.display = (['standard'].includes(normType(data.memberType))) ? '' : 'none';
 
   // Show main, hide guest
   document.getElementById('account-guest').style.display = 'none';
