@@ -47,6 +47,97 @@ provider.setCustomParameters({ prompt: 'select_account' });
 window._firebaseAuth = auth;
 window._firebaseDb   = db;
 
+// ── Membership badge config (moved up so cache restore can use it) ──
+const _memberBadges = {
+  pro:     { icon: '🧬', label: 'Pro',     color: '#f97316' },
+  breeder: { icon: '⭐', label: 'Breeder', color: '#a855f7' },
+};
+function _normType(memberType) {
+  if (!memberType) return 'standard';
+  const t = memberType.toLowerCase().trim();
+  if (t === 'breeder' || t === 'breeder member') return 'breeder';
+  if (t === 'pro'     || t === 'pro member')     return 'pro';
+  return 'standard';
+}
+function _getBadge(memberType) {
+  return _memberBadges[_normType(memberType)] || { icon: '🐾', label: 'Standard', color: '#d4a843' };
+}
+
+// ── Instant Auth Cache (prevent login-button flash on page nav) ───
+const _AUTH_CACHE_KEY = 'shba-auth-cache';
+
+function _cacheUser(user, memberType) {
+  if (!user) { localStorage.removeItem(_AUTH_CACHE_KEY); return; }
+  const prev = _getCachedUser();
+  localStorage.setItem(_AUTH_CACHE_KEY, JSON.stringify({
+    uid: user.uid,
+    displayName: user.displayName || '',
+    email: user.email || '',
+    photoURL: user.photoURL || '',
+    memberType: memberType ?? prev?.memberType ?? 'standard',
+  }));
+}
+function _getCachedUser() {
+  try { return JSON.parse(localStorage.getItem(_AUTH_CACHE_KEY)); } catch { return null; }
+}
+
+// Build full user-nav-menu HTML (shared between cache restore & real render)
+function _buildNavMenuHTML(info, badge) {
+  return `
+    <div class="member-badge-pill" style="--badge-color:${badge.color}" title="ระดับสมาชิก">
+      <span class="badge-icon">${badge.icon}</span>
+      <span class="badge-label">${badge.label}</span>
+    </div>
+    <button class="user-nav-btn" onclick="toggleUserDropdown()" title="${info.displayName}">
+      <img src="${info.photoURL || ''}" onerror="this.style.display='none'" class="user-avatar" alt="avatar"/>
+      <span class="user-name">${(info.displayName || '').split(' ')[0] || 'สมาชิก'}</span>
+      <i class="fa-solid fa-chevron-down" style="font-size:.7rem"></i>
+    </button>
+    <div class="user-dropdown" id="user-dropdown">
+      <div class="user-dropdown-header">
+        <img src="${info.photoURL || ''}" onerror="this.style.display='none'" class="user-dropdown-avatar" alt="avatar"/>
+        <div>
+          <div class="user-dropdown-name">${info.displayName}</div>
+          <div class="user-dropdown-email">${info.email}</div>
+          <div class="user-dropdown-badge" style="color:${badge.color}">${badge.icon} ${badge.label} Member</div>
+        </div>
+      </div>
+      <div class="user-dropdown-divider"></div>
+      <a href="myaccount.html" class="user-dropdown-item"><i class="fa-solid fa-gauge"></i> My Account</a>
+      <a href="myaccount.html#membership" class="user-dropdown-item"><i class="fa-solid fa-id-card"></i> บัตรสมาชิก</a>
+      <a href="myaccount.html#activity" class="user-dropdown-item"><i class="fa-solid fa-trophy"></i> การประกวดของฉัน</a>
+      <div class="user-dropdown-divider"></div>
+      <button class="user-dropdown-item text-danger" onclick="signOutUser()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> ออกจากระบบ
+      </button>
+    </div>`;
+}
+
+// Show cached full menu instantly (before Firebase resolves)
+(function _restoreCachedUI() {
+  const cached = _getCachedUser();
+  if (!cached) return;
+  // Hide login buttons immediately so they never flash
+  document.querySelectorAll('.btn-login-trigger, .btn-register-trigger').forEach(el => {
+    el.style.display = 'none';
+  });
+  // Build the real menu from cache — identical to what _renderLoggedIn produces
+  const badge = _getBadge(cached.memberType);
+  const navCta = document.querySelector('.nav-cta');
+  if (navCta && !document.getElementById('user-nav-menu')) {
+    const menu = document.createElement('div');
+    menu.id = 'user-nav-menu';
+    menu.className = 'user-nav-menu';
+    menu.dataset.cached = '1';  // flag so _renderLoggedIn knows to update in-place
+    menu.innerHTML = _buildNavMenuHTML(cached, badge);
+    navCta.appendChild(menu);
+  }
+  // Also hide mobile login buttons
+  document.querySelectorAll('.mobile-nav-btns .btn-login-trigger').forEach(el => {
+    el.style.display = 'none';
+  });
+})();
+
 // ── Auth State ─────────────────────────────────────────────
 let currentUser = null;
 
@@ -56,6 +147,7 @@ onAuthStateChanged(auth, async (user) => {
     await _ensureUserProfile(user);
     await _renderLoggedIn(user);
   } else {
+    _cacheUser(null);
     _renderLoggedOut();
   }
 });
@@ -159,6 +251,7 @@ window.resetPassword = async function(email) {
 // ── Sign Out ───────────────────────────────────────────────
 window.signOutUser = async function () {
   try {
+    _cacheUser(null);  // Clear cache immediately
     await signOut(auth);
     if (typeof showToast === 'function') {
       showToast('info', 'ออกจากระบบแล้ว 👋');
@@ -243,23 +336,6 @@ async function _ensureUserProfile(user) {
   }
 }
 
-// ── Membership badge config ────────────────────────────────
-// Tiers: standard → pro → breeder
-const _memberBadges = {
-  pro:     { icon: '🧬', label: 'Pro',     color: '#f97316' },
-  breeder: { icon: '⭐', label: 'Breeder', color: '#a855f7' },
-};
-function _normType(memberType) {
-  if (!memberType) return 'standard';
-  const t = memberType.toLowerCase().trim();
-  if (t === 'breeder' || t === 'breeder member') return 'breeder';
-  if (t === 'pro'     || t === 'pro member')     return 'pro';
-  return 'standard';
-}
-function _getBadge(memberType) {
-  return _memberBadges[_normType(memberType)] || { icon: '🐾', label: 'Standard', color: '#d4a843' };
-}
-
 // ── Update Navbar UI: Logged In ────────────────────────────
 async function _renderLoggedIn(user) {
   // Hide login/register buttons
@@ -274,49 +350,23 @@ async function _renderLoggedIn(user) {
     if (snap.exists()) memberType = snap.data().memberType || null;
   } catch (_) { /* ignore, show Standard as default */ }
 
-  const badge = _getBadge(memberType);
+  // Update cache with real memberType from Firestore
+  _cacheUser(user, memberType);
 
-  // Show user avatar dropdown (create if not exists)
+  const badge = _getBadge(memberType);
+  const info = { displayName: user.displayName || '', email: user.email || '', photoURL: user.photoURL || '' };
+
+  // Show user avatar dropdown (create or update)
   let userMenu = document.getElementById('user-nav-menu');
   if (!userMenu) {
     userMenu = document.createElement('div');
     userMenu.id = 'user-nav-menu';
     userMenu.className = 'user-nav-menu';
-    userMenu.innerHTML = `
-      <div class="member-badge-pill" style="--badge-color:${badge.color}" title="ระดับสมาชิก">
-        <span class="badge-icon">${badge.icon}</span>
-        <span class="badge-label">${badge.label}</span>
-      </div>
-      <button class="user-nav-btn" onclick="toggleUserDropdown()" title="${user.displayName}">
-        <img src="${user.photoURL || ''}" onerror="this.style.display='none'" class="user-avatar" alt="avatar"/>
-        <span class="user-name">${user.displayName?.split(' ')[0] || 'สมาชิก'}</span>
-        <i class="fa-solid fa-chevron-down" style="font-size:.7rem"></i>
-      </button>
-      <div class="user-dropdown" id="user-dropdown">
-        <div class="user-dropdown-header">
-          <img src="${user.photoURL || ''}" onerror="this.style.display='none'" class="user-dropdown-avatar" alt="avatar"/>
-          <div>
-            <div class="user-dropdown-name">${user.displayName}</div>
-            <div class="user-dropdown-email">${user.email}</div>
-            <div class="user-dropdown-badge" style="color:${badge.color}">${badge.icon} ${badge.label} Member</div>
-          </div>
-        </div>
-        <div class="user-dropdown-divider"></div>
-        <a href="myaccount.html" class="user-dropdown-item"><i class="fa-solid fa-gauge"></i> My Account</a>
-        <a href="myaccount.html#membership" class="user-dropdown-item"><i class="fa-solid fa-id-card"></i> บัตรสมาชิก</a>
-        <a href="myaccount.html#activity" class="user-dropdown-item"><i class="fa-solid fa-trophy"></i> การประกวดของฉัน</a>
-        <div class="user-dropdown-divider"></div>
-        <button class="user-dropdown-item text-danger" onclick="signOutUser()">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i> ออกจากระบบ
-        </button>
-      </div>
-    `;
-
-    // Insert into nav-cta
+    userMenu.innerHTML = _buildNavMenuHTML(info, badge);
     const navCta = document.querySelector('.nav-cta');
     if (navCta) navCta.appendChild(userMenu);
   } else {
-    // Update badge
+    // Silently update in-place (cached menu or existing menu)
     const badgePill = userMenu.querySelector('.member-badge-pill');
     if (badgePill) {
       badgePill.style.setProperty('--badge-color', badge.color);
@@ -325,18 +375,17 @@ async function _renderLoggedIn(user) {
       if (icon)  icon.textContent  = badge.icon;
       if (label) label.textContent = badge.label;
     }
-    // Update dropdown badge line
     const dropBadge = userMenu.querySelector('.user-dropdown-badge');
     if (dropBadge) {
       dropBadge.style.color = badge.color;
       dropBadge.textContent = `${badge.icon} ${badge.label} Member`;
     }
-    // Update avatar/name
     const img  = userMenu.querySelector('.user-avatar');
     const name = userMenu.querySelector('.user-name');
     if (img)  img.src = user.photoURL || '';
     if (name) name.textContent = user.displayName?.split(' ')[0] || 'สมาชิก';
     userMenu.style.display = '';
+    delete userMenu.dataset.cached;
   }
 
   // Close dropdown when clicking outside
