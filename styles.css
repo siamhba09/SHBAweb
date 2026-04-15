@@ -787,6 +787,135 @@ select.form-control option { background: var(--black-card); }
    COMPETITION SECTION
    ============================ */
 #competitions { background: var(--black-light); }
+
+/* ── Multi-step form progress ── */
+.cf-progress { display:flex; align-items:center; margin-bottom:28px; }
+.cf-prog-step { display:flex; align-items:center; gap:8px; opacity:.35; transition:opacity .3s; }
+.cf-prog-step.active, .cf-prog-step.done { opacity:1; }
+.cfp-num {
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.78rem; font-weight:700; flex-shrink:0; transition:background .3s;
+}
+.cf-prog-step.active .cfp-num { background:var(--orange); color:#fff; }
+.cf-prog-step.done   .cfp-num { background:var(--gold);   color:#000; }
+.cfp-lbl { font-size:.76rem; color:var(--text-muted); white-space:nowrap; }
+.cf-prog-step.active .cfp-lbl { color:var(--white); }
+.cf-prog-line { flex:1; height:1px; background:rgba(255,255,255,.1); margin:0 10px; }
+
+/* ── Show selection cards ── */
+.show-cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-bottom:16px; }
+.show-radio-card { cursor:pointer; display:block; }
+.show-radio-card input[type="radio"] { display:none; }
+.src-body {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:14px 16px;
+  border:1.5px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.02);
+  transition:var(--transition);
+}
+.show-radio-card:has(input:checked) .src-body { border-color:var(--orange); background:rgba(232,114,42,.08); }
+.show-radio-card:hover .src-body { border-color:rgba(232,114,42,.35); }
+.src-icon { font-size:1.4rem; flex-shrink:0; margin-top:2px; }
+.src-title { font-weight:600; font-size:.87rem; margin-bottom:2px; }
+.src-sub   { font-size:.74rem; color:var(--text-muted); margin-bottom:3px; }
+.src-fee   { font-size:.78rem; color:var(--orange); }
+.src-fee span { color:var(--text-muted); }
+.bundle-promo-box {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 16px; margin-bottom:4px;
+  background:rgba(201,162,39,.06);
+  border:1px solid rgba(201,162,39,.18);
+  border-radius:var(--radius); font-size:.84rem;
+}
+
+/* ── Class selection tables ── */
+.class-section { border-top:1px solid rgba(255,255,255,.07); padding-top:4px; }
+.class-group-block { margin-bottom:16px; }
+.class-grp-title {
+  font-weight:700; font-size:.83rem; color:var(--orange);
+  padding:7px 12px;
+  background:rgba(232,114,42,.07);
+  border-left:3px solid var(--orange);
+  border-radius:4px 4px 0 0;
+}
+.class-grp-title span { font-weight:400; color:var(--text-muted); font-size:.78rem; margin-left:4px; }
+.class-table { width:100%; border-collapse:collapse; font-size:.82rem; border:1px solid rgba(255,255,255,.06); border-top:none; }
+.class-table th { padding:6px 12px; background:rgba(255,255,255,.04); color:var(--gold); font-weight:600; text-align:left; border-bottom:1px solid rgba(255,255,255,.06); }
+.class-table td { padding:6px 12px; border-bottom:1px solid rgba(255,255,255,.04); vertical-align:middle; }
+.class-table td:nth-child(2), .class-table td:nth-child(3) { text-align:center; width:64px; }
+.class-table tr:hover td { background:rgba(255,255,255,.02); }
+.cf-cls { width:16px; height:16px; cursor:pointer; accent-color:var(--orange); }
+
+/* ── Summary + payment ── */
+.cf-summary-box { background:rgba(201,162,39,.05); border:1px solid rgba(201,162,39,.15); border-radius:var(--radius); padding:16px; margin-bottom:20px; }
+.cf-sum-row { display:flex; justify-content:space-between; align-items:flex-start; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:.85rem; gap:12px; }
+.cf-sum-row:last-child { border-bottom:none; }
+.cf-sum-row span { color:var(--text-muted); flex-shrink:0; min-width:90px; }
+.cf-sum-row strong { text-align:right; }
+.payment-info-box { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); padding:16px; margin-bottom:4px; }
+
+/* Light mode */
+[data-theme="light"] .src-body { background:#fff; border-color:rgba(100,70,20,.1); }
+[data-theme="light"] .show-radio-card:has(input:checked) .src-body { border-color:var(--orange); background:rgba(232,114,42,.06); }
+[data-theme="light"] .class-table { border-color:rgba(100,70,20,.08); }
+[data-theme="light"] .class-table th { background:rgba(100,70,20,.04); border-bottom-color:rgba(100,70,20,.08); }
+[data-theme="light"] .class-table td { border-bottom-color:rgba(100,70,20,.06); }
+[data-theme="light"] .class-grp-title { background:rgba(232,114,42,.05); }
+[data-theme="light"] .cf-summary-box { background:rgba(201,162,39,.04); }
+[data-theme="light"] .payment-info-box { background:#f9f7f2; border-color:rgba(100,70,20,.1); }
+
+/* ── Show Checkbox Cards (replaces radio cards for multi-select) ── */
+.show-check-card { cursor:pointer; display:block; position:relative; }
+.show-check-card input[type="checkbox"] { position:absolute; opacity:0; width:0; height:0; }
+.show-check-card .src-body { border:2px solid rgba(255,255,255,.08); border-radius:12px; padding:14px; display:flex; gap:12px; align-items:flex-start; background:var(--black-light); transition:border-color .2s, background .2s; }
+.show-check-card:has(input:checked) .src-body { border-color:var(--orange); background:rgba(232,114,42,.08); }
+.show-check-card:has(input:checked) .src-body::after { content:'✓'; position:absolute; top:8px; right:10px; width:20px; height:20px; border-radius:50%; background:var(--orange); color:#fff; font-size:.75rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.show-check-card:hover .src-body { border-color:rgba(232,114,42,.4); }
+
+/* ── Stepper ── */
+.stepper { display:flex; align-items:center; gap:3px; justify-content:center; }
+.stepper button { width:26px; height:26px; border-radius:6px; border:1px solid rgba(255,255,255,.12); background:var(--black); color:var(--white); font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s, border-color .15s; padding:0; }
+.stepper button:hover { background:var(--orange); border-color:var(--orange); }
+.stepper input[type="number"] { width:40px; height:26px; text-align:center; border-radius:6px; border:1px solid rgba(255,255,255,.12); background:var(--black-light); color:var(--white); font-size:.82rem; padding:0; }
+.stepper input[type="number"]::-webkit-outer-spin-button,
+.stepper input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+.stepper input[type="number"]:focus { outline:none; border-color:var(--orange); }
+.class-table td:nth-child(2), .class-table td:nth-child(3) { text-align:center; width:80px; }
+
+/* ── Show Class Accordion ── */
+.show-class-accordion { margin-top:16px; border:1px solid rgba(255,255,255,.1); border-radius:12px; overflow:hidden; }
+.sca-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:12px 16px; background:rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.08); font-size:.86rem; font-weight:600; }
+.sca-date { font-size:.72rem; color:var(--text-muted); font-weight:400; margin-left:6px; }
+.sca-classes { padding:12px 16px; }
+.fee-mode-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.fmt-btn { padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,.12); background:var(--black); color:var(--gray-400); font-size:.76rem; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.fmt-btn.active { background:var(--orange); border-color:var(--orange); color:#fff; font-weight:600; }
+.fmt-btn:hover:not(.active) { border-color:var(--orange); color:var(--orange); }
+
+/* ── Fee Suggest Banner ── */
+.fee-suggest-box { margin:0 16px 8px; padding:8px 12px; border-radius:8px; background:rgba(201,162,39,.1); border:1px solid rgba(201,162,39,.25); color:var(--gold); font-size:.78rem; display:flex; align-items:center; gap:8px; }
+
+/* ── Sticky Fee Footer ── */
+.cf-fee-footer { position:sticky; bottom:0; background:var(--black-light); border-top:2px solid var(--orange); padding:10px 16px; margin:0 -24px -24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; z-index:10; border-radius:0 0 16px 16px; box-shadow:0 -4px 20px rgba(0,0,0,.4); }
+.cff-lines { display:flex; flex-wrap:wrap; gap:4px 16px; flex:1; }
+.cff-line { display:flex; align-items:baseline; gap:5px; font-size:.8rem; }
+.cff-sub { color:var(--text-muted); font-size:.72rem; }
+.cff-total { font-size:.95rem; font-weight:700; color:var(--orange); white-space:nowrap; }
+.cff-bundle-badge { display:inline-block; background:var(--gold); color:var(--black); padding:1px 7px; border-radius:10px; font-size:.7rem; font-weight:700; margin-right:5px; vertical-align:middle; }
+
+/* ── Light mode overrides for new components ── */
+[data-theme="light"] .show-check-card .src-body { background:#fff; border-color:rgba(100,70,20,.12); }
+[data-theme="light"] .show-check-card:has(input:checked) .src-body { border-color:var(--orange); background:rgba(232,114,42,.06); }
+[data-theme="light"] .stepper button { background:#f0f0f0; border-color:#ccc; color:#111; }
+[data-theme="light"] .stepper input[type="number"] { background:#fff; border-color:#ccc; color:#111; }
+[data-theme="light"] .show-class-accordion { border-color:rgba(100,70,20,.1); }
+[data-theme="light"] .sca-header { background:rgba(100,70,20,.03); border-bottom-color:rgba(100,70,20,.08); }
+[data-theme="light"] .fmt-btn { background:#f0f0f0; border-color:#ccc; color:#444; }
+[data-theme="light"] .cf-fee-footer { background:#f5f3ee; box-shadow:0 -4px 16px rgba(0,0,0,.08); }
+
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

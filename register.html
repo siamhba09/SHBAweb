@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สมัครประกวด | Siam Hamster Breeder Association</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/>
+      <div class="nav-logo-text">SHBA<span>Siam Hamster Breeder Association</span></div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">หน้าหลัก</a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="about.html" class="nav-link" data-page="about">เกี่ยวกับ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="about.html#history"   class="nav-dd-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+          <a href="about.html#vision"    class="nav-dd-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+          <a href="about.html#committee" class="nav-dd-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+          <a href="about.html#ethics"    class="nav-dd-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+          <a href="about.html#rules"     class="nav-dd-link"><i class="fa-solid fa-file-lines"></i> ข้อบังคับสมาคม</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="membership.html" class="nav-link" data-page="membership">สมาชิก <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="membership.html#membership"      class="nav-dd-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก &amp; สิทธิประโยชน์</a>
+          <a href="membership.html#upgrade-section" class="nav-dd-link"><i class="fa-solid fa-rotate"></i> ต่ออายุสมาชิก</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="competitions.html" class="nav-link active" data-page="competitions">การประกวด <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+          <a href="register.html"               class="nav-dd-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+          <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
+          <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="knowledge.html" class="nav-link" data-page="knowledge">คลังความรู้ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="genetics.html"           class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
+          <a href="genescalculator.html"    class="nav-dd-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน</a>
+          <a href="knowledge.html#care"     class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+          <a href="knowledge.html#species"  class="nav-dd-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
+          <a href="knowledge.html#articles" class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
+        </div>
+      </li>
+
+      <li class="nav-item"><a href="news.html"    class="nav-link" data-page="news">ข่าวสาร</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">ติดต่อเรา</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-outline-gold btn-sm btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="เปลี่ยนธีม"><i class="fa-solid fa-sun"></i></button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+  <div class="mobile-nav-scroll">
+    <a href="index.html" class="mobile-nav-link">หน้าหลัก</a>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">เกี่ยวกับสมาคม <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="about.html#history"   class="mobile-nav-sub-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+        <a href="about.html#vision"    class="mobile-nav-sub-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+        <a href="about.html#committee" class="mobile-nav-sub-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+        <a href="about.html#ethics"    class="mobile-nav-sub-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+        <a href="about.html#rules"     class="mobile-nav-sub-link"><i class="fa-solid fa-file-lines"></i> ข้อบังคับสมาคม</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">สมาชิก <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="membership.html#membership"      class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
+        <a href="membership.html#register"         class="mobile-nav-sub-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+        <a href="myaccount.html"                   class="mobile-nav-sub-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">การประกวด <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="competitions.html#calendar" class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+        <a href="register.html"              class="mobile-nav-sub-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+        <a href="competitions.html#results"  class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+        <a href="competitions.html#standards" class="mobile-nav-sub-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">คลังความรู้ <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="genetics.html"           class="mobile-nav-sub-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน</a>
+        <a href="genescalculator.html"    class="mobile-nav-sub-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน</a>
+        <a href="knowledge.html#care"     class="mobile-nav-sub-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+        <a href="knowledge.html#species"  class="mobile-nav-sub-link"><i class="fa-solid fa-paw"></i> สายพันธุ์แฮมสเตอร์</a>
+        <a href="knowledge.html#articles" class="mobile-nav-sub-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย</a>
+      </div>
+    </div>
+
+    <a href="news.html"    class="mobile-nav-link">ข่าวสาร</a>
+    <a href="contact.html" class="mobile-nav-link">ติดต่อเรา</a>
+
+    <div class="mobile-nav-divider"></div>
+    <div class="mobile-nav-btns">
+      <button class="btn btn-outline-gold btn-login-trigger" onclick="closeMobileNav(); openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div style="background:var(--gradient-hero);padding:100px 0 50px;position:relative;overflow:hidden">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center">
+    <div style="margin-bottom:12px">
+      <a href="competitions.html" style="color:var(--text-muted);font-size:.82rem;text-decoration:none">
+        <i class="fa-solid fa-arrow-left"></i> กลับหน้าการประกวด
+      </a>
+    </div>
+    <div class="tag" style="display:inline-block;margin-bottom:16px">SHBA HAMSTER SHOW 2026</div>
+    <h1 style="margin-bottom:12px">สมัคร<span class="text-gradient-orange">ประกวด</span>ออนไลน์</h1>
+    <p style="max-width:560px;margin:0 auto;color:var(--gray-300)">Pet Expo Thailand · ศูนย์การประชุมแห่งชาติสิริกิติ์ · 1–2 พฤษภาคม 2569</p>
+    <div style="display:flex;gap:20px;justify-content:center;margin-top:20px;flex-wrap:wrap;font-size:.82rem;color:var(--gold)">
+      <span><i class="fa-solid fa-calendar-check"></i> เปิดรับสมัคร 28 มี.ค. – 25 เม.ย. 2569</span>
+      <span><i class="fa-solid fa-trophy"></i> NHC Judging Standard</span>
+      <span><i class="fa-solid fa-layer-group"></i> 4 Shows ใน 2 วัน</span>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRATION FORM SECTION -->
+<section class="section" style="background:var(--black-light);padding-top:40px">
+  <div class="container" style="max-width:860px">
+
+    <!-- ── Loading State ── -->
+    <div id="cf-loading" style="text-align:center;padding:80px 20px">
+      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;color:var(--gold)"></i>
+      <p style="margin-top:12px;color:var(--text-muted);font-size:.9rem">กำลังตรวจสอบสถานะสมาชิก...</p>
+    </div>
+
+    <!-- ── Auth Gate (not logged in) ── -->
+    <div id="auth-gate" style="display:none;text-align:center;padding:64px 20px">
+      <div style="font-size:3.5rem;margin-bottom:16px">🔒</div>
+      <h2 style="color:var(--gold);margin-bottom:10px">กรุณาเข้าสู่ระบบก่อนสมัครประกวด</h2>
+      <p style="color:var(--gray-300);max-width:420px;margin:0 auto 8px;line-height:1.6">
+        ต้องมีบัญชีสมาชิก SHBA เพื่อสมัครประกวด<br>
+        <span style="font-size:.82rem;color:var(--text-muted)">สมาชิกสามัญสมัครฟรี — ไม่มีค่าใช้จ่าย</span>
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+        <button class="btn btn-orange" style="padding:12px 28px;font-size:1rem" onclick="openModal('login-modal')">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
+        </button>
+        <a href="membership.html" class="btn btn-outline-gold" style="padding:12px 28px">
+          <i class="fa-solid fa-user-plus"></i> สมัครสมาชิกใหม่ฟรี
+        </a>
+      </div>
+      <div style="margin-top:32px;padding:16px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.07);max-width:380px;margin-left:auto;margin-right:auto">
+        <p style="font-size:.78rem;color:var(--text-muted);margin:0;line-height:1.6">
+          <i class="fa-solid fa-circle-info" style="color:var(--gold)"></i>
+          หลังจากเข้าสู่ระบบ หน้านี้จะแสดงฟอร์มสมัครประกวดโดยอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Form body (hidden until auth confirmed) ── -->
+    <div id="cf-form-body" style="display:none">
+
+      <!-- Step Progress -->
+      <div class="cf-progress" style="margin-bottom:32px">
+        <div class="cf-prog-step active" id="cfp-1"><span class="cfp-num">1</span><span class="cfp-lbl">ข้อมูลผู้สมัคร</span></div>
+        <div class="cf-prog-line"></div>
+        <div class="cf-prog-step" id="cfp-2"><span class="cfp-num">2</span><span class="cfp-lbl">เลือก Show &amp; Class</span></div>
+        <div class="cf-prog-line"></div>
+        <div class="cf-prog-step" id="cfp-3"><span class="cfp-num">3</span><span class="cfp-lbl">ชำระเงิน</span></div>
+      </div>
+
+      <!-- Step 1: Personal Info -->
+      <div id="cf-panel-1" class="cf-panel">
+        <div style="background:var(--black);border-radius:16px;padding:28px">
+          <h4 style="color:var(--gold);margin-bottom:20px"><i class="fa-solid fa-user"></i> ข้อมูลผู้สมัคร</h4>
+          <div class="hamster-form-grid">
+            <div class="form-group"><label>ชื่อ - นามสกุล <span class="req">*</span></label><input id="cf-owner" type="text" class="form-control" placeholder="ชื่อ นามสกุล" /></div>
+            <div class="form-group"><label>ชื่อฟาร์ม / ชื่อเพจ <span class="req">*</span></label><input id="cf-farm" type="text" class="form-control" placeholder="ชื่อฟาร์มหรือเพจ Facebook" /></div>
+          </div>
+          <div class="form-group" style="max-width:300px">
+            <label>เบอร์โทรติดต่อ <span class="req">*</span></label>
+            <input id="cf-phone" type="tel" class="form-control" placeholder="0XX-XXX-XXXX" />
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:24px">
+            <button class="btn btn-orange" onclick="cfStep(2)">ถัดไป <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Show + Class -->
+      <div id="cf-panel-2" class="cf-panel" style="display:none">
+        <div style="background:var(--black);border-radius:16px;padding:28px">
+          <h4 style="color:var(--gold);margin-bottom:6px"><i class="fa-solid fa-list-check"></i> เลือกรายการประกวด</h4>
+          <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:20px">เปิดรับสมัคร 28 มี.ค. – 25 เม.ย. 2569 · เลือกได้หลาย Show ในครั้งเดียว</p>
+
+          <!-- Show checkboxes -->
+          <div class="show-cards-grid">
+            <label class="show-check-card">
+              <input type="checkbox" id="chk-ol" name="cf-show" value="ol" onchange="cfToggleShow('ol',this)"/>
+              <div class="src-body"><div class="src-icon">🏆</div><div><div class="src-title">The Syrian Hamster Showcase</div><div class="src-sub">Open League · 1 พ.ค. 2569</div><div class="src-fee">300 บาท/ตัว <span>| เหมา 3,000 บาท</span></div></div></div>
+            </label>
+            <label class="show-check-card">
+              <input type="checkbox" id="chk-ed" name="cf-show" value="ed" onchange="cfToggleShow('ed',this)"/>
+              <div class="src-body"><div class="src-icon">🔬</div><div><div class="src-title">Extreme Dilute Specialty Show</div><div class="src-sub">2 พ.ค. 2569</div><div class="src-fee">200 บาท/ตัว <span>| เหมา 2,000 บาท</span></div></div></div>
+            </label>
+            <label class="show-check-card">
+              <input type="checkbox" id="chk-pw" name="cf-show" value="pw" onchange="cfToggleShow('pw',this)"/>
+              <div class="src-body"><div class="src-icon">⬜</div><div><div class="src-title">Polywhite Specialty Show</div><div class="src-sub">2 พ.ค. 2569</div><div class="src-fee">200 บาท/ตัว <span>| เหมา 2,000 บาท</span></div></div></div>
+            </label>
+            <label class="show-check-card">
+              <input type="checkbox" id="chk-ng" name="cf-show" value="ng" onchange="cfToggleShow('ng',this)"/>
+              <div class="src-body"><div class="src-icon">✨</div><div><div class="src-title">New Gen Syrian Hamster Show</div><div class="src-sub">2 พ.ค. 2569</div><div class="src-fee">200 บาท/ตัว <span>| เหมา 2,000 บาท</span></div></div></div>
+            </label>
+          </div>
+
+          <div class="bundle-promo-box">
+            <i class="fa-solid fa-fire text-orange"></i>
+            <span>สมัครเหมาครบทุก 4 Show เพียง <strong style="color:var(--gold)">5,000 บาท</strong> — เลือก "เหมา" ครบทุก Show เพื่อใช้ราคา Bundle อัตโนมัติ</span>
+          </div>
+          <div id="cf-bundle-notice" class="bundle-promo-box" style="display:none;background:rgba(201,162,39,.12);border-color:var(--gold)">
+            <i class="fa-solid fa-star" style="color:var(--gold)"></i>
+            <span>🎉 เลือกครบทุก 4 Show แล้ว! เปลี่ยนทุก Show เป็น "เหมา" เพื่อราคา Bundle <strong style="color:var(--gold)">5,000 บาท</strong></span>
+          </div>
+
+          <!-- Class Accordions (built dynamically by JS) -->
+          <div id="cls-ol" class="show-class-accordion" style="display:none"></div>
+          <div id="cls-ed" class="show-class-accordion" style="display:none"></div>
+          <div id="cls-pw" class="show-class-accordion" style="display:none"></div>
+          <div id="cls-ng" class="show-class-accordion" style="display:none"></div>
+
+          <!-- Sticky fee footer -->
+          <div id="cf-fee-footer" class="cf-fee-footer" style="display:none"></div>
+
+          <div style="display:flex;justify-content:space-between;margin-top:24px;padding-bottom:90px">
+            <button class="btn btn-outline-gold" onclick="cfStep(1)"><i class="fa-solid fa-arrow-left"></i> กลับ</button>
+            <button class="btn btn-orange" onclick="cfStep(3)">ถัดไป <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment & Confirm -->
+      <div id="cf-panel-3" class="cf-panel" style="display:none">
+        <div style="background:var(--black);border-radius:16px;padding:28px">
+          <h4 style="color:var(--gold);margin-bottom:16px"><i class="fa-solid fa-money-bill-wave"></i> ชำระเงินและยืนยัน</h4>
+          <div id="cf-summary" class="cf-summary-box"></div>
+          <div class="payment-info-box" style="margin-top:16px">
+            <div style="font-weight:600;margin-bottom:10px;color:var(--gold)"><i class="fa-solid fa-building-columns"></i> ช่องทางชำระเงิน</div>
+            <div style="margin-bottom:10px">
+              <div style="font-size:.82rem;color:var(--text-muted);margin-bottom:2px">ธนาคารกสิกรไทย</div>
+              <div style="font-size:1.15rem;font-weight:700;letter-spacing:.06em;color:var(--white)">213-254-9934</div>
+              <div style="font-size:.8rem;color:var(--text-muted)">ชรพักตร์ สอนทา (Chorpaka Sorntha)</div>
+            </div>
+            <div style="font-size:.82rem;color:var(--orange)"><i class="fa-solid fa-circle-info"></i> ยอดที่ต้องชำระ: <strong id="cf-pay-amount" style="color:var(--white)">0 บาท</strong></div>
+            <p style="font-size:.76rem;color:var(--text-muted);margin-top:6px">กรุณาระบุชื่อ-นามสกุลในหมายเหตุเมื่อโอนเงิน</p>
+          </div>
+          <div class="form-group" style="margin-top:16px">
+            <label>อัปโหลดสลิปการชำระเงิน <span class="req">*</span></label>
+            <input type="file" id="cf-slip" class="form-control" accept="image/jpeg,image/png,application/pdf" />
+            <p class="form-note">รองรับ JPG, PNG, PDF · ขนาดไม่เกิน 10MB</p>
+          </div>
+          <div class="form-group">
+            <label>หมายเหตุเพิ่มเติม</label>
+            <textarea id="cf-note" class="form-control" rows="2" placeholder="หมายเหตุ (ถ้ามี)"></textarea>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:16px">
+            <button class="btn btn-outline-gold" onclick="cfStep(2)"><i class="fa-solid fa-arrow-left"></i> กลับ</button>
+            <button id="cf-submit-btn" class="btn btn-orange" style="flex:1;justify-content:center" onclick="submitCompEntry()">
+              <i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cf-form-body -->
+
+    <!-- ── Success Panel (shown after submission) ── -->
+    <div id="cf-success" style="display:none;text-align:center;padding:60px 20px">
+      <div style="font-size:4rem;margin-bottom:16px">🎉</div>
+      <h2 style="color:var(--gold);margin-bottom:8px">ส่งใบสมัครสำเร็จ!</h2>
+      <p style="color:var(--gray-300);margin-bottom:4px">หมายเลขใบสมัครของคุณ:</p>
+      <div style="font-size:1.5rem;font-weight:700;color:var(--orange);margin:8px 0 20px;font-family:monospace" id="cf-success-no">SHBA-2026-XXXX</div>
+      <p style="max-width:480px;margin:0 auto 8px;font-size:.88rem;color:var(--gray-300)">
+        กรุณาบันทึกหมายเลขนี้ไว้สำหรับอ้างอิง เจ้าหน้าที่จะตรวจสอบสลิปและยืนยันการสมัครภายใน 24–48 ชั่วโมง
+      </p>
+      <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:32px">
+        <i class="fa-solid fa-circle-info" style="color:var(--gold)"></i>
+        หากไม่ได้รับการยืนยันภายใน 48 ชั่วโมง กรุณาติดต่อ Facebook เพจ SHBA
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="competitions.html" class="btn btn-gold"><i class="fa-solid fa-arrow-left"></i> กลับหน้าการประกวด</a>
+        <button class="btn btn-outline-gold" onclick="location.reload()"><i class="fa-solid fa-rotate"></i> สมัครอีกครั้ง</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/>
+          <div class="nav-logo-text">Siam Hamster Breeder Association<span>สมาคมสยามแฮมสเตอร์บรีดเดอร์</span></div>
+        </div>
+        <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</p>
+      </div>
+      <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
+        <a href="competitions.html#calendar" class="footer-link">ปฏิทินประกวด</a>
+        <a href="register.html"              class="footer-link">สมัครประกวด</a>
+        <a href="competitions.html#results"  class="footer-link">ผลการแข่งขัน</a>
+        <a href="competitions.html#hall-of-fame" class="footer-link">Hall of Fame</a>
+      </div></div>
+      <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
+        <a href="membership.html"          class="footer-link">สมัครสมาชิก</a>
+        <a href="membership.html#register" class="footer-link">ลงทะเบียน</a>
+        <a href="myaccount.html"           class="footer-link">Dashboard</a>
+      </div></div>
+      <div class="footer-col"><h4>ความรู้</h4><div class="footer-links">
+        <a href="genetics.html"  class="footer-link">คลังข้อมูลยีน</a>
+        <a href="knowledge.html" class="footer-link">คลังความรู้</a>
+        <a href="news.html"      class="footer-link">ข่าวสาร</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Siam Hamster Breeder Association. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">นโยบายความเป็นส่วนตัว</a><a href="#">ข้อกำหนด</a><a href="#">ติดต่อเรา</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.2rem;margin-bottom:6px">🐹</div>
+      <h3 style="margin-bottom:4px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ / สมัครสมาชิก</h3>
+      <p style="font-size:.82rem;color:var(--text-muted)">Siam Hamster Breeder Association</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+      <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">สมัครสมาชิกใหม่</button>
+    </div>
+    <div id="auth-panel-login">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือใช้อีเมล</span></div>
+      <div class="form-group"><label>อีเมล</label><input type="email" id="li-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน</label><input type="password" id="li-password" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleEmailLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
+      </button>
+      <p style="text-align:center;margin-top:12px;font-size:.82rem">
+        <a href="#" style="color:var(--text-muted)" onclick="handleForgotPassword(event)">ลืมรหัสผ่าน?</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือสมัครด้วยอีเมล</span></div>
+      <div class="form-row">
+        <div class="form-group"><label>ชื่อ <span class="req">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
+        <div class="form-group"><label>นามสกุล <span class="req">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
+      </div>
+      <div class="form-group"><label>อีเมล <span class="req">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
+      <div class="form-group"><label>ยืนยันรหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
+        <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
+      </button>
+    </div>
+  </div>
+</div>
+
+<button id="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast-container" id="toast-container"></div>
+<script type="module" src="firebase.js"></script>
+<script src="main.js"></script>
+
+<!-- Auth gate + pre-fill logic (runs after firebase.js sets window._firebaseAuth) -->
+<script type="module">
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { getDoc, doc }        from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+// Wait for firebase.js module to expose auth
+function _waitAuth(cb, attempt = 0) {
+  if (window._firebaseAuth) { cb(); return; }
+  if (attempt > 60) { cb(); return; } // timeout after ~3s
+  setTimeout(() => _waitAuth(cb, attempt + 1), 50);
+}
+
+_waitAuth(() => {
+  onAuthStateChanged(window._firebaseAuth, async (user) => {
+    const loading = document.getElementById('cf-loading');
+    const gate    = document.getElementById('auth-gate');
+    const body    = document.getElementById('cf-form-body');
+
+    if (loading) loading.style.display = 'none';
+
+    if (user) {
+      // ── Logged in: show form ──────────────────────────
+      if (gate) gate.style.display = 'none';
+      if (body) body.style.display = '';
+
+      // Pre-fill owner name from Firestore profile
+      try {
+        const db   = window._firebaseDb;
+        const snap = db ? await getDoc(doc(db, 'users', user.uid)) : null;
+        const data = snap?.exists() ? snap.data() : {};
+        const name = data.displayName || user.displayName || '';
+        const inp  = document.getElementById('cf-owner');
+        if (inp && !inp.value) inp.value = name;
+
+        // Store uid + memberId for submission
+        window._cfCurrentUser = {
+          uid:      user.uid,
+          email:    user.email    || '',
+          memberId: data.memberID || '',
+          name,
+        };
+      } catch(_) {
+        const inp = document.getElementById('cf-owner');
+        if (inp && !inp.value) inp.value = user.displayName || '';
+        window._cfCurrentUser = { uid: user.uid, email: user.email || '', memberId: '', name: user.displayName || '' };
+      }
+
+      // Ensure form starts at step 1
+      if (typeof cfStep === 'function') cfStep(1);
+
+    } else {
+      // ── Not logged in: show gate ──────────────────────
+      if (gate) gate.style.display = '';
+      if (body) body.style.display = 'none';
+      window._cfCurrentUser = null;
+    }
+  });
+});
+</script>
+
+<script>
+  // Standalone success callback
+  window._cfSuccessCallback = function(entryNo) {
+    const formBody = document.getElementById('cf-form-body');
+    const success  = document.getElementById('cf-success');
+    const noEl     = document.getElementById('cf-success-no');
+    if (formBody) formBody.style.display = 'none';
+    if (success)  success.style.display  = '';
+    if (noEl)     noEl.textContent        = entryNo;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    SHBA.initNavbar('competitions');
+    SHBA.initTheme();
+    SHBA.initScrollAnimations();
+    SHBA.initScrollTop();
+    // Form will be shown by auth callback above — don't call cfStep here
+  });
+</script>
+</body>
+</html>

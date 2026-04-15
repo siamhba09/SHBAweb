@@ -307,64 +307,276 @@ window.openEntryForm = (id) => {
   const form = document.getElementById('comp-register-form');
   if (!form) return;
   form.classList.add('open');
-  const num = `SHBA-2026-${String(Math.floor(Math.random()*900)+100).padStart(4,'0')}`;
-  const el = document.getElementById('entry-num');
-  if (el) el.textContent = num;
+  cfStep(1);
   form.scrollIntoView({ behavior:'smooth', block:'start' });
 };
-// ── ใส่ URL ของ Google Apps Script ที่ Deploy แล้วตรงนี้ ──
+
+/* ─── COMPETITION FORM DATA ──────────────────────────────────────── */
+const CF_SHOWS = {
+  'ol': { name:'The Syrian Hamster Showcase (Open League)', date:'1 พ.ค. 2569', icon:'🏆', perHead:300,  unlimited:3000, type:'syrian'    },
+  'ed': { name:'Extreme Dilute Specialty Show',             date:'2 พ.ค. 2569', icon:'🔬', perHead:200,  unlimited:2000, type:'specialty' },
+  'pw': { name:'Polywhite Specialty Show',                  date:'2 พ.ค. 2569', icon:'⬜', perHead:200,  unlimited:2000, type:'specialty' },
+  'ng': { name:'New Gen Syrian Hamster Show',               date:'2 พ.ค. 2569', icon:'✨', perHead:200,  unlimited:2000, type:'newgen'    },
+};
+const SYR_GROUPS = [
+  { key:'self',      name:'Self (สีตัน)',   varieties:['Black','Chocolate','Dove','Black Eye Cream','Red Eye Cream','Sable','Mink','Yellow Black','Yellow Chocolate','Copper','Champagne'] },
+  { key:'agouti',    name:'Agouti',         varieties:['Golden','Cinnamon','Rust','Silver Grey','Yellow','Honey'] },
+  { key:'dom-sport', name:'Dominant Sport', varieties:['Golden','Cinnamon','Rust','Black','Dove','Chocolate'] },
+  { key:'banded',    name:'Banded',         varieties:['Golden','Silver Grey','Cinnamon','Rust','Black','Dove','Chocolate'] },
+  { key:'tri-color', name:'Tri Color',      varieties:['Black','Dove','Chocolate'] },
+  { key:'tort',      name:'Tortoiseshell',  varieties:['Black','Dove','Chocolate'] },
+  { key:'rd-dsba',   name:'RD and Dsba',    varieties:['ALL Colors'] },
+];
+const SPEC_CLASSES   = ['Agouti','Self'];
+const NEWGEN_COATS   = ['Long Hair','Short Hair','Rex Hair','Satin Hair','Rex Satin Hair'];
+const NEWGEN_ROWS    = ['Solid','Dominant Spot','Banded','Tort (Tri)','RD and DSBA'];
+const _cfMode        = { ol:'perhead', ed:'perhead', pw:'perhead', ng:'perhead' };
+
+function _sid(parts) {
+  return parts.map(p => String(p).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')).join('_');
+}
+function _stepper(id, label) {
+  return `<div class="stepper"><button type="button" onclick="cfAdj('${id}',-1)">−</button><input id="${id}" type="number" min="0" max="10" value="0" data-label="${label}" oninput="cfCalcFee()"/><button type="button" onclick="cfAdj('${id}',1)">+</button></div>`;
+}
+function _buildSyrianSection() {
+  return SYR_GROUPS.map(g => `
+    <div class="class-group-block">
+      <div class="class-grp-title">GROUP ${g.name}</div>
+      <table class="class-table"><thead><tr><th>สี / Variety</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+        ${g.varieties.map(v => `<tr><td>${v}</td><td>${_stepper(_sid(['ol',g.key,v,'m']),`${g.name} · ${v} ♂`)}</td><td>${_stepper(_sid(['ol',g.key,v,'f']),`${g.name} · ${v} ♀`)}</td></tr>`).join('')}
+      </tbody></table>
+    </div>`).join('');
+}
+function _buildSpecSection(sk) {
+  return `<div class="class-group-block"><table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+    ${SPEC_CLASSES.map(c=>`<tr><td>${c}</td><td>${_stepper(_sid([sk,c,'m']),`${c} ♂`)}</td><td>${_stepper(_sid([sk,c,'f']),`${c} ♀`)}</td></tr>`).join('')}
+  </tbody></table></div>`;
+}
+function _buildNewGenSection() {
+  return NEWGEN_COATS.map(coat => `
+    <div class="class-group-block">
+      <div class="class-grp-title">${coat}</div>
+      <table class="class-table"><thead><tr><th>Pattern / Solid</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+        ${NEWGEN_ROWS.map(row=>`<tr><td>${row}</td><td>${_stepper(_sid(['ng',coat,row,'m']),`${coat} · ${row} ♂`)}</td><td>${_stepper(_sid(['ng',coat,row,'f']),`${coat} · ${row} ♀`)}</td></tr>`).join('')}
+      </tbody></table>
+    </div>`).join('');
+}
+function _buildClassSection(sk) {
+  const show = CF_SHOWS[sk];
+  const content = sk==='ol' ? _buildSyrianSection() : sk==='ng' ? _buildNewGenSection() : _buildSpecSection(sk);
+  return `
+    <div class="sca-header">
+      <span>${show.icon} ${show.name.replace(/\s*\(.*\)/,'')} <span class="sca-date">${show.date}</span></span>
+      <div class="fee-mode-toggle">
+        <button type="button" class="fmt-btn active" id="fmt-ph-${sk}" onclick="cfSetMode('${sk}','perhead',this)">รายตัว (${show.perHead.toLocaleString()}฿)</button>
+        <button type="button" class="fmt-btn" id="fmt-ul-${sk}" onclick="cfSetMode('${sk}','unlimited',this)">เหมา (${show.unlimited.toLocaleString()}฿)</button>
+      </div>
+    </div>
+    <div id="fee-suggest-${sk}" class="fee-suggest-box" style="display:none"><i class="fa-solid fa-lightbulb"></i> จำนวนตัวที่สมัครเกิน ราคาเหมาคุ้มกว่า — แนะนำกด "เหมา"</div>
+    <div class="sca-classes">${content}</div>`;
+}
+function _initShowSection(sk) {
+  const el = document.getElementById(`cls-${sk}`);
+  if (el && !el.dataset.built) { el.innerHTML = _buildClassSection(sk); el.dataset.built='1'; }
+}
+
+window.cfToggleShow = function(sk, cb) {
+  _initShowSection(sk);
+  const sec = document.getElementById(`cls-${sk}`);
+  if (sec) sec.style.display = cb.checked ? '' : 'none';
+  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
+  const nb = document.getElementById('cf-bundle-notice');
+  if (nb) nb.style.display = allSel ? '' : 'none';
+  cfCalcFee();
+};
+window.cfAdj = function(id, delta) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.value = Math.max(0, Math.min(10, (parseInt(el.value)||0) + delta));
+  cfCalcFee();
+};
+window.cfSetMode = function(sk, mode, btn) {
+  _cfMode[sk] = mode;
+  const ph = document.getElementById(`fmt-ph-${sk}`);
+  const ul = document.getElementById(`fmt-ul-${sk}`);
+  if (ph) ph.classList.toggle('active', mode==='perhead');
+  if (ul) ul.classList.toggle('active', mode==='unlimited');
+  cfCalcFee();
+};
+window.cfCalcFee = function() {
+  let grand = 0;
+  const lines = [];
+  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
+  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
+  Object.keys(CF_SHOWS).forEach(sk => {
+    const chk = document.getElementById(`chk-${sk}`);
+    if (!chk?.checked) return;
+    const show   = CF_SHOWS[sk];
+    const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
+    const count  = inputs.reduce((s,i)=>s+(parseInt(i.value)||0),0);
+    const phCost = count * show.perHead;
+    const sug    = document.getElementById(`fee-suggest-${sk}`);
+    if (sug) sug.style.display = (_cfMode[sk]==='perhead' && phCost > show.unlimited && count>0) ? '' : 'none';
+    const cost = _cfMode[sk]==='unlimited' ? show.unlimited : phCost;
+    grand += cost;
+    lines.push({ sk, show, count, cost });
+  });
+  const useBundle = allSel && allUl && lines.length===4;
+  if (useBundle) grand = 5000;
+  const footer = document.getElementById('cf-fee-footer');
+  if (!footer) return;
+  const lhtml = lines.map(l=>`
+    <div class="cff-line">${l.show.icon} <span>${l.show.name.split('(')[0].trim()}</span>
+      <span class="cff-sub">${_cfMode[l.sk]==='unlimited' ? 'เหมา' : `${l.count} ตัว × ${l.show.perHead}฿`}</span>
+      <strong>฿${l.cost.toLocaleString()}</strong>
+    </div>`).join('') || '<span style="color:var(--gray-500);font-size:.8rem">ยังไม่ได้เลือก Show</span>';
+  footer.innerHTML = `
+    <div class="cff-lines">${lhtml}</div>
+    <div class="cff-total">${useBundle?'<span class="cff-bundle-badge">Bundle 4 Shows</span>':''} รวม: <strong>฿${(useBundle?5000:grand).toLocaleString()}</strong></div>`;
+};
+
+/* ─── MULTI-STEP FORM ────────────────────────────────────────────── */
+window.cfStep = function(toStep) {
+  const panels = document.querySelectorAll('.cf-panel');
+  let cur = 1;
+  panels.forEach((p,i) => { if (p.style.display!=='none') cur=i+1; });
+  if (toStep > cur) {
+    if (cur === 1) {
+      const o = document.getElementById('cf-owner')?.value.trim();
+      const f = document.getElementById('cf-farm')?.value.trim();
+      const p = document.getElementById('cf-phone')?.value.trim();
+      if (!o) { showToast('error','กรุณากรอกชื่อ-นามสกุล'); return; }
+      if (!f) { showToast('error','กรุณากรอกชื่อฟาร์ม/เพจ'); return; }
+      if (!p) { showToast('error','กรุณากรอกเบอร์โทรติดต่อ'); return; }
+    }
+    if (cur === 2) {
+      const anySel = Object.keys(CF_SHOWS).some(k => document.getElementById(`chk-${k}`)?.checked);
+      if (!anySel) { showToast('error','กรุณาเลือกรายการประกวดอย่างน้อย 1 รายการ'); return; }
+      let ok = true;
+      Object.keys(CF_SHOWS).forEach(sk => {
+        if (!document.getElementById(`chk-${sk}`)?.checked) return;
+        const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
+        if (inputs.reduce((s,i)=>s+(parseInt(i.value)||0),0) === 0) {
+          showToast('error',`กรุณาเลือก Class สำหรับ ${CF_SHOWS[sk].icon} ${CF_SHOWS[sk].name.split('(')[0].trim()}`);
+          ok = false;
+        }
+      });
+      if (!ok) return;
+      cfBuildSummary();
+    }
+  }
+  panels.forEach((p,i) => { p.style.display = i+1===toStep ? '' : 'none'; });
+  for (let i=1;i<=3;i++) {
+    const el = document.getElementById(`cfp-${i}`);
+    if (!el) continue;
+    el.classList.toggle('active', i<=toStep);
+    el.classList.toggle('done',   i<toStep);
+  }
+  const footer = document.getElementById('cf-fee-footer');
+  if (footer) footer.style.display = toStep===2 ? '' : 'none';
+};
+
+window.cfBuildSummary = function() {
+  const owner = document.getElementById('cf-owner')?.value.trim() || '';
+  const farm  = document.getElementById('cf-farm')?.value.trim()  || '';
+  const phone = document.getElementById('cf-phone')?.value.trim() || '';
+  let grand=0, totalH=0;
+  const rows = [];
+  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
+  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
+  const useBundle = allSel && allUl;
+  Object.keys(CF_SHOWS).forEach(sk => {
+    if (!document.getElementById(`chk-${sk}`)?.checked) return;
+    const show   = CF_SHOWS[sk];
+    const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
+    const count  = inputs.reduce((s,i)=>s+(parseInt(i.value)||0),0);
+    const cost   = _cfMode[sk]==='unlimited' ? show.unlimited : count*show.perHead;
+    totalH += count; grand += cost;
+    const detail = inputs.filter(i=>(parseInt(i.value)||0)>0).map(i=>`${i.dataset.label||i.id} (${i.value})`).join(', ');
+    rows.push({ show, count, cost, detail, mode:_cfMode[sk] });
+  });
+  if (useBundle) grand=5000;
+  const box = document.getElementById('cf-summary');
+  if (!box) return;
+  box.innerHTML = `
+    <div class="cf-sum-row"><span>ผู้สมัคร</span><strong>${owner}</strong></div>
+    <div class="cf-sum-row"><span>ฟาร์ม / เพจ</span><strong>${farm}</strong></div>
+    <div class="cf-sum-row"><span>เบอร์โทร</span><strong>${phone}</strong></div>
+    <div style="height:1px;background:rgba(255,255,255,.08);margin:8px 0"></div>
+    ${rows.map(r=>`
+      <div class="cf-sum-row" style="align-items:flex-start">
+        <span>${r.show.icon} ${r.show.name.split('(')[0].trim()}<br><span style="font-size:.72rem;color:var(--text-muted)">${r.detail||'-'}</span></span>
+        <div style="text-align:right"><strong>฿${r.cost.toLocaleString()}</strong><div style="font-size:.74rem;color:var(--text-muted)">${r.mode==='unlimited'?'เหมา':`${r.count} ตัว`}</div></div>
+      </div>`).join('')}
+    <div style="height:1px;background:rgba(255,255,255,.08);margin:8px 0"></div>
+    <div class="cf-sum-row"><span>รวมทั้งหมด</span><strong style="font-size:1.1rem;color:var(--orange)">${useBundle?'5,000 บาท (Bundle 4 Shows)':`${grand.toLocaleString()} บาท`}</strong></div>
+    <div class="cf-sum-row"><span>จำนวนแฮมสเตอร์</span><strong>${totalH} ตัว</strong></div>`;
+  const pa = document.getElementById('cf-pay-amount');
+  if (pa) pa.textContent = (useBundle?5000:grand).toLocaleString() + ' บาท';
+};
+
+// ── Google Apps Script URL ──
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNbogcORZ-lzcdBcNSVuYyYQK61NtVy43-Z9ZbNV3kJjjIEUThOgL1nTAK2hUvb3BHcA/exec';
 
 window.submitCompEntry = async () => {
-  const g = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
-
-  // Validate required fields
-  if (!g('cf-owner'))   { showToast('error', 'กรุณากรอกชื่อ-นามสกุลเจ้าของ'); return; }
-  if (!g('cf-hamname')) { showToast('error', 'กรุณากรอกชื่อแฮมสเตอร์'); return; }
-
-  // Generate entry number
-  const entryNo = 'SHBA-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
-  const entryEl = document.getElementById('entry-num');
-  if (entryEl) entryEl.textContent = entryNo;
-
+  const owner = document.getElementById('cf-owner')?.value.trim() || '';
+  const farm  = document.getElementById('cf-farm')?.value.trim()  || '';
+  const phone = document.getElementById('cf-phone')?.value.trim() || '';
+  const note  = document.getElementById('cf-note')?.value.trim()  || '';
+  let grand=0, totalH=0;
+  const showsData = [];
+  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
+  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
+  const useBundle = allSel && allUl;
+  Object.keys(CF_SHOWS).forEach(sk => {
+    if (!document.getElementById(`chk-${sk}`)?.checked) return;
+    const show   = CF_SHOWS[sk];
+    const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
+    const classes = inputs.filter(i=>(parseInt(i.value)||0)>0).map(i=>({ class:i.dataset.label||i.id, count:parseInt(i.value) }));
+    const count  = classes.reduce((s,c)=>s+c.count,0);
+    const cost   = _cfMode[sk]==='unlimited' ? show.unlimited : count*show.perHead;
+    totalH += count; grand += cost;
+    showsData.push({ show:show.name, mode:_cfMode[sk], count, cost, classes });
+  });
+  if (useBundle) grand = 5000;
+  const entryNo = 'SHBA-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*9000)+1000);
+  // Include logged-in user info if available (register.html auth gate sets this)
+  const cu = window._cfCurrentUser || {};
   const payload = {
     entryNo,
-    submittedAt : new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' }),
-    owner       : g('cf-owner'),
-    memberId    : g('cf-memberid'),
-    hamsterName : g('cf-hamname'),
-    breed       : g('cf-breed'),
-    color       : g('cf-color'),
-    pattern     : g('cf-pattern'),
-    coat        : g('cf-coat'),
-    sex         : g('cf-sex'),
-    age         : g('cf-age'),
-    weight      : g('cf-weight'),
-    compClass   : g('cf-class'),
+    submittedAt: new Date().toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}),
+    owner, farm, phone, note,
+    userId:    cu.uid      || '',
+    memberId:  cu.memberId || '',
+    userEmail: cu.email    || '',
+    shows: JSON.stringify(showsData),
+    totalHamsters: totalH,
+    totalFee: grand,
+    bundleApplied: useBundle,
   };
-
-  const btn = document.querySelector('#comp-register-form .btn-orange');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่ง...'; }
-
-  console.log('📤 Submitting to:', APPS_SCRIPT_URL);
-  console.log('📦 Payload:', payload);
-
+  const btn = document.getElementById('cf-submit-btn');
+  if (btn) { btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่ง...'; }
   try {
-    const res = await fetch(APPS_SCRIPT_URL, {
-      method : 'POST',
-      mode   : 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(payload),
-    });
-    console.log('✅ Fetch complete, status:', res.type);
-    showToast('success', `✅ ส่งใบสมัครสำเร็จ! หมายเลขประกวด: ${entryNo}`);
-    const f = document.getElementById('comp-register-form');
-    if (f) f.classList.remove('open');
-  } catch (err) {
-    console.error('❌ Fetch error:', err);
-    showToast('error', 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+    await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    showToast('success',`✅ ส่งใบสมัครสำเร็จ! หมายเลข: ${entryNo}`);
+    // If a standalone success callback is registered (register.html), use it
+    if (typeof window._cfSuccessCallback === 'function') {
+      window._cfSuccessCallback(entryNo);
+    } else {
+      document.getElementById('comp-register-form')?.classList.remove('open');
+      // Reset form
+      Object.keys(CF_SHOWS).forEach(sk => {
+        const chk = document.getElementById(`chk-${sk}`); if (chk) chk.checked=false;
+        const sec = document.getElementById(`cls-${sk}`); if (sec) sec.style.display='none';
+        _cfMode[sk]='perhead';
+      });
+      ['cf-owner','cf-farm','cf-phone','cf-note'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+      cfStep(1);
+    }
+  } catch(err) {
+    showToast('error','เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
   } finally {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร + ชำระเงิน'; }
+    if (btn) { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร'; }
   }
 };
 
