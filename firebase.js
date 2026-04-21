@@ -67,9 +67,9 @@ function _getBadge(memberType) {
 const _AUTH_CACHE_KEY = 'shba-auth-cache';
 
 function _cacheUser(user, memberType) {
-  if (!user) { localStorage.removeItem(_AUTH_CACHE_KEY); return; }
+  if (!user) { sessionStorage.removeItem(_AUTH_CACHE_KEY); return; }
   const prev = _getCachedUser();
-  localStorage.setItem(_AUTH_CACHE_KEY, JSON.stringify({
+  sessionStorage.setItem(_AUTH_CACHE_KEY, JSON.stringify({
     uid: user.uid,
     displayName: user.displayName || '',
     email: user.email || '',
@@ -78,7 +78,7 @@ function _cacheUser(user, memberType) {
   }));
 }
 function _getCachedUser() {
-  try { return JSON.parse(localStorage.getItem(_AUTH_CACHE_KEY)); } catch { return null; }
+  try { return JSON.parse(sessionStorage.getItem(_AUTH_CACHE_KEY)); } catch { return null; }
 }
 
 // Build full user-nav-menu HTML (shared between cache restore & real render)
