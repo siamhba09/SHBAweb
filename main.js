@@ -6,7 +6,7 @@
 
 /* ─── DATA ──────────────────────────────────────────────────────── */
 const SYRIAN_AGOUTI = [
-  { name:'Golden',   genotype:'aa',        emoji:'🟡', desc:'สีทองธรรมชาติ ท้องสีครีม', eye:'ดำ', ear:'สีเนื้อ', bg:'#C8A020' },
+  { name:'Golden',   genotype:'aa',        emoji:'🟡', desc:'สีทองธรรมชาติ ท้องสีครีม', eye:'ดำ', ear:'สีเนื้อ', bg:'#C8A020', img:'Photo_Hamster_color/IMG_1582.JPG' },
   { name:'Yellow',   genotype:'aa To/+',   emoji:'🟠', desc:'สีเหลืองสด พบได้ยาก', eye:'ดำ', ear:'สีเนื้อ', bg:'#E8A030' },
   { name:'Cinnamon', genotype:'aa pp',     emoji:'🟤', desc:'สีน้ำตาลอบเชย สีตาแดง', eye:'แดง', ear:'ชมพู', bg:'#A0522D' },
   { name:'Grey',     genotype:'aa dg/dg',  emoji:'🩶', desc:'สีเทาเข้ม สีทองบนหน้า', eye:'ดำ', ear:'สีเนื้อ', bg:'#708090' },
@@ -86,18 +86,125 @@ const EVENTS = [
     status:'upcoming', emoji:'⭐' },
 ];
 const KNOWLEDGE_ARTICLES = [
-  { title:'คู่มือมือใหม่: สิ่งที่ต้องเตรียมก่อนเลี้ยงแฮมสเตอร์', emoji:'📖', tag:'beginner', cat:'มือใหม่',
-    desc:'ทุกสิ่งที่ต้องรู้ก่อนรับแฮมสเตอร์มาเลี้ยง ตั้งแต่กรง อุปกรณ์ ไปจนถึงการเตรียมบ้าน', date:'8 เม.ย. 2026', readTime:'10 นาที' },
-  { title:'อาหารที่ดีที่สุดสำหรับแฮมสเตอร์ Syrian', emoji:'🥦', tag:'food', cat:'อาหาร',
-    desc:'อาหารหลัก อาหารเสริม ผักผลไม้ที่กินได้ และที่ควรหลีกเลี่ยงเด็ดขาด', date:'5 เม.ย. 2026', readTime:'8 นาที' },
-  { title:'ทำความเข้าใจ Dwarf Hamster ทั้ง 3 สายพันธุ์', emoji:'🐾', tag:'beginner', cat:'สายพันธุ์',
-    desc:'ความแตกต่างระหว่าง Winter White, Campbell\'s และ Roborovski พร้อมข้อดีข้อเสีย', date:'1 เม.ย. 2026', readTime:'12 นาที' },
-  { title:'การผสมพันธุ์อย่างมีความรับผิดชอบ', emoji:'🧬', tag:'breeding', cat:'การเพาะพันธุ์',
-    desc:'หลักการเพาะพันธุ์ที่ดี การเลือกคู่ผสม การดูแลแม่และลูก', date:'28 มี.ค. 2026', readTime:'15 นาที' },
-  { title:'เตรียมแฮมสเตอร์สำหรับการประกวด', emoji:'🏆', tag:'show', cat:'การประกวด',
-    desc:'เทคนิคการดูแลขน โภชนาการ และการสร้างความคุ้นเคยกับการจัดการ', date:'22 มี.ค. 2026', readTime:'10 นาที' },
-  { title:'พื้นฐาน Genetics: ยีนสีของ Syrian Hamster', emoji:'🔬', tag:'genetics', cat:'พันธุกรรม',
-    desc:'อธิบาย Genotype, Phenotype และการถ่ายทอดยีนแบบเข้าใจง่าย', date:'15 มี.ค. 2026', readTime:'20 นาที' },
+  { slug:'beginner-guide', title:'คู่มือมือใหม่: สิ่งที่ต้องเตรียมก่อนเลี้ยงแฮมสเตอร์', emoji:'📖', tag:'beginner', cat:'มือใหม่',
+    desc:'ทุกสิ่งที่ต้องรู้ก่อนรับแฮมสเตอร์มาเลี้ยง ตั้งแต่กรง อุปกรณ์ ไปจนถึงการเตรียมบ้าน', date:'8 เม.ย. 2026', readTime:'10 นาที',
+    content:`
+      <h3>1. เตรียมพื้นที่ก่อนรับน้องมาบ้าน</h3>
+      <p>ก่อนรับแฮมสเตอร์เข้าบ้านควรเตรียมพื้นที่ให้พร้อม — เลือกตำแหน่งที่ <strong>เงียบ ไม่มีแสงแดดส่อง</strong> และห่างจากเครื่องใช้ไฟฟ้าที่มีคลื่นความถี่สูง เช่น ทีวี ลำโพง เพราะอาจรบกวนการได้ยินของน้อง</p>
+
+      <h3>2. กรงและอุปกรณ์พื้นฐาน</h3>
+      <ul>
+        <li><strong>กรง:</strong> Syrian 80×40×40 ซม. / Dwarf 60×30×30 ซม.</li>
+        <li><strong>วัสดุรองพื้น:</strong> กระดาษคุณภาพดี หรือ Aspen — หลีกเลี่ยงไม้สน/ซีดาร์ที่มีน้ำมันหอมระเหย</li>
+        <li><strong>บ้านหลบ:</strong> ขนาดพอเหมาะให้ขยับตัวสะดวก</li>
+        <li><strong>จักรวิ่ง:</strong> Syrian 28–30 ซม. / Dwarf 20–24 ซม.</li>
+        <li><strong>ขวดน้ำ + ชามอาหาร:</strong> น้ำสะอาด ห้ามใช้น้ำแร่</li>
+      </ul>
+
+      <h3>3. หาสัตวแพทย์ใกล้บ้านล่วงหน้า</h3>
+      <p>ค้นหา <strong style="color:var(--gold)">Exotic Vet</strong> ในรัศมีไม่เกิน 30 นาที พร้อมเซฟเบอร์โทรและพิกัดไว้ — แฮมสเตอร์ป่วยเร็วมากเมื่ออาการแสดงให้เห็นแล้ว ต้องพาไปทันทีเสมอ</p>
+
+      <h3>4. ค่อยๆ ทำความรู้จักกับน้อง</h3>
+      <p>ในสัปดาห์แรกอย่าเพิ่งจับ ให้น้องคุ้นกับเสียงและกลิ่นเราก่อน เริ่มจากการให้อาหารจากมือเมื่อพร้อม จะสร้างความไว้ใจในระยะยาว</p>
+    ` },
+
+  { slug:'syrian-food-guide', title:'อาหารที่ดีที่สุดสำหรับแฮมสเตอร์ Syrian', emoji:'🥦', tag:'food', cat:'อาหาร',
+    desc:'อาหารหลัก อาหารเสริม ผักผลไม้ที่กินได้ และที่ควรหลีกเลี่ยงเด็ดขาด', date:'5 เม.ย. 2026', readTime:'8 นาที',
+    content:`
+      <h3>อาหารหลัก (Staple Diet)</h3>
+      <p>ฐานหลักควรเป็น <strong>อาหารเม็ดสำเร็จรูปคุณภาพสูง (Pellets / Lab Blocks)</strong> ที่มี Protein 17–19%, Fat 4–6%, Fiber 8–10% — ผสมกับ Seed Mix เพื่อความหลากหลาย ปริมาณรวมต่อวัน 10–12 กรัม (≈ 1 ช้อนโต๊ะเต็ม)</p>
+
+      <h3>อาหารเสริม &amp; ผักผลไม้</h3>
+      <ul>
+        <li>🥕 แครอท (เล็กน้อย, ไม่บ่อย เพราะน้ำตาลสูง)</li>
+        <li>🥦 บร็อคโคลี่</li>
+        <li>🍎 แอปเปิ้ลไม่มีเมล็ด</li>
+        <li>🥒 แตงกวา</li>
+        <li>🌽 ข้าวโพดอบแห้ง</li>
+      </ul>
+
+      <h3>ห้ามเด็ดขาด</h3>
+      <ul>
+        <li>🍫 <strong>ช็อคโกแลต / คาเฟอีน</strong> — ธีโอโบรมีนเป็นพิษ</li>
+        <li>🧅 <strong>หัวหอม / กระเทียม</strong> — ทำลายเม็ดเลือดแดง</li>
+        <li>🍇 <strong>องุ่น / ลูกเกด</strong> — เสี่ยงไตวายเฉียบพลัน</li>
+        <li>🌿 <strong>ใบมะเขือเทศดิบ</strong> — มี Solanine เป็นพิษ</li>
+        <li>🍬 <strong>ของหวาน / น้ำตาลสูง</strong> — เสี่ยงเบาหวาน</li>
+      </ul>
+    ` },
+
+  { slug:'dwarf-3-species', title:'ทำความเข้าใจ Dwarf Hamster ทั้ง 3 สายพันธุ์', emoji:'🐾', tag:'beginner', cat:'สายพันธุ์',
+    desc:'ความแตกต่างระหว่าง Winter White, Campbell\'s และ Roborovski พร้อมข้อดีข้อเสีย', date:'1 เม.ย. 2026', readTime:'12 นาที',
+    content:`
+      <h3>Winter White (Phodopus sungorus)</h3>
+      <p>ขนาด 7–10 ซม. ขนเปลี่ยนเป็นสีขาวในฤดูหนาว นิสัยค่อนข้างเชื่อง แต่ <strong>ผสมพันธุ์ข้ามกับ Campbell ได้</strong> ทำให้สายพันธุ์แท้ในไทยมีน้อย ควรเลือกจากฟาร์มที่จดทะเบียน Pedigree</p>
+
+      <h3>Campbell's (Phodopus campbelli)</h3>
+      <p>ขนาดและรูปร่างใกล้เคียง Winter White มาก ต่างที่หูเล็กและสันหลังเข้มกว่า <strong style="color:#E84242">มีความเสี่ยงเบาหวานสูงมาก</strong> ต้องคุมน้ำตาลในอาหารอย่างเคร่งครัด</p>
+
+      <h3>Roborovski (Phodopus roborovskii)</h3>
+      <p>ตัวเล็กที่สุดในกลุ่ม Dwarf (4–5 ซม.) ว่องไวมาก ไม่ค่อยชอบให้จับ <strong>เหมาะกับการเลี้ยงดูระยะไกล</strong> มากกว่าเลี้ยงแบบโต้ตอบ อายุขัย 3 ปี</p>
+    ` },
+
+  { slug:'responsible-breeding', title:'การผสมพันธุ์อย่างมีความรับผิดชอบ', emoji:'🧬', tag:'breeding', cat:'การเพาะพันธุ์',
+    desc:'หลักการเพาะพันธุ์ที่ดี การเลือกคู่ผสม การดูแลแม่และลูก', date:'28 มี.ค. 2026', readTime:'15 นาที',
+    content:`
+      <h3>ก่อนเริ่มเพาะพันธุ์</h3>
+      <ul>
+        <li>ตัวเมียต้องอายุ <strong>4–12 เดือน</strong> เมื่อผสมครั้งแรก</li>
+        <li>ผสมได้ <strong>ไม่เกิน 2 ครอกตลอดชีวิต</strong></li>
+        <li>ทั้งคู่ต้องมีสุขภาพดี ไม่มีโรคทางพันธุกรรม</li>
+        <li>มีบ้านใหม่รองรับลูกทุกตัวก่อนผสม</li>
+      </ul>
+
+      <h3>คู่ที่ห้ามผสม (Lethal Genes)</h3>
+      <ul>
+        <li>Roan × Roan</li>
+        <li>White Bellied × White Bellied</li>
+        <li>Dominant Spot × Dominant Spot</li>
+      </ul>
+      <p>ทุกคู่ข้างต้นจะให้ลูกที่มี <strong style="color:#E84242">ยีนถึงตาย (Lethal Genes)</strong> — ผิดจรรยาบรรณของ SHBA</p>
+
+      <h3>การดูแลแม่และลูก</h3>
+      <p>หลังคลอด อย่าเปิดกรงหรือสัมผัสลูกใน 14 วันแรก ให้แม่ดูแลเอง — เปลี่ยนวัสดุรองพื้นเท่าที่จำเป็น และให้อาหารโปรตีนสูง เช่น ไข่ต้ม หนอน mealworms สัปดาห์ละ 2–3 ครั้ง</p>
+    ` },
+
+  { slug:'show-preparation', title:'เตรียมแฮมสเตอร์สำหรับการประกวด', emoji:'🏆', tag:'show', cat:'การประกวด',
+    desc:'เทคนิคการดูแลขน โภชนาการ และการสร้างความคุ้นเคยกับการจัดการ', date:'22 มี.ค. 2026', readTime:'10 นาที',
+    content:`
+      <h3>1. การคัดเลือกตัวประกวด</h3>
+      <p>เลือกตัวที่ตรงกับมาตรฐาน NHC ของสีและสายพันธุ์ — รูปร่างสมส่วน ขนสะอาด ตาใส หูสะอาด ไม่มีบาดแผล</p>
+
+      <h3>2. ฝึก Handling</h3>
+      <p>กรรมการต้องจับน้องออกจากกล่อง — ฝึกให้น้องชินกับมือคนตั้งแต่ <strong>อายุ 4 สัปดาห์ขึ้นไป</strong> เพื่อไม่ให้เครียดในวันงาน</p>
+
+      <h3>3. โภชนาการช่วงก่อนแข่ง</h3>
+      <p>2 สัปดาห์ก่อนงาน เพิ่มโปรตีนคุณภาพ เช่น mealworm หรือไข่ต้ม สัปดาห์ละ 2 ครั้ง — ขนจะเงาขึ้นชัดเจน</p>
+
+      <h3>4. การเดินทาง</h3>
+      <p>ใช้กล่องเดินทางมีระบายอากาศ ปูวัสดุรองพื้นที่น้องคุ้นเคย ใส่ Sunflower seed 2–3 เมล็ดเป็นรางวัล อย่าให้น้ำในกล่องเดินทาง</p>
+    ` },
+
+  { slug:'genetics-basic', title:'พื้นฐาน Genetics: ยีนสีของ Syrian Hamster', emoji:'🔬', tag:'genetics', cat:'พันธุกรรม',
+    desc:'อธิบาย Genotype, Phenotype และการถ่ายทอดยีนแบบเข้าใจง่าย', date:'15 มี.ค. 2026', readTime:'20 นาที',
+    content:`
+      <h3>Genotype vs Phenotype</h3>
+      <p><strong>Genotype</strong> คือยีนจริงที่ตัวสัตว์ถือ (เช่น aa, Aa, AA) ส่วน <strong>Phenotype</strong> คือสิ่งที่ตาเห็น (เช่น Golden, Black, Cinnamon)</p>
+
+      <h3>Allele &amp; การถ่ายทอด</h3>
+      <p>ลูกได้รับ Allele 1 ตัวจากพ่อ + 1 ตัวจากแม่ — ยีนเด่น (Dominant) จะแสดงออกแม้มีตัวเดียว ส่วนยีนด้อย (Recessive) ต้องมี 2 ตัวจึงจะแสดง</p>
+
+      <h3>ตัวอย่างสีหลักของ Syrian</h3>
+      <ul>
+        <li><strong>Golden (aa):</strong> สีทองธรรมชาติ ยีนด้อย (Self vs Agouti)</li>
+        <li><strong>Black (B-):</strong> ยีนเด่น แสดงเมื่อมี B 1 ตัวขึ้นไป</li>
+        <li><strong>Cinnamon (pp):</strong> ตาแดง ยีนด้อย</li>
+        <li><strong>Cream (ee):</strong> ขนครีม ตาดำ ยีนด้อย</li>
+      </ul>
+
+      <h3>Punnett Square อย่างง่าย</h3>
+      <p>จับคู่ Bb × Bb → 25% BB, 50% Bb, 25% bb — ใช้คำนวณโอกาสที่ลูกจะได้สีอะไรในแต่ละครอก เครื่องมือคำนวณยีนของ SHBA (เร็วๆ นี้) จะทำงานบนหลักนี้</p>
+    ` },
 ];
 const SPECIES_DATA = [
   { name:'Syrian Hamster', sci:'Mesocricetus auratus', emoji:'🐹',
@@ -119,14 +226,7 @@ const HOF_DATA = [
   { rank:'🥇', name:'"Blue Moon"',      owner:'ฟาร์มสายรุ้ง',   breed:'W.White · Sapphire',    year:'2021' },
   { rank:'🥇', name:'"Ruby Fire"',      owner:'ปทุมวดี แสนสุข',  breed:'Syrian · Cinnamon Rex', year:'2020' },
 ];
-const NEWS_DATA = [
-  { title:'ประกาศผล SHBA Spring Show 2026 อย่างเป็นทางการ', emoji:'📢', cat:'ข่าวสาร', date:'16 มี.ค. 2026',
-    excerpt:'เปิดเผยผู้ชนะ Best in Show และผลรางวัลทั้งหมดจากงาน SHBA Spring Show 2026', featured:true },
-  { title:'เปิดรับสมัคร SHBA Summer Championship 2026', emoji:'🏆', cat:'การประกวด', date:'1 เม.ย. 2026',
-    excerpt:'พร้อมรายละเอียดคลาสการแข่งขันและรายชื่อกรรมการ', featured:false },
-  { title:'อัปเดตมาตรฐาน NHC ปี 2026', emoji:'📋', cat:'มาตรฐาน', date:'20 มี.ค. 2026',
-    excerpt:'สมาคมฯ รับรองมาตรฐาน NHC ฉบับปรับปรุง 2026 สำหรับใช้ในงานประกวดทุกรายการ', featured:false },
-];
+const NEWS_DATA = [];
 const RESULTS_DATA = [
   { award:'🥇 Best in Show', name:'"Golden Sunrise"',  breed:'Syrian Cinnamon Satin LH', owner:'ฟาร์มรุ่งอรุณ',   score:'99.2', show:'SHBA Spring Show 2026' },
   { award:'🥇 Best Syrian',  name:'"Midnight Prince"', breed:'Syrian Black Banded',       owner:'ดารณี สมบูรณ์',   score:'97.8', show:'SHBA Spring Show 2026' },
@@ -252,8 +352,11 @@ document.addEventListener('click', e => {
 
 /* ─── RENDER: COLOR CARD ─────────────────────────────────────────── */
 function renderColorCard(c) {
+  const swatchInner = c.img
+    ? `<img src="${c.img}" alt="${c.name}" loading="lazy" />`
+    : (c.emoji || '');
   return `<div class="color-card">
-    <div class="color-swatch" style="background:${c.bg||'#888'}">${c.emoji}</div>
+    <div class="color-swatch${c.img ? ' has-img' : ''}" style="background:${c.bg||'#888'}">${swatchInner}</div>
     <div class="color-card-body">
       <h4>${c.name}</h4>
       <div class="genotype">${c.genotype}</div>
@@ -692,19 +795,80 @@ window.renderKnowledge = function(filter = 'all', search = '') {
       <i class="fa-solid fa-search" style="font-size:2rem;display:block;margin-bottom:12px"></i>ไม่พบบทความที่ตรงกับการค้นหา</div>`;
     return;
   }
-  grid.innerHTML = arts.map(a => `
-    <div class="knowledge-card">
+  grid.innerHTML = arts.map(a => {
+    const url = `article.html?slug=${encodeURIComponent(a.slug || '')}`;
+    return `
+    <a href="${url}" class="knowledge-card" style="cursor:pointer;text-decoration:none;color:inherit;display:block">
       <div class="knowledge-thumb">${a.emoji}<div class="knowledge-cat"><span class="badge badge-gold">${a.cat}</span></div></div>
       <div class="knowledge-body">
         <h4>${a.title}</h4>
         <p>${a.desc}</p>
-        <a href="#" class="news-read-more">อ่านต่อ <i class="fa-solid fa-arrow-right"></i></a>
+        <span class="news-read-more">อ่านต่อ <i class="fa-solid fa-arrow-right"></i></span>
       </div>
       <div style="padding:12px 20px;border-top:1px solid rgba(255,255,255,.05);display:flex;gap:16px;font-size:.78rem;color:var(--gray-500)">
         <span><i class="fa-regular fa-calendar" style="color:var(--gold)"></i> ${a.date}</span>
         <span><i class="fa-regular fa-clock" style="color:var(--gold)"></i> ${a.readTime}</span>
       </div>
-    </div>`).join('');
+    </a>`;
+  }).join('');
+};
+
+/* ─── ARTICLE PAGE LOADER ──────────────────────────────────────────
+   Used by article.html — reads ?slug= from URL and renders the article
+*/
+window.loadArticle = function() {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  const a = (KNOWLEDGE_ARTICLES || []).find(x => x.slug === slug);
+  const root = document.getElementById('article-root');
+  if (!root) return;
+  if (!a) {
+    root.innerHTML = `
+      <div class="article-empty">
+        <div class="article-empty-icon"><i class="fa-regular fa-circle-question"></i></div>
+        <h2>ไม่พบบทความที่ต้องการ</h2>
+        <p>อาจถูกย้ายหรือยังไม่ได้เผยแพร่</p>
+        <a href="knowledge.html#articles" class="btn btn-outline-gold">
+          <i class="fa-solid fa-arrow-left"></i> กลับไปคลังบทความ
+        </a>
+      </div>`;
+    return;
+  }
+  document.title = `${a.title} | Siam Hamster Breeder Association`;
+  // Update related articles (other articles in same category)
+  const related = KNOWLEDGE_ARTICLES.filter(x => x.slug !== a.slug && (x.tag === a.tag || x.cat === a.cat)).slice(0, 3);
+  const relatedHTML = related.length ? `
+    <div class="article-related">
+      <h3>บทความที่เกี่ยวข้อง</h3>
+      <div class="related-grid">
+        ${related.map(r => `
+          <a href="article.html?slug=${encodeURIComponent(r.slug)}" class="related-card">
+            <div class="related-emoji">${r.emoji}</div>
+            <div class="related-body">
+              <span class="badge badge-gold">${r.cat}</span>
+              <h4>${r.title}</h4>
+              <span class="news-read-more">อ่านต่อ <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>`).join('')}
+      </div>
+    </div>` : '';
+
+  root.innerHTML = `
+    <article class="article-page">
+      <a href="knowledge.html#articles" class="article-back">
+        <i class="fa-solid fa-arrow-left"></i> กลับไปคลังบทความ
+      </a>
+      <div class="article-hero">
+        <div class="article-emoji">${a.emoji}</div>
+        <span class="badge badge-gold">${a.cat}</span>
+        <h1>${a.title}</h1>
+        <div class="article-meta">
+          <span><i class="fa-regular fa-calendar"></i> ${a.date}</span>
+          <span><i class="fa-regular fa-clock"></i> ${a.readTime}</span>
+        </div>
+      </div>
+      <div class="article-content">${a.content || `<p>${a.desc}</p>`}</div>
+      ${relatedHTML}
+    </article>`;
 };
 window.filterByTag = (tag, btn) => {
   document.querySelectorAll('.k-tag').forEach(b => b.classList.remove('active'));
@@ -731,6 +895,15 @@ window.renderHOF = function() {
 window.renderNews = function() {
   const grid = document.getElementById('news-grid');
   if (!grid) return;
+  if (!NEWS_DATA.length) {
+    grid.innerHTML = `
+      <div class="news-empty">
+        <div class="news-empty-icon"><i class="fa-regular fa-newspaper"></i></div>
+        <h3>ยังไม่มีข่าวสารในขณะนี้</h3>
+        <p>สมาคมกำลังเตรียมข่าวสารและประกาศใหม่ — โปรดติดตามอีกครั้งเร็วๆ นี้</p>
+      </div>`;
+    return;
+  }
   grid.innerHTML = NEWS_DATA.map(n => `
     <div class="news-card ${n.featured?'featured':''}">
       <div class="news-thumb">${n.emoji}</div>

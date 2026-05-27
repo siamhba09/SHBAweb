@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>บทความ | Siam Hamster Breeder Association</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/>
+      <div class="nav-logo-text">SHBA<span>Siam Hamster Breeder Association</span></div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">หน้าหลัก</a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="about.html" class="nav-link" data-page="about">เกี่ยวกับ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="about.html#history"   class="nav-dd-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+          <a href="about.html#vision"    class="nav-dd-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+          <a href="about.html#committee" class="nav-dd-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+          <a href="about.html#ethics"    class="nav-dd-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="membership.html" class="nav-link" data-page="membership">สมาชิก <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="membership.html#membership"     class="nav-dd-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก &amp; สิทธิประโยชน์</a>
+          <a href="membership.html#upgrade-section" class="nav-dd-link"><i class="fa-solid fa-rotate"></i> ต่ออายุสมาชิก</a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="competitions.html" class="nav-link" data-page="competitions">การประกวด <span class="nav-soon-badge">เร็วๆ นี้</span> <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="competitions.html#register"  class="nav-dd-link"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์ <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        </div>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="knowledge.html" class="nav-link active" data-page="knowledge">คลังความรู้ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="genetics.html"          class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="genescalculator.html"     class="nav-dd-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="knowledge.html#care"    class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+          <a href="knowledge.html#articles"class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        </div>
+      </li>
+
+      <li class="nav-item"><a href="news.html" class="nav-link" data-page="news">ข่าวสาร</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">ติดต่อเรา</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-outline-gold btn-sm btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="เปลี่ยนธีม"><i class="fa-solid fa-sun"></i></button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+  <div class="mobile-nav-scroll">
+
+    <a href="index.html" class="mobile-nav-link">หน้าหลัก</a>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">เกี่ยวกับสมาคม <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="about.html#history"   class="mobile-nav-sub-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+        <a href="about.html#vision"    class="mobile-nav-sub-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+        <a href="about.html#committee" class="mobile-nav-sub-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+        <a href="about.html#ethics"    class="mobile-nav-sub-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">สมาชิก <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="membership.html#membership"     class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
+        <a href="membership.html#register"        class="mobile-nav-sub-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+        <a href="myaccount.html"                  class="mobile-nav-sub-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">การประกวด <span class="nav-soon-badge">เร็วๆ นี้</span> <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="competitions.html#calendar"  class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        <a href="competitions.html#results"   class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        <a href="competitions.html#standards" class="mobile-nav-sub-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">คลังความรู้ <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="genetics.html"           class="mobile-nav-sub-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        <a href="genescalculator.html"    class="mobile-nav-sub-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        <a href="knowledge.html#care"     class="mobile-nav-sub-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+        <a href="knowledge.html#articles" class="mobile-nav-sub-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย <span class="nav-soon-badge">เร็วๆ นี้</span></a>
+      </div>
+    </div>
+
+    <a href="news.html"      class="mobile-nav-link">ข่าวสาร</a>
+    <a href="contact.html"   class="mobile-nav-link">ติดต่อเรา</a>
+
+    <div class="mobile-nav-divider"></div>
+    <div class="mobile-nav-btns">
+      <button class="btn btn-outline-gold btn-login-trigger" onclick="closeMobileNav(); openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<section class="section" style="background:var(--black);padding-top:120px;min-height:60vh">
+  <div class="container" style="max-width:820px">
+    <div id="article-root"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/><div class="nav-logo-text">Siam Hamster Breeder Association<span>สมาคมสยามแฮมสเตอร์บรีดเดอร์</span></div></div>
+        <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</p>
+      </div>
+      <div class="footer-col"><h4>คลังความรู้</h4><div class="footer-links">
+        <a href="knowledge.html#care"     class="footer-link">การดูแลทั่วไป</a>
+        <a href="knowledge.html#articles" class="footer-link">บทความทั้งหมด</a>
+      </div></div>
+      <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
+        <a href="membership.html" class="footer-link">สมัครสมาชิก</a>
+        <a href="myaccount.html"  class="footer-link">Dashboard</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Siam Hamster Breeder Association. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">นโยบายความเป็นส่วนตัว</a><a href="#">ข้อกำหนด</a><a href="contact.html">ติดต่อเรา</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.2rem;margin-bottom:6px">🐹</div>
+      <h3 style="margin-bottom:4px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ / สมัครสมาชิก</h3>
+      <p style="font-size:.82rem;color:var(--text-muted)">Siam Hamster Breeder Association</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+      <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">สมัครสมาชิกใหม่</button>
+    </div>
+    <div id="auth-panel-login">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือใช้อีเมล</span></div>
+      <div class="form-group"><label>อีเมล</label><input type="email" id="li-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน</label><input type="password" id="li-password" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleEmailLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
+      </button>
+      <p style="text-align:center;margin-top:12px;font-size:.82rem">
+        <a href="#" style="color:var(--text-muted)" onclick="handleForgotPassword(event)">ลืมรหัสผ่าน?</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือสมัครด้วยอีเมล</span></div>
+      <div class="form-row">
+        <div class="form-group"><label>ชื่อ <span class="req">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
+        <div class="form-group"><label>นามสกุล <span class="req">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
+      </div>
+      <div class="form-group"><label>อีเมล <span class="req">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
+      <div class="form-group"><label>ยืนยันรหัสผ่าน <span class="req">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
+        <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
+      </button>
+      <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)">
+        <i class="fa-solid fa-shield-halved" style="color:var(--gold)"></i> เริ่มต้นด้วยสมาชิกสามัญฟรี — อัปเกรดได้ภายหลัง
+      </p>
+    </div>
+  </div>
+</div>
+
+<button id="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast-container" id="toast-container"></div>
+<script type="module" src="firebase.js"></script>
+<script src="main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    SHBA.initNavbar('knowledge');
+    SHBA.initTheme();
+    SHBA.initScrollAnimations();
+    SHBA.initScrollTop();
+    loadArticle();
+  });
+</script>
+</body>
+</html>
