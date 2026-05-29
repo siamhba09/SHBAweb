@@ -170,9 +170,10 @@
         <div class="mem-flow-label">สมัครสมาชิกสามัญ<br/><span style="color:var(--gold);font-weight:700">ฟรี</span></div>
       </div>
       <div class="mem-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      <div class="mem-flow-step">
+      <div class="mem-flow-step" style="opacity:.7;position:relative">
+        <span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(200,160,32,0.18);color:var(--gold);border:1px solid rgba(200,160,32,0.4);white-space:nowrap;text-transform:uppercase;letter-spacing:.05em">เร็วๆ นี้</span>
         <div class="mem-flow-icon">🧬</div>
-        <div class="mem-flow-label">อัปเกรดเป็น Pro<br/><span style="color:var(--orange);font-weight:700">฿2,000/ปี</span></div>
+        <div class="mem-flow-label">อัปเกรดเป็น Pro<br/><span style="color:var(--orange);font-weight:700">฿xxxx/ปี</span></div>
       </div>
       <div class="mem-flow-arrow dim"><i class="fa-solid fa-arrow-right"></i></div>
       <div class="mem-flow-step dim">
@@ -194,19 +195,41 @@
         </div>
         <div class="mem-features">
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> สมัครได้ทันที ไม่มีค่าใช้จ่าย</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> บัตรสมาชิกดิจิทัล + QR Code</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> บัตรสมาชิกดิจิทัล</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าชมและสมัครงานประกวด</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าถึงคลังความรู้ทั้งหมด</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> เข้าร่วมชุมชน SHBA</div>
-          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> ป้าย Pro Certified</div>
-          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> ลงทะเบียนสายพันธุ์</div>
+          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> เครื่องมือคำนวณยีน</div>
+          <div class="mem-feature dim"><i class="fa-solid fa-xmark cross"></i> คลังข้อมูลยีนแฮมสเตอร์</div>
         </div>
         <button class="btn btn-gold w-100" onclick="openModal('login-modal'); switchAuthTab('signup')">
           <i class="fa-solid fa-user-plus"></i> สมัครฟรีเลย
         </button>
       </div>
 
-      <!-- Breeder (upgrade) -->
+      <!-- Pro (Coming Soon) -->
+      <div class="mem-card breeder mem-soon fade-in-up">
+        <div class="mem-featured-badge" style="background:rgba(200,160,32,0.18);color:var(--gold);border:1px solid rgba(200,160,32,0.4)">
+          <span class="dot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);margin-right:6px;vertical-align:middle"></span>เร็วๆ นี้
+        </div>
+        <div class="mem-icon">🧬</div>
+        <h3>สมาชิก Pro</h3><p class="mem-sub">Pro Member</p>
+        <div class="mem-price">
+          <span class="price text-orange">฿xxxx</span>
+          <span class="per">/ปี</span>
+        </div>
+        <div class="mem-features">
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ทุกสิทธิ์ของสมาชิกสามัญ</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เครื่องมือคำนวณยีน</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> คลังข้อมูลยีนแฮมสเตอร์</div>
+          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ป้าย Pro Certified บนโปรไฟล์</div>
+        </div>
+        <button class="btn btn-outline-orange w-100" disabled style="opacity:.55;cursor:not-allowed">
+          <i class="fa-solid fa-clock"></i> เปิดให้บริการเร็วๆ นี้
+        </button>
+      </div>
+
+      <!-- ORIGINAL Pro Card (เก็บไว้สำหรับเปิดใช้งานในอนาคต)
       <div class="mem-card breeder fade-in-up">
         <div class="mem-featured-badge">⬆️ อัปเกรดได้</div>
         <div class="mem-icon">🧬</div>
@@ -227,6 +250,8 @@
           <i class="fa-solid fa-arrow-up"></i> ดูวิธีอัปเกรด
         </button>
       </div>
+      -->
+
 
       <!-- Honorary -->
       <div class="mem-card honorary fade-in-up">
@@ -238,10 +263,7 @@
         </div>
         <div class="mem-features">
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> ทุกสิทธิ์ของ Pro Member</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ไม่มีค่าสมัครประกวดตลอดชีพ</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> เกียรติบัตรพิเศษจาก SHBA</div>
           <div class="mem-feature"><i class="fa-solid fa-check check"></i> สิทธิ์นั่งบอร์ดที่ปรึกษา</div>
-          <div class="mem-feature"><i class="fa-solid fa-check check"></i> ชื่อใน Hall of Fame ตลอดกาล</div>
         </div>
         <button class="btn btn-outline-gold w-100" disabled style="opacity:.4;cursor:not-allowed">
           <i class="fa-solid fa-envelope"></i> โดยการเชิญเท่านั้น
@@ -251,7 +273,7 @@
   </div>
 </section>
 
-<!-- UPGRADE TO BREEDER -->
+<!-- UPGRADE TO PRO — ปิดชั่วคราว (Coming Soon) เก็บโค้ดไว้สำหรับเปิดใช้งานในอนาคต
 <section id="upgrade-section" class="section" style="background:var(--black-light)">
   <div class="container">
     <div class="section-header fade-in-up">
@@ -262,21 +284,19 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto" class="fade-in-up">
 
-      <!-- What you get -->
       <div class="card" style="padding:32px">
         <h3 style="color:var(--orange);margin-bottom:20px"><i class="fa-solid fa-star"></i> สิทธิ์ที่ได้รับเพิ่ม</h3>
-        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ป้าย <strong>Pro Certified</strong> บนโปรไฟล์</div>
-        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> หน้า <strong>Public Profile</strong> ของฟาร์มคุณ</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ป้าย Pro Certified บนโปรไฟล์</div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> หน้า Public Profile ของฟาร์มคุณ</div>
         <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ลงทะเบียนสายพันธุ์ไม่จำกัด</div>
         <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> สิทธิ์โหวตในที่ประชุม SHBA</div>
-        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ส่วนลดค่าสมัครประกวด <strong>20%</strong></div>
+        <div class="mem-feature" style="margin-bottom:12px"><i class="fa-solid fa-check check"></i> ส่วนลดค่าสมัครประกวด 20%</div>
         <div style="margin-top:24px;padding:16px;background:rgba(255,100,0,.1);border-radius:10px;border:1px solid rgba(255,100,0,.3)">
           <div style="font-size:1.6rem;font-weight:800;color:var(--orange)">฿2,000</div>
           <div style="font-size:.85rem;color:var(--text-muted)">/ปี (ต่ออายุทุกปี)</div>
         </div>
       </div>
 
-      <!-- How to upgrade -->
       <div class="card" style="padding:32px">
         <h3 style="color:var(--gold);margin-bottom:20px"><i class="fa-solid fa-arrow-up"></i> วิธีอัปเกรด</h3>
         <div class="register-step" style="margin-bottom:16px">
@@ -286,7 +306,7 @@
         <div class="register-step" style="margin-bottom:16px">
           <div class="step-num">2</div>
           <div class="step-content"><h4>โอนเงิน ฿2,000</h4>
-            <p>ธนาคารกสิกรไทย: <strong>123-4-56789-0</strong><br/>ชื่อ: สมาคมสยามแฮมสเตอร์บรีดเดอร์</p>
+            <p>ธนาคารกสิกรไทย: 123-4-56789-0 ชื่อ: สมาคมสยามแฮมสเตอร์บรีดเดอร์</p>
           </div>
         </div>
         <div class="register-step" style="margin-bottom:20px">
@@ -298,6 +318,31 @@
         </a>
       </div>
     </div>
+  </div>
+</section>
+-->
+
+<!-- UPGRADE COMING SOON -->
+<section id="upgrade-section" class="coming-soon" style="background:var(--black-light)">
+  <div class="cs-inner">
+    <div class="cs-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+    <span class="cs-tag"><span class="dot"></span> เร็วๆ นี้ · Coming Soon</span>
+    <h1 class="cs-title">อัปเกรดเป็น <span class="text-gradient-orange">Pro Member</span></h1>
+    <p class="cs-subtitle">
+      ระบบรับชำระเงินและสิทธิประโยชน์สำหรับ Pro Member กำลังอยู่ในขั้นตอนการเตรียมความพร้อม
+      ตอนนี้ยังเปิดรับเฉพาะ <strong style="color:var(--gold)">สมาชิกสามัญ (ฟรี)</strong> ก่อน
+    </p>
+
+    <div class="cs-list">
+      <div class="cs-list-item"><i class="fa-solid fa-circle-check"></i> ทุกสิทธิ์ของสมาชิกสามัญ</div>
+      <div class="cs-list-item"><i class="fa-solid fa-circle-check"></i> เครื่องมือคำนวณยีน</div>
+      <div class="cs-list-item"><i class="fa-solid fa-circle-check"></i> คลังข้อมูลยีนแฮมสเตอร์</div>
+      <div class="cs-list-item"><i class="fa-solid fa-circle-check"></i> ป้าย Pro Certified บนโปรไฟล์</div>
+    </div>
+
+    <a href="#membership" class="btn btn-outline-gold cs-back">
+      <i class="fa-solid fa-arrow-left"></i> สมัครสมาชิกสามัญ (ฟรี) ก่อน
+    </a>
   </div>
 </section>
 

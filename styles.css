@@ -3140,6 +3140,23 @@ select.form-control option { background: var(--black-card); }
 [data-theme="light"] .article-modal .am-content strong { color: var(--white); }
 [data-theme="light"] .article-modal .am-footer { border-top-color: rgba(100,70,20,0.1); }
 
+/* ---------- Pro card "Coming Soon" state ---------- */
+.mem-card.mem-soon {
+  opacity: .85;
+  position: relative;
+}
+.mem-card.mem-soon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(200,160,32,0.04) 0%, transparent 40%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.mem-card.mem-soon button:disabled {
+  color: var(--text-muted);
+}
+
 /* ---------- Article PAGE (article.html) ---------- */
 .article-page { padding: 24px 0 40px; }
 .article-back {
