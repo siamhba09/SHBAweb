@@ -1031,4 +1031,27 @@ window.removeSlip = function(e) {
     <button class="clb-close" onclick="document.getElementById('cls-lightbox').classList.remove('open')">
       <i class="fa-solid fa-xmark"></i>
     </button>
-    <img id="clb
+    <img id="clb-img" src="" alt="" style="max-width:100%;max-height:78vh;border-radius:14px;object-fit:contain;display:block;box-shadow:0 24px 80px rgba(0,0,0,.6);" />
+    <div class="clb-caption" id="clb-cap"></div>
+  </div>
+</div>
+
+<script>
+window.openClassImg = function(src, caption) {
+  var lb  = document.getElementById("cls-lightbox");
+  var img = document.getElementById("clb-img");
+  var cap = document.getElementById("clb-cap");
+  if (img) img.src = src;
+  if (cap) cap.textContent = caption || "";
+  if (lb)  lb.classList.add("open");
+};
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    var lb = document.getElementById("cls-lightbox");
+    if (lb) lb.classList.remove("open");
+  }
+});
+</script>
+
+</body>
+</html>
