@@ -24,6 +24,12 @@ import {
   runTransaction,
   serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
 
 // ── Config ─────────────────────────────────────────────────
 const firebaseConfig = {
@@ -46,6 +52,19 @@ provider.setCustomParameters({ prompt: 'select_account' });
 // Expose auth & db globally so other module scripts can use them
 window._firebaseAuth = auth;
 window._firebaseDb   = db;
+
+// ── Firebase Storage ───────────────────────────────────────
+const storage = getStorage(app);
+window._firebaseStorage = storage;
+
+/** Upload a slip file to Firebase Storage and return its public download URL */
+window.uploadSlipFile = async (file, entryNo) => {
+  const ext     = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path    = `competition-slips/${entryNo}.${ext}`;
+  const fileRef = storageRef(storage, path);
+  await uploadBytes(fileRef, file);
+  return await getDownloadURL(fileRef);
+};
 
 // ── Membership badge config (moved up so cache restore can use it) ──
 const _memberBadges = {
@@ -136,6 +155,8 @@ function _buildNavMenuHTML(info, badge) {
   document.querySelectorAll('.mobile-nav-btns .btn-login-trigger').forEach(el => {
     el.style.display = 'none';
   });
+  // Show cached mobile user info
+  _renderMobileUser({ displayName: cached.displayName || '', photoURL: cached.photoURL || '' }, badge);
 })();
 
 // ── Auth State ─────────────────────────────────────────────
@@ -388,8 +409,34 @@ async function _renderLoggedIn(user) {
     delete userMenu.dataset.cached;
   }
 
+  // Mobile nav: show member info
+  _renderMobileUser({ displayName: user.displayName || '', photoURL: user.photoURL || '' }, badge);
+
   // Close dropdown when clicking outside
   document.addEventListener('click', _closeDropdownOnOutside);
+}
+
+// ── Mobile Nav User Info ───────────────────────────────────
+function _renderMobileUser(info, badge) {
+  const mu = document.getElementById('mobile-user-info');
+  if (!mu) return;
+  const firstName = (info.displayName || '').split(' ')[0] || 'สมาชิก';
+  // Populate static elements
+  const nameEl  = document.getElementById('mu-name');
+  const badgeEl = document.getElementById('mu-badge');
+  const imgEl   = document.getElementById('mu-avatar-img');
+  const phEl    = document.getElementById('mu-avatar-ph');
+  if (nameEl)  nameEl.textContent  = firstName;
+  if (badgeEl) { badgeEl.textContent = badge.icon + ' ' + badge.label; badgeEl.style.color = badge.color; }
+  if (imgEl && phEl) {
+    if (info.photoURL) {
+      imgEl.src = info.photoURL; imgEl.style.display = '';
+      phEl.style.display = 'none';
+    } else {
+      imgEl.style.display = 'none'; phEl.style.display = '';
+    }
+  }
+  mu.style.display = 'block';
 }
 
 // ── Update Navbar UI: Logged Out ───────────────────────────
@@ -399,6 +446,8 @@ function _renderLoggedOut() {
   });
   const userMenu = document.getElementById('user-nav-menu');
   if (userMenu) userMenu.style.display = 'none';
+  const mobileUser = document.getElementById('mobile-user-info');
+  if (mobileUser) mobileUser.style.display = 'none';
   document.removeEventListener('click', _closeDropdownOnOutside);
 }
 

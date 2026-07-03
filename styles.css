@@ -249,7 +249,12 @@ p { font-size: 1rem; color: var(--gray-300); }
 .nav-cta { display: flex; align-items: center; gap: 8px; }
 
 /* ── Dropdown Nav ─────────────────────────────────────────── */
-.nav-item { position: relative; }
+.nav-item {
+  position: relative;
+  align-self: stretch;       /* ยืดให้สูงเท่า nav-inner (72px) */
+  display: flex;
+  align-items: center;
+}
 
 .nav-chevron {
   font-size: .55rem;
@@ -406,6 +411,29 @@ p { font-size: 1rem; color: var(--gray-300); }
   gap: 12px; margin-top: 16px; width: 100%;
 }
 .mobile-nav-btns .btn { width: 100%; justify-content: center; font-size: 1rem; }
+
+/* Mobile nav — logged-in user info */
+.mobile-user-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; margin-bottom: 10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+}
+.mobile-user-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid rgba(201,162,39,.4);
+}
+.mobile-user-avatar-ph {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(201,162,39,.12); color: var(--gold); font-size: 1.1rem;
+  border: 2px solid rgba(201,162,39,.4);
+}
+.mobile-user-text { display: flex; flex-direction: column; gap: 2px; }
+.mobile-user-name { font-size: .9rem; font-weight: 600; color: var(--white); }
+.mobile-user-badge { font-size: .72rem; font-weight: 600; }
 
 /* ============================
    HERO SECTION
@@ -819,9 +847,13 @@ select.form-control option { background: var(--black-card); }
 .show-radio-card:has(input:checked) .src-body { border-color:var(--orange); background:rgba(232,114,42,.08); }
 .show-radio-card:hover .src-body { border-color:rgba(232,114,42,.35); }
 .src-icon { font-size:1.4rem; flex-shrink:0; margin-top:2px; }
-.src-title { font-weight:600; font-size:.87rem; margin-bottom:2px; }
-.src-sub   { font-size:.74rem; color:var(--text-muted); margin-bottom:3px; }
-.src-fee   { font-size:.78rem; color:var(--orange); }
+.src-title  { font-weight:600; font-size:.87rem; margin-bottom:2px; }
+.src-sub    { font-size:.74rem; color:var(--text-muted); margin-bottom:3px; }
+.src-date   { font-size:.65rem; color:#48C758; margin-bottom:4px; white-space:nowrap; }
+.src-date i { margin-right:4px; opacity:.8; }
+.src-judge  { font-size:.72rem; color:var(--gold); margin-bottom:4px; }
+.src-judge i { margin-right:4px; opacity:.8; }
+.src-fee    { font-size:.78rem; color:var(--orange); }
 .src-fee span { color:var(--text-muted); }
 .bundle-promo-box {
   display:flex; align-items:center; gap:10px;
@@ -1802,9 +1834,10 @@ select.form-control option { background: var(--black-card); }
 #banner-slider {
   position: relative;
   width: 100%;
-  height: calc(100vh - 72px - 160px);
-  min-height: 460px;
-  max-height: 780px;
+  max-width: 1200px;          /* ไม่ขยายเกินขนาดรูปต้นฉบับ */
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 1200 / 628;  /* scale ลงตามสัดส่วนเมื่อหน้าต่างแคบกว่า 1200px */
   margin-top: 72px;
   overflow: hidden;
   background: var(--black);
@@ -2043,8 +2076,7 @@ select.form-control option { background: var(--black-card); }
 
 /* Responsive */
 @media (max-width: 768px) {
-  #banner-slider { height: 480px; }
-
+  /* ปล่อยให้ aspect-ratio คุม ไม่กำหนด height */
   .slide-visual { display: none; }
 
   .slide-content {
@@ -2064,7 +2096,6 @@ select.form-control option { background: var(--black-card); }
 }
 
 @media (max-width: 480px) {
-  #banner-slider { height: 420px; }
   .slide-title { font-size: 1.4rem; }
   .slide-badges { display: none; }
 }
@@ -2364,22 +2395,11 @@ select.form-control option { background: var(--black-card); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;  /* คง top ไว้ → โลโก้บนไม่หาย */
   display: block;
   z-index: 0;
 }
 
-/* Dark gradient overlay ให้อ่านข้อความได้ */
-.slide::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(13,13,13,0.72) 0%, rgba(13,13,13,0.35) 50%, rgba(13,13,13,0.08) 100%),
-    linear-gradient(180deg, rgba(13,13,13,0.1) 0%, rgba(13,13,13,0.3) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
 
 /* Fade edge ให้รูปกลืนกับ overlay ซ้าย */
 .slide-visual::before {
@@ -2406,138 +2426,14 @@ select.form-control option { background: var(--black-card); }
 ══════════════════════════════════════════════ */
 /* (height/margin defined above) */
 
-/* Dark gradient from left so text is readable */
-.slider-left-fade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    rgba(13,13,13,0.92) 0%,
-    rgba(13,13,13,0.75) 38%,
-    rgba(13,13,13,0.2)  65%,
-    rgba(13,13,13,0)    100%);
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Fixed hero text overlay */
-.slider-hero-overlay {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 24px 48px;
-}
-
-.slider-hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(201,162,39,0.5);
-  border-radius: 30px;
-  padding: 6px 16px;
-  font-size: .8rem;
-  font-weight: 600;
-  color: var(--gold);
-  margin-bottom: 18px;
-  width: fit-content;
-}
-.slider-hero-tag span {
-  width: 7px; height: 7px;
-  background: var(--gold);
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.slider-hero-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 14px;
-  color: #fff;
-}
-.slider-hero-title .line1 {
-  display: block;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  color: var(--gold);
-}
-.slider-hero-title .line2 {
-  display: block;
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  letter-spacing: .02em;
-  margin-bottom: 4px;
-}
-.slider-hero-title .line3 {
-  display: block;
-  font-size: clamp(.9rem, 1.6vw, 1.15rem);
-  color: rgba(255,255,255,0.65);
-  font-weight: 400;
-}
-
-.slider-hero-sub {
-  font-size: clamp(.82rem, 1.3vw, .95rem);
-  line-height: 1.75;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 24px;
-}
-
-.slider-hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-
-.slider-hero-stats {
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-}
-.slider-hero-stats .hero-stat-num {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--gold);
-  font-family: 'Playfair Display', serif;
-}
-.slider-hero-stats .hero-stat-label {
-  font-size: .75rem;
-  color: rgba(255,255,255,0.55);
-  margin-top: 2px;
-}
-
-/* Light mode */
-[data-theme="light"] .slider-left-fade {
-  background: linear-gradient(90deg,
-    rgba(247,242,234,0.95) 0%,
-    rgba(247,242,234,0.80) 38%,
-    rgba(247,242,234,0.15) 65%,
-    rgba(247,242,234,0)    100%);
-}
-[data-theme="light"] .slider-hero-title .line2,
-[data-theme="light"] .slider-hero-title .line3 { color: rgba(13,13,13,0.75); }
-[data-theme="light"] .slider-hero-sub          { color: rgba(13,13,13,0.6); }
-[data-theme="light"] .slider-hero-stats .hero-stat-label { color: rgba(13,13,13,0.5); }
-
 /* Responsive */
 @media (max-width: 768px) {
-  #banner-slider { height: 520px; }
-  .slider-hero-overlay { width: 100%; padding: 0 20px 60px; }
-  .slider-left-fade { background: linear-gradient(180deg, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.88) 55%, rgba(13,13,13,0.95) 100%); }
-  .slider-hero-stats { gap: 18px; }
-  .slider-hero-actions .btn { font-size: .82rem; padding: 10px 16px; }
+  .slide-visual { display: none; }
 }
 
 @media (max-width: 480px) {
-  #banner-slider { height: 480px; }
-  .slider-hero-title .line1 { font-size: 2rem; }
-  .slider-hero-sub { display: none; }
+  .slide-title { font-size: 1.4rem; }
+  .slide-badges { display: none; }
 }
 
 /* ============================================================
@@ -2650,6 +2546,20 @@ select.form-control option { background: var(--black-card); }
 .mobile-nav-sub-link .nav-soon-badge,
 .mobile-nav-group-btn .nav-soon-badge { font-size: .55rem; padding: 1px 6px; }
 
+.nav-open-badge {
+  display: inline-block;
+  font-size: .58rem; font-weight: 700; letter-spacing: .04em;
+  padding: 2px 7px; border-radius: 999px;
+  background: rgba(72,199,88,0.15);
+  color: #48C758;
+  border: 1px solid rgba(72,199,88,0.4);
+  margin-left: 6px; vertical-align: middle;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.nav-dd-link .nav-open-badge,
+.mobile-nav-sub-link .nav-open-badge { font-size: .55rem; padding: 1px 6px; }
+
 [data-theme="light"] .coming-soon { background: var(--bg-cream); }
 [data-theme="light"] .coming-soon .cs-list-item { background: #FFFFFF; border-color: rgba(100,70,20,0.08); }
 [data-theme="light"] .coming-soon .cs-subtitle  { color: var(--gray-300); }
@@ -2693,9 +2603,38 @@ select.form-control option { background: var(--black-card); }
   box-shadow: 0 0 8px var(--gold);
   animation: csDot 1.4s ease-in-out infinite;
 }
+/* ── Countdown boxes ── */
+.cs-countdown {
+  display: flex; gap: 10px; align-items: center;
+  flex-shrink: 0;
+}
+.cs-cd-box {
+  text-align: center;
+  background: rgba(201,162,39,0.1);
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 54px;
+}
+.cs-cd-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 900;
+  color: var(--gold); line-height: 1;
+}
+.cs-cd-label {
+  font-size: .58rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--gray-500); text-transform: uppercase; margin-top: 3px;
+}
+.cs-cd-sep {
+  font-size: 1.4rem; font-weight: 700; color: var(--gold); opacity: .5;
+  line-height: 1; margin-bottom: 14px;
+}
 @media (max-width: 640px) {
   .cs-banner { flex-direction: column; text-align: center; padding: 20px; }
   .cs-banner-text { min-width: 0; }
+  .cs-countdown { justify-content: center; }
+  .cs-cd-num { font-size: 1.3rem; }
+  .cs-cd-box { min-width: 44px; padding: 6px 8px; }
 }
 [data-theme="light"] .cs-banner-wrap { background: #F4ECD8; }
 [data-theme="light"] .cs-banner       { background: #FFFFFF; }

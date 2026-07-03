@@ -63,27 +63,11 @@ const COAT_TYPES = [
     desc:'ขนเงาวาวมาก บางกว่าปกติ สีดูเข้มกว่า โฮโมไซกัสขนบาง' },
 ];
 const EVENTS = [
-  { id:1, name:'SHBA Summer Championship 2026', day:'14–15', month:'JUN',
-    location:'ศูนย์การประชุมแห่งชาติสิริกิติ์, กทม.',
-    classes:['Best in Show','Best Syrian','Best Dwarf','Pet & Fun'],
-    fee:300, deadline:'31 พ.ค. 2026', judges:['ผศ.ดร. วิภาวรรณ ชัยนคร','นายสมพร ทองคำ'],
-    status:'open', emoji:'🏆' },
-  { id:2, name:'SHBA Regional Show — เชียงใหม่', day:'20', month:'JUL',
-    location:'เชียงใหม่ฮอลล์, เชียงใหม่',
-    classes:['Best Syrian','Best Dwarf'],
-    fee:200, deadline:'10 ก.ค. 2026', judges:['นางสาวรัตนา สมบูรณ์'],
-    status:'upcoming', emoji:'🌸' },
-  { id:3, name:'SHBA Winter Classic 2025', day:'13–14', month:'DEC',
-    location:'ไบเทค บางนา, กทม.',
-    classes:['Best in Show','Best Syrian','Best Dwarf','Best Coat','Pet & Fun'],
-    fee:300, deadline:'ปิดรับสมัครแล้ว',
-    judges:['ผศ.ดร. วิภาวรรณ ชัยนคร','Mr. John Smith (UK)'],
-    status:'past', emoji:'❄️' },
-  { id:4, name:'SHBA Specialty — Dwarf Only', day:'9', month:'AUG',
-    location:'คริสตัล ดีไซน์ เซ็นเตอร์, กทม.',
-    classes:['Best Dwarf','Best Winter White','Best Campbell','Best Robo'],
-    fee:200, deadline:'31 ก.ค. 2026', judges:['นายประสิทธิ์ มาศวงศ์'],
-    status:'upcoming', emoji:'⭐' },
+  { id:1, name:'SHBA Amigo Championship: Together Through Friendship', day:'1–2', month:'AUG',
+    location:'TBA',
+    classes:['New Gen Syrian','Dwarf (WW/Campbell)','Special Poly White','Fun Show'],
+    fee:200, deadline:'ก่อนวันงาน', judges:['-'],
+    status:'open', emoji:'🤝' },
 ];
 const KNOWLEDGE_ARTICLES = [
   { slug:'beginner-guide', title:'คู่มือมือใหม่: สิ่งที่ต้องเตรียมก่อนเลี้ยงแฮมสเตอร์', emoji:'📖', tag:'beginner', cat:'มือใหม่',
@@ -414,68 +398,148 @@ window.openEntryForm = (id) => {
   form.scrollIntoView({ behavior:'smooth', block:'start' });
 };
 
-/* ─── COMPETITION FORM DATA ──────────────────────────────────────── */
+/* ─── COMPETITION FORM DATA — SHBA Amigo Championship ─────────── */
 const CF_SHOWS = {
-  'ol': { name:'The Syrian Hamster Showcase (Open League)', date:'1 พ.ค. 2569', icon:'🏆', perHead:300,  unlimited:3000, type:'syrian'    },
-  'ed': { name:'Extreme Dilute Specialty Show',             date:'2 พ.ค. 2569', icon:'🔬', perHead:200,  unlimited:2000, type:'specialty' },
-  'pw': { name:'Polywhite Specialty Show',                  date:'2 พ.ค. 2569', icon:'⬜', perHead:200,  unlimited:2000, type:'specialty' },
-  'ng': { name:'New Gen Syrian Hamster Show',               date:'2 พ.ค. 2569', icon:'✨', perHead:200,  unlimited:2000, type:'newgen'    },
+  'ng': { name:'New Gen Syrian',                        date:'1-2 ส.ค. 2569', icon:'🌟', perHead:200, type:'newgen'   },
+  'dw': { name:'Dwarf (Winter White/Campbell)', date:'1-2 ส.ค. 2569', icon:'🐾', perHead:200, type:'dwarf'    },
+  'pw': { name:'Special Poly White',                    date:'1-2 ส.ค. 2569', icon:'⬜', perHead:200, type:'polywhite' },
+  'fs': { name:'Fun Show',                              date:'1-2 ส.ค. 2569', icon:'🎉', perHead:200, type:'funshow'  },
 };
-const SYR_GROUPS = [
-  { key:'self',      name:'Self (สีตัน)',   varieties:['Black','Chocolate','Dove','Black Eye Cream','Red Eye Cream','Sable','Mink','Yellow Black','Yellow Chocolate','Copper','Champagne'] },
-  { key:'agouti',    name:'Agouti',         varieties:['Golden','Cinnamon','Rust','Silver Grey','Yellow','Honey'] },
-  { key:'dom-sport', name:'Dominant Sport', varieties:['Golden','Cinnamon','Rust','Black','Dove','Chocolate'] },
-  { key:'banded',    name:'Banded',         varieties:['Golden','Silver Grey','Cinnamon','Rust','Black','Dove','Chocolate'] },
-  { key:'tri-color', name:'Tri Color',      varieties:['Black','Dove','Chocolate'] },
-  { key:'tort',      name:'Tortoiseshell',  varieties:['Black','Dove','Chocolate'] },
-  { key:'rd-dsba',   name:'RD and Dsba',    varieties:['ALL Colors'] },
-];
-const SPEC_CLASSES   = ['Agouti','Self'];
-const NEWGEN_COATS   = ['Long Hair','Short Hair','Rex Hair','Satin Hair','Rex Satin Hair'];
-const NEWGEN_ROWS    = ['Solid','Dominant Spot','Banded','Tort (Tri)','RD and DSBA'];
-const _cfMode        = { ol:'perhead', ed:'perhead', pw:'perhead', ng:'perhead' };
+const NG_COATS   = ['Long Hair','Short Hair','Rex Hair','Satin Hair'];
+const NG_CLASSES = ['Self Solid','Agouti Solid','Self Pattern','Agouti Pattern'];
+const DW_WW      = ['Normal','Sapphire','Pearl'];
+const DW_CAMP    = ['Agouti Solid','Agouti Pattern','Self Solid','Self Pattern'];
+const PW_CLASSES = ['Agouti','Self'];
 
 function _sid(parts) {
   return parts.map(p => String(p).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')).join('_');
 }
 function _stepper(id, label) {
-  return `<div class="stepper"><button type="button" onclick="cfAdj('${id}',-1)">−</button><input id="${id}" type="number" min="0" max="10" value="0" data-label="${label}" oninput="cfCalcFee()"/><button type="button" onclick="cfAdj('${id}',1)">+</button></div>`;
+  return `<div class="stepper"><button type="button" onclick="cfAdj('${id}',-1)">−</button><input id="${id}" type="number" min="0" max="20" value="0" data-label="${label}" oninput="cfCalcFee()"/><button type="button" onclick="cfAdj('${id}',1)">+</button></div>`;
 }
-function _buildSyrianSection() {
-  return SYR_GROUPS.map(g => `
-    <div class="class-group-block">
-      <div class="class-grp-title">GROUP ${g.name}</div>
-      <table class="class-table"><thead><tr><th>สี / Variety</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
-        ${g.varieties.map(v => `<tr><td>${v}</td><td>${_stepper(_sid(['ol',g.key,v,'m']),`${g.name} · ${v} ♂`)}</td><td>${_stepper(_sid(['ol',g.key,v,'f']),`${g.name} · ${v} ♀`)}</td></tr>`).join('')}
-      </tbody></table>
-    </div>`).join('');
+// ── Class reference images — เติม path รูปได้เลย (ว่าง = แสดง placeholder)
+const CF_IMAGES = {
+  ng: {
+    'Long Hair':  {
+      'Self Solid':    'Photo_Hamster_register/NG_LH_Self_Solid.jpg',
+      'Agouti Solid':  'Photo_Hamster_register/NG_LH_Agouti_Solid.jpg',
+      'Self Pattern':  'Photo_Hamster_register/NG_LH_Self_Pattern.jpg',
+      'Agouti Pattern':'Photo_Hamster_register/NG_LH_Agouti_Pattern.jpg',
+    },
+    'Short Hair': {
+      'Self Solid':    'Photo_Hamster_register/NG_SH_Self_Solid.jpg',
+      'Agouti Solid':  'Photo_Hamster_register/NG_SH_Agouti_Solid.jpg',
+      'Self Pattern':  'Photo_Hamster_register/NG_SH_Self_Pattern.jpg',
+      'Agouti Pattern':'Photo_Hamster_register/NG_SH_Agouti_Pattern.jpg',
+    },
+    'Rex Hair':   {
+      'Self Solid':    'Photo_Hamster_register/NG_RH_Self_Solid.jpg',
+      'Agouti Solid':  'Photo_Hamster_register/NG_RH_Agouti_Solid.jpg',
+      'Self Pattern':  'Photo_Hamster_register/NG_RH_Self_Pattern.jpg',
+      'Agouti Pattern':'Photo_Hamster_register/NG_RH_Agouti_Pattern.jpg',
+    },
+    'Satin Hair': {
+      'Self Solid':    'Photo_Hamster_register/NG_SA_Self_Solid.jpg',
+      'Agouti Solid':  'Photo_Hamster_register/NG_SA_Agouti_Solid.jpg',
+      'Self Pattern':  'Photo_Hamster_register/NG_SA_Self_Pattern.jpg',
+      'Agouti Pattern':'Photo_Hamster_register/NG_SA_Agouti_Pattern.jpg',
+    },
+  },
+  dw: {
+    ww:   {
+      'Normal':  'Photo_Hamster_register/DW_WW_Normal.jpg',
+      'Sapphire':'Photo_Hamster_register/DW_WW_Sapphire.jpg',
+      'Pearl':   'Photo_Hamster_register/DW_WW_Pearl.jpg',
+    },
+    camp: {
+      'Agouti Solid':  'Photo_Hamster_register/DW_CB_Agouti_Solid.jpg',
+      'Agouti Pattern':'Photo_Hamster_register/DW_CB_Agouti_Pattern.jpg',
+      'Self Solid':    'Photo_Hamster_register/DW_CB_Self_Solid.jpg',
+      'Self Pattern':  'Photo_Hamster_register/DW_CB_Self_Pattern.jpg',
+    },
+  },
+  pw: {
+    'Agouti':'Photo_Hamster_register/PW_Agouti.jpg',
+    'Self':   'Photo_Hamster_register/PW_Self.jpg',
+  },
+};
+function _classImg(src, caption) {
+  if (src) {
+    const cap = (caption || '').replace(/'/g, '\\\'');
+    return `<img class="cls-img cls-img-has" src="${src}" alt="${caption||''}" loading="lazy" title="คลิกดูรูปใหญ่" onclick="openClassImg('${src}','${cap}')" />`;
+  }
+  return `<div class="cls-img-ph"><i class="fa-solid fa-paw"></i></div>`;
 }
-function _buildSpecSection(sk) {
-  return `<div class="class-group-block"><table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
-    ${SPEC_CLASSES.map(c=>`<tr><td>${c}</td><td>${_stepper(_sid([sk,c,'m']),`${c} ♂`)}</td><td>${_stepper(_sid([sk,c,'f']),`${c} ♀`)}</td></tr>`).join('')}
-  </tbody></table></div>`;
-}
+
 function _buildNewGenSection() {
-  return NEWGEN_COATS.map(coat => `
+  return NG_COATS.map(coat => `
     <div class="class-group-block">
       <div class="class-grp-title">${coat}</div>
-      <table class="class-table"><thead><tr><th>Pattern / Solid</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
-        ${NEWGEN_ROWS.map(row=>`<tr><td>${row}</td><td>${_stepper(_sid(['ng',coat,row,'m']),`${coat} · ${row} ♂`)}</td><td>${_stepper(_sid(['ng',coat,row,'f']),`${coat} · ${row} ♀`)}</td></tr>`).join('')}
+      <table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+        ${NG_CLASSES.map(cls=>`<tr>
+          <td><div class="cls-cell">${_classImg(CF_IMAGES.ng?.[coat]?.[cls],`${coat} · ${cls}`)}<span>${cls}</span></div></td>
+          <td>${_stepper(_sid(['ng',coat,cls,'m']),`${coat} · ${cls} ♂`)}</td>
+          <td>${_stepper(_sid(['ng',coat,cls,'f']),`${coat} · ${cls} ♀`)}</td>
+        </tr>`).join('')}
       </tbody></table>
     </div>`).join('');
 }
+function _buildDwarfSection() {
+  return `
+    <div class="class-group-block">
+      <div class="class-grp-title">Winter White</div>
+      <table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+        ${DW_WW.map(cls=>`<tr>
+          <td><div class="cls-cell">${_classImg(CF_IMAGES.dw?.ww?.[cls],`WW · ${cls}`)}<span>${cls}</span></div></td>
+          <td>${_stepper(_sid(['dw','ww',cls,'m']),`WW · ${cls} ♂`)}</td>
+          <td>${_stepper(_sid(['dw','ww',cls,'f']),`WW · ${cls} ♀`)}</td>
+        </tr>`).join('')}
+      </tbody></table>
+    </div>
+    <div class="class-group-block">
+      <div class="class-grp-title">Campbell</div>
+      <table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+        ${DW_CAMP.map(cls=>`<tr>
+          <td><div class="cls-cell">${_classImg(CF_IMAGES.dw?.camp?.[cls],`Campbell · ${cls}`)}<span>${cls}</span></div></td>
+          <td>${_stepper(_sid(['dw','camp',cls,'m']),`Campbell · ${cls} ♂`)}</td>
+          <td>${_stepper(_sid(['dw','camp',cls,'f']),`Campbell · ${cls} ♀`)}</td>
+        </tr>`).join('')}
+      </tbody></table>
+    </div>`;
+}
+function _buildPolywhiteSection() {
+  return `<div class="class-group-block">
+    <table class="class-table"><thead><tr><th>Class</th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+      ${PW_CLASSES.map(cls=>`<tr>
+        <td><div class="cls-cell">${_classImg(CF_IMAGES.pw?.[cls],`Poly White · ${cls}`)}<span>${cls}</span></div></td>
+        <td>${_stepper(_sid(['pw',cls,'m']),`Poly White · ${cls} ♂`)}</td>
+        <td>${_stepper(_sid(['pw',cls,'f']),`Poly White · ${cls} ♀`)}</td>
+      </tr>`).join('')}
+    </tbody></table>
+  </div>`;
+}
+function _buildFunShowSection() {
+  return `<div class="class-group-block">
+    <div style="background:rgba(232,114,42,.07);border:1px solid rgba(232,114,42,.18);border-radius:10px;padding:12px 16px;font-size:.82rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5">
+      <i class="fa-solid fa-circle-info" style="color:var(--orange)"></i>
+      Fun Show เป็นการประกวดแบบสนุกสนาน ไม่อิงกฎเกณฑ์ — ระบุจำนวนแฮมสเตอร์ที่จะนำมาร่วมสนุกได้เลย
+    </div>
+    <table class="class-table"><thead><tr><th></th><th>♂ Male</th><th>♀ Female</th></tr></thead><tbody>
+      <tr><td>จำนวนแฮมสเตอร์</td><td>${_stepper('fs_m','Fun Show ♂')}</td><td>${_stepper('fs_f','Fun Show ♀')}</td></tr>
+    </tbody></table>
+  </div>`;
+}
 function _buildClassSection(sk) {
-  const show = CF_SHOWS[sk];
-  const content = sk==='ol' ? _buildSyrianSection() : sk==='ng' ? _buildNewGenSection() : _buildSpecSection(sk);
+  const show    = CF_SHOWS[sk];
+  const content = sk==='ng' ? _buildNewGenSection()
+                : sk==='dw' ? _buildDwarfSection()
+                : sk==='pw' ? _buildPolywhiteSection()
+                :             _buildFunShowSection();
   return `
     <div class="sca-header">
-      <span>${show.icon} ${show.name.replace(/\s*\(.*\)/,'')} <span class="sca-date">${show.date}</span></span>
-      <div class="fee-mode-toggle">
-        <button type="button" class="fmt-btn active" id="fmt-ph-${sk}" onclick="cfSetMode('${sk}','perhead',this)">รายตัว (${show.perHead.toLocaleString()}฿)</button>
-        <button type="button" class="fmt-btn" id="fmt-ul-${sk}" onclick="cfSetMode('${sk}','unlimited',this)">เหมา (${show.unlimited.toLocaleString()}฿)</button>
-      </div>
+      <span>${show.icon} ${show.name} <span class="sca-date">${show.date}</span></span>
+      <span style="font-size:.78rem;font-weight:600;color:var(--gold)">฿${show.perHead}/ตัว</span>
     </div>
-    <div id="fee-suggest-${sk}" class="fee-suggest-box" style="display:none"><i class="fa-solid fa-lightbulb"></i> จำนวนตัวที่สมัครเกิน ราคาเหมาคุ้มกว่า — แนะนำกด "เหมา"</div>
     <div class="sca-classes">${content}</div>`;
 }
 function _initShowSection(sk) {
@@ -487,55 +551,37 @@ window.cfToggleShow = function(sk, cb) {
   _initShowSection(sk);
   const sec = document.getElementById(`cls-${sk}`);
   if (sec) sec.style.display = cb.checked ? '' : 'none';
-  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
-  const nb = document.getElementById('cf-bundle-notice');
-  if (nb) nb.style.display = allSel ? '' : 'none';
   cfCalcFee();
 };
 window.cfAdj = function(id, delta) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.value = Math.max(0, Math.min(10, (parseInt(el.value)||0) + delta));
-  cfCalcFee();
-};
-window.cfSetMode = function(sk, mode, btn) {
-  _cfMode[sk] = mode;
-  const ph = document.getElementById(`fmt-ph-${sk}`);
-  const ul = document.getElementById(`fmt-ul-${sk}`);
-  if (ph) ph.classList.toggle('active', mode==='perhead');
-  if (ul) ul.classList.toggle('active', mode==='unlimited');
+  el.value = Math.max(0, Math.min(20, (parseInt(el.value)||0) + delta));
   cfCalcFee();
 };
 window.cfCalcFee = function() {
   let grand = 0;
   const lines = [];
-  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
-  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
   Object.keys(CF_SHOWS).forEach(sk => {
     const chk = document.getElementById(`chk-${sk}`);
     if (!chk?.checked) return;
     const show   = CF_SHOWS[sk];
     const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
     const count  = inputs.reduce((s,i)=>s+(parseInt(i.value)||0),0);
-    const phCost = count * show.perHead;
-    const sug    = document.getElementById(`fee-suggest-${sk}`);
-    if (sug) sug.style.display = (_cfMode[sk]==='perhead' && phCost > show.unlimited && count>0) ? '' : 'none';
-    const cost = _cfMode[sk]==='unlimited' ? show.unlimited : phCost;
+    const cost   = count * show.perHead;
     grand += cost;
     lines.push({ sk, show, count, cost });
   });
-  const useBundle = allSel && allUl && lines.length===4;
-  if (useBundle) grand = 5000;
   const footer = document.getElementById('cf-fee-footer');
   if (!footer) return;
   const lhtml = lines.map(l=>`
     <div class="cff-line">${l.show.icon} <span>${l.show.name.split('(')[0].trim()}</span>
-      <span class="cff-sub">${_cfMode[l.sk]==='unlimited' ? 'เหมา' : `${l.count} ตัว × ${l.show.perHead}฿`}</span>
+      <span class="cff-sub">${l.count} ตัว × ฿${l.show.perHead}</span>
       <strong>฿${l.cost.toLocaleString()}</strong>
     </div>`).join('') || '<span style="color:var(--gray-500);font-size:.8rem">ยังไม่ได้เลือก Show</span>';
   footer.innerHTML = `
     <div class="cff-lines">${lhtml}</div>
-    <div class="cff-total">${useBundle?'<span class="cff-bundle-badge">Bundle 4 Shows</span>':''} รวม: <strong>฿${(useBundle?5000:grand).toLocaleString()}</strong></div>`;
+    <div class="cff-total">รวม: <strong>฿${grand.toLocaleString()}</strong></div>`;
 };
 
 /* ─── MULTI-STEP FORM ────────────────────────────────────────────── */
@@ -551,6 +597,7 @@ window.cfStep = function(toStep) {
       if (!o) { showToast('error','กรุณากรอกชื่อ-นามสกุล'); return; }
       if (!f) { showToast('error','กรุณากรอกชื่อฟาร์ม/เพจ'); return; }
       if (!p) { showToast('error','กรุณากรอกเบอร์โทรติดต่อ'); return; }
+      if (!/^[0-9]{10}$/.test(p)) { showToast('error','เบอร์โทรต้องเป็นตัวเลข 10 หลัก'); return; }
     }
     if (cur === 2) {
       const anySel = Object.keys(CF_SHOWS).some(k => document.getElementById(`chk-${k}`)?.checked);
@@ -585,20 +632,16 @@ window.cfBuildSummary = function() {
   const phone = document.getElementById('cf-phone')?.value.trim() || '';
   let grand=0, totalH=0;
   const rows = [];
-  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
-  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
-  const useBundle = allSel && allUl;
   Object.keys(CF_SHOWS).forEach(sk => {
     if (!document.getElementById(`chk-${sk}`)?.checked) return;
     const show   = CF_SHOWS[sk];
     const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
     const count  = inputs.reduce((s,i)=>s+(parseInt(i.value)||0),0);
-    const cost   = _cfMode[sk]==='unlimited' ? show.unlimited : count*show.perHead;
+    const cost   = count * show.perHead;
     totalH += count; grand += cost;
     const detail = inputs.filter(i=>(parseInt(i.value)||0)>0).map(i=>`${i.dataset.label||i.id} (${i.value})`).join(', ');
-    rows.push({ show, count, cost, detail, mode:_cfMode[sk] });
+    rows.push({ show, count, cost, detail });
   });
-  if (useBundle) grand=5000;
   const box = document.getElementById('cf-summary');
   if (!box) return;
   box.innerHTML = `
@@ -609,17 +652,17 @@ window.cfBuildSummary = function() {
     ${rows.map(r=>`
       <div class="cf-sum-row" style="align-items:flex-start">
         <span>${r.show.icon} ${r.show.name.split('(')[0].trim()}<br><span style="font-size:.72rem;color:var(--text-muted)">${r.detail||'-'}</span></span>
-        <div style="text-align:right"><strong>฿${r.cost.toLocaleString()}</strong><div style="font-size:.74rem;color:var(--text-muted)">${r.mode==='unlimited'?'เหมา':`${r.count} ตัว`}</div></div>
+        <div style="text-align:right"><strong>฿${r.cost.toLocaleString()}</strong><div style="font-size:.74rem;color:var(--text-muted)">${r.count} ตัว</div></div>
       </div>`).join('')}
     <div style="height:1px;background:rgba(255,255,255,.08);margin:8px 0"></div>
-    <div class="cf-sum-row"><span>รวมทั้งหมด</span><strong style="font-size:1.1rem;color:var(--orange)">${useBundle?'5,000 บาท (Bundle 4 Shows)':`${grand.toLocaleString()} บาท`}</strong></div>
+    <div class="cf-sum-row"><span>รวมทั้งหมด</span><strong style="font-size:1.1rem;color:var(--orange)">${grand.toLocaleString()} บาท</strong></div>
     <div class="cf-sum-row"><span>จำนวนแฮมสเตอร์</span><strong>${totalH} ตัว</strong></div>`;
   const pa = document.getElementById('cf-pay-amount');
-  if (pa) pa.textContent = (useBundle?5000:grand).toLocaleString() + ' บาท';
+  if (pa) pa.textContent = grand.toLocaleString() + ' บาท';
 };
 
 // ── Google Apps Script URL ──
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNbogcORZ-lzcdBcNSVuYyYQK61NtVy43-Z9ZbNV3kJjjIEUThOgL1nTAK2hUvb3BHcA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTXfot40Yb8iOjw6nFASedR11Xd6P4L8ZH2iFpR60dEHAKl21HNdvx8tYS0Wr31cea/exec';
 
 window.submitCompEntry = async () => {
   const owner = document.getElementById('cf-owner')?.value.trim() || '';
@@ -628,21 +671,20 @@ window.submitCompEntry = async () => {
   const note  = document.getElementById('cf-note')?.value.trim()  || '';
   let grand=0, totalH=0;
   const showsData = [];
-  const allSel = Object.keys(CF_SHOWS).every(k => document.getElementById(`chk-${k}`)?.checked);
-  const allUl  = Object.keys(CF_SHOWS).every(k => _cfMode[k]==='unlimited');
-  const useBundle = allSel && allUl;
   Object.keys(CF_SHOWS).forEach(sk => {
     if (!document.getElementById(`chk-${sk}`)?.checked) return;
     const show   = CF_SHOWS[sk];
     const inputs = [...(document.getElementById(`cls-${sk}`)?.querySelectorAll('input[type="number"]')||[])];
     const classes = inputs.filter(i=>(parseInt(i.value)||0)>0).map(i=>({ class:i.dataset.label||i.id, count:parseInt(i.value) }));
     const count  = classes.reduce((s,c)=>s+c.count,0);
-    const cost   = _cfMode[sk]==='unlimited' ? show.unlimited : count*show.perHead;
+    const cost   = count * show.perHead;
     totalH += count; grand += cost;
-    showsData.push({ show:show.name, mode:_cfMode[sk], count, cost, classes });
+    showsData.push({ show:show.name, count, cost, classes });
   });
-  if (useBundle) grand = 5000;
   const entryNo = 'SHBA-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*9000)+1000);
+  // Validate slip upload
+  const slipFile = document.getElementById('cf-slip')?.files?.[0];
+  if (!slipFile) { showToast('error','กรุณาอัปโหลดสลิปการชำระเงิน'); return; }
   // Include logged-in user info if available (register.html auth gate sets this)
   const cu = window._cfCurrentUser || {};
   const payload = {
@@ -655,12 +697,36 @@ window.submitCompEntry = async () => {
     shows: JSON.stringify(showsData),
     totalHamsters: totalH,
     totalFee: grand,
-    bundleApplied: useBundle,
   };
   const btn = document.getElementById('cf-submit-btn');
-  if (btn) { btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่ง...'; }
+  if (btn) { btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> กำลังเตรียมสลิป...'; }
   try {
-    await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    // แปลงสลิปเป็น base64 — Apps Script จะบันทึกลง Google Drive
+    try {
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(slipFile);
+      });
+      payload.slipBase64   = base64;
+      payload.slipMime     = slipFile.type || 'image/jpeg';
+      payload.slipFileName = slipFile.name;
+    } catch(readErr) {
+      showToast('error','อ่านไฟล์สลิปไม่สำเร็จ กรุณาลองใหม่');
+      if (btn) { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร'; }
+      return;
+    }
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่งข้อมูล...';
+    // Use text/plain to avoid CORS preflight; Apps Script reads e.postData.contents
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method:   'POST',
+      redirect: 'follow',
+      headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
+      body:     JSON.stringify(payload),
+    });
+    const result = res.ok ? await res.json().catch(() => ({ status:'ok' })) : { status:'ok' };
+    if (result.status === 'error') throw new Error(result.message || 'Apps Script error');
     showToast('success',`✅ ส่งใบสมัครสำเร็จ! หมายเลข: ${entryNo}`);
     // If a standalone success callback is registered (register.html), use it
     if (typeof window._cfSuccessCallback === 'function') {
@@ -671,7 +737,6 @@ window.submitCompEntry = async () => {
       Object.keys(CF_SHOWS).forEach(sk => {
         const chk = document.getElementById(`chk-${sk}`); if (chk) chk.checked=false;
         const sec = document.getElementById(`cls-${sk}`); if (sec) sec.style.display='none';
-        _cfMode[sk]='perhead';
       });
       ['cf-owner','cf-farm','cf-phone','cf-note'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
       cfStep(1);
