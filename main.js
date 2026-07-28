@@ -202,22 +202,9 @@ const SPECIES_DATA = [
   { name:'Chinese Hamster', sci:'Cricetulus griseus', emoji:'🐭',
     size:'10–12 ซม.', weight:'30–45 ก.', lifespan:'2–3 ปี', origin:'จีน', social:'เดี่ยว', notes:'หางยาวกว่าสายพันธุ์อื่น คล่องแคล่ว' },
 ];
-const HOF_DATA = [
-  { rank:'🥇', name:'"Golden Sunrise"', owner:'ฟาร์มรุ่งอรุณ', breed:'Syrian · Cinnamon Satin', year:'2025' },
-  { rank:'🥇', name:'"Pearl Princess"', owner:'สมหญิง ชัยชนะ',  breed:'Winter White · Pearl',  year:'2024' },
-  { rank:'🥇', name:'"Midnight Shadow"',owner:'ฟาร์มดาวค้ำ',    breed:'Syrian · Black Long Hair',year:'2023' },
-  { rank:'🥇', name:'"Honey Dream"',    owner:'วีรวุฒิ สุขสวัสดิ์',breed:'Syrian · Honey Banded', year:'2022' },
-  { rank:'🥇', name:'"Blue Moon"',      owner:'ฟาร์มสายรุ้ง',   breed:'W.White · Sapphire',    year:'2021' },
-  { rank:'🥇', name:'"Ruby Fire"',      owner:'ปทุมวดี แสนสุข',  breed:'Syrian · Cinnamon Rex', year:'2020' },
-];
+const HOF_DATA = [];
 const NEWS_DATA = [];
-const RESULTS_DATA = [
-  { award:'🥇 Best in Show', name:'"Golden Sunrise"',  breed:'Syrian Cinnamon Satin LH', owner:'ฟาร์มรุ่งอรุณ',   score:'99.2', show:'SHBA Spring Show 2026' },
-  { award:'🥇 Best Syrian',  name:'"Midnight Prince"', breed:'Syrian Black Banded',       owner:'ดารณี สมบูรณ์',   score:'97.8', show:'SHBA Spring Show 2026' },
-  { award:'🥇 Best Dwarf',   name:'"Blue Sky"',         breed:'W.White Sapphire',          owner:'ฟาร์มดาวน้อย',   score:'96.5', show:'SHBA Spring Show 2026' },
-  { award:'🥈 Best in Show', name:'"Pearl Queen"',      breed:'Winter White Pearl',         owner:'สมหญิง ชัยชนะ',  score:'98.8', show:'SHBA Winter Show 2025' },
-  { award:'🥈 Best Syrian',  name:'"Copper Dream"',     breed:'Syrian Copper Rex',          owner:'วีรวุฒิ สุขสวัสดิ์',score:'95.5', show:'SHBA Winter Show 2025' },
-];
+const RESULTS_DATA = [];
 
 /* ─── SHARED NAVBAR INIT ─────────────────────────────────────────── */
 function initNavbar(activePage) {
@@ -946,6 +933,14 @@ window.filterKnowledge = (val) => renderKnowledge(_knowledgeTag, val);
 window.renderHOF = function() {
   const grid = document.getElementById('hof-grid');
   if (!grid) return;
+  if (!HOF_DATA.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted)">
+      <div style="font-size:2.5rem;margin-bottom:14px">🏆</div>
+      <h3 style="color:var(--gold);margin-bottom:8px">ยังไม่มีข้อมูล Hall of Fame</h3>
+      <p style="font-size:.88rem">ผลการประกวดจะประกาศหลังงาน SHBA Amigo Championship เสร็จสิ้น</p>
+    </div>`;
+    return;
+  }
   grid.innerHTML = HOF_DATA.map(h => `
     <div class="hof-card">
       <div class="hof-rank">${h.rank}</div>

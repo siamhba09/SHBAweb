@@ -2,12 +2,12 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>สมัครประกวด | Siam Hamster Breeder Association</title>
-  <meta name="description" content="สมัครเข้าร่วมการประกวดแฮมสเตอร์ของ SHBA เลือก Class และอัปโหลดสลิปได้ในขั้นตอนเดียว" />
+  <title>ปิดรับสมัครประกวด | Siam Hamster Breeder Association</title>
+  <meta name="description" content="การรับสมัครประกวดแฮมสเตอร์ SHBA Amigo Championship 2026 ปิดรับสมัครแล้ว" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="สมัครประกวดออนไลน์ | SHBA" />
-  <meta property="og:description" content="สมัครเข้าร่วมการประกวดแฮมสเตอร์ของ SHBA" />
-  <meta property="og:url" content="https://hamstershba.com/register.html" />
+  <meta property="og:title" content="ปิดรับสมัครประกวด | SHBA" />
+  <meta property="og:description" content="การรับสมัคร SHBA Amigo Championship 2026 ปิดรับสมัครแล้ว" />
+  <meta property="og:url" content="https://hamstershba.com/register-closed.html" />
   <meta property="og:image" content="https://hamstershba.com/og-image.jpg" />
   <meta property="og:locale" content="th_TH" />
   <link rel="icon" type="image/jpeg" href="Logo.jpg" />
@@ -16,10 +16,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-  /* ═══════════════════════════════════════════════════
-     REGISTER PAGE — Custom Styles
-  ═══════════════════════════════════════════════════ */
-
   /* ── Hero ─────────────────────────────────────── */
   .reg-hero { background:var(--gradient-hero); padding:100px 0 56px; position:relative; overflow:hidden; }
   .reg-hero-back { display:inline-flex; align-items:center; gap:6px; color:var(--text-muted); font-size:.82rem; text-decoration:none; margin-bottom:16px; transition:color .2s; }
@@ -27,250 +23,125 @@
   .reg-hero-meta { display:flex; gap:20px; justify-content:center; margin-top:18px; flex-wrap:wrap; font-size:.81rem; color:var(--gold); }
   .reg-hero-meta span { display:flex; align-items:center; gap:5px; }
 
-  /* ── Progress Bar ─────────────────────────────── */
-  .reg-progress { display:flex; align-items:center; margin-bottom:36px; }
-  .reg-prog-step { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .rps-circle {
-    width:38px; height:38px; border-radius:50%;
-    border:2px solid rgba(255,255,255,.18);
-    background:var(--black-light);
-    display:flex; align-items:center; justify-content:center;
-    font-size:.85rem; font-weight:700; color:rgba(255,255,255,.35);
-    flex-shrink:0; transition:.3s;
-  }
-  .rps-circle .rps-n { display:block; }
-  .rps-circle .rps-chk { display:none; font-size:.8rem; }
-  .reg-prog-step.active .rps-circle { border-color:var(--orange); background:var(--orange); color:#fff; }
-  .reg-prog-step.done .rps-circle { border-color:var(--gold); background:var(--gold); color:#000; }
-  .reg-prog-step.done .rps-n { display:none; }
-  .reg-prog-step.done .rps-chk { display:block; }
-  .rps-label { font-size:.78rem; color:rgba(255,255,255,.35); white-space:nowrap; font-weight:500; }
-  .reg-prog-step.active .rps-label { color:var(--white); font-weight:600; }
-  .reg-prog-step.done .rps-label { color:var(--gold); }
-  .reg-prog-line { flex:1; height:2px; background:rgba(255,255,255,.1); margin:0 12px; position:relative; overflow:hidden; border-radius:1px; }
-  .reg-prog-line::after { content:''; position:absolute; left:0; top:0; height:100%; width:0; background:var(--gold); transition:width .4s ease; }
-  #cfp-1.done + .reg-prog-line::after { width:100%; }
-  #cfp-2.done + .reg-prog-line::after { width:100%; }
-
-  /* ── Class image thumbnails ──────────────────── */
-  .cls-cell { display:flex; align-items:center; gap:10px; }
-  .cls-img {
-    width:72px; height:72px; border-radius:10px;
-    object-fit:cover; flex-shrink:0;
-    border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.04);
-  }
-  .cls-img-ph {
-    width:72px; height:72px; border-radius:10px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    background:rgba(255,255,255,.03);
-    border:1.5px dashed rgba(255,255,255,.1);
-    color:rgba(255,255,255,.18); font-size:.85rem;
-    transition:.2s;
-  }
-  .class-table tr:hover .cls-img-ph { border-color:rgba(232,114,42,.3); color:rgba(232,114,42,.4); }
-  .cls-img-has { cursor:zoom-in; transition:opacity .15s, transform .15s; }
-  .cls-img-has:hover { opacity:.85; transform:scale(1.05); }
-  .cls-cell span { font-size:.87rem; }
-
-  /* ── Mobile: class table responsive ──────────── */
-  @media (max-width: 560px) {
-    .class-table thead { display: none; }
-    .class-table,
-    .class-table tbody { display: block; }
-    .class-table tr {
-      display: flex; flex-wrap: wrap;
-      align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,.05);
-      padding: 4px 0;
-    }
-    .class-table tr:last-child { border-bottom: none; }
-    /* Class cell: full row */
-    .class-table td:first-child {
-      flex: 0 0 100%; padding: 6px 10px 4px; border: none;
-    }
-    /* Male & Female: 50/50 below */
-    .class-table td:nth-child(2),
-    .class-table td:nth-child(3) {
-      flex: 1; padding: 2px 10px 8px;
-      border: none; width: auto;
-    }
-    .class-table td:nth-child(2)::before {
-      content: '♂ Male';
-      display: block; font-size: .62rem; font-weight: 700;
-      color: var(--gold); margin-bottom: 5px;
-    }
-    .class-table td:nth-child(3)::before {
-      content: '♀ Female';
-      display: block; font-size: .62rem; font-weight: 700;
-      color: #e888bf; margin-bottom: 5px;
-    }
-    /* Smaller image */
-    .cls-img, .cls-img-ph { width: 46px !important; height: 46px !important; border-radius: 8px; }
-    .cls-cell { gap: 8px; }
-    .cls-cell span { font-size: .82rem; }
-  }
-
-  /* ── Lightbox ─────────────────────────────────── */
-  #cls-lightbox {
-    display:none; position:fixed; inset:0; z-index:9999;
-    background:rgba(0,0,0,.88); backdrop-filter:blur(8px);
-    align-items:center; justify-content:center;
-  }
-  #cls-lightbox.open { display:flex; animation:lbFadeIn .18s ease; }
-  @keyframes lbFadeIn { from { opacity:0; transform:scale(.96) } to { opacity:1; transform:scale(1) } }
-  .clb-inner { position:relative; max-width:88vw; max-height:86vh; text-align:center; }
-  .clb-inner img { max-width:100%; max-height:78vh; border-radius:14px; object-fit:contain; display:block; box-shadow:0 24px 80px rgba(0,0,0,.6); }
-  .clb-close {
-    position:absolute; top:-16px; right:-16px;
-    width:34px; height:34px; border-radius:50%;
-    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18);
-    color:#fff; cursor:pointer; font-size:.9rem;
-    display:flex; align-items:center; justify-content:center;
-    transition:.15s;
-  }
-  .clb-close:hover { background:rgba(255,255,255,.25); }
-  .clb-caption { margin-top:12px; font-size:.84rem; color:rgba(255,255,255,.55); letter-spacing:.03em; }
-
-  /* ── Cards ────────────────────────────────────── */
-  .reg-card { background:var(--black); border:1px solid rgba(255,255,255,.07); border-radius:20px; padding:30px; margin-bottom:20px; }
-  .reg-card-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.06); }
-  .rch-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.05rem; flex-shrink:0; }
-  .rch-icon.orange { background:rgba(232,114,42,.15); color:var(--orange); }
-  .rch-icon.gold   { background:rgba(201,162,39,.12); color:var(--gold); }
-  .rch-icon.green  { background:rgba(72,199,88,.12); color:#48C758; }
-  .rch-text h4 { margin:0 0 2px; font-size:1rem; }
-  .rch-text p  { margin:0; font-size:.78rem; color:var(--text-muted); }
-
-  /* Member info bar (Step 1) */
-  .member-bar { display:flex; align-items:center; gap:12px; padding:12px 16px; background:rgba(201,162,39,.06); border:1px solid rgba(201,162,39,.15); border-radius:12px; margin-bottom:20px; }
-  .mb-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--gold)); display:flex; align-items:center; justify-content:center; font-size:.9rem; color:#fff; flex-shrink:0; font-weight:700; overflow:hidden; }
-  .mb-avatar img { width:100%; height:100%; object-fit:cover; }
-  .mb-info { flex:1; min-width:0; }
-  .mb-name  { font-size:.85rem; font-weight:600; }
-  .mb-email { font-size:.74rem; color:var(--text-muted); }
-  .mb-badge { font-size:.7rem; background:rgba(201,162,39,.15); color:var(--gold); border:1px solid rgba(201,162,39,.2); padding:2px 8px; border-radius:8px; white-space:nowrap; }
-
-  /* ── Slip Upload Zone ─────────────────────────── */
-  .slip-zone { border:2px dashed rgba(255,255,255,.15); border-radius:14px; padding:28px 20px; text-align:center; cursor:pointer; transition:.25s; position:relative; }
-  .slip-zone:hover { border-color:rgba(232,114,42,.5); background:rgba(232,114,42,.03); }
-  .slip-zone.dragover { border-color:var(--orange); background:rgba(232,114,42,.07); }
-  .slip-zone.has-file { border-color:var(--gold); border-style:solid; background:rgba(201,162,39,.04); }
-  .slip-zone input[type="file"] { display:none; }
-  .sz-icon { font-size:2rem; color:var(--gold); margin-bottom:8px; }
-  .sz-text { font-size:.84rem; color:var(--gray-300); line-height:1.5; }
-  .sz-text span { color:var(--orange); text-decoration:underline; }
-  .sz-note { font-size:.72rem; color:var(--text-muted); margin-top:6px; }
-  /* Preview row */
-  .slip-preview { display:none; align-items:center; gap:12px; padding:10px 14px; background:rgba(255,255,255,.04); border-radius:10px; margin-top:12px; text-align:left; position:relative; z-index:1; }
-  .slip-preview.show { display:flex; }
-  .slip-preview .sp-thumb { width:44px; height:44px; border-radius:8px; object-fit:cover; flex-shrink:0; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
-  .slip-preview .sp-thumb img { width:44px; height:44px; object-fit:cover; border-radius:8px; display:none; }
-  .sp-info { flex:1; min-width:0; }
-  .sp-name { font-size:.8rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .sp-size { font-size:.72rem; color:var(--text-muted); }
-  .sp-rm { width:26px; height:26px; border-radius:50%; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--gray-400); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:.7rem; flex-shrink:0; transition:.2s; }
-  .sp-rm:hover { background:#E84242; border-color:#E84242; color:#fff; }
-
-  /* ── Step 3 Layout ────────────────────────────── */
-  .step3-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  @media(max-width:680px) { .step3-grid { grid-template-columns:1fr; } }
-
-  /* Payment card */
-  .pay-card { background:rgba(201,162,39,.05); border:1px solid rgba(201,162,39,.15); border-radius:16px; padding:20px; }
-  .pay-bank-row { display:flex; align-items:center; gap:12px; padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,.06); }
-  .bank-logo-box { width:42px; height:42px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .bank-details { flex:1; min-width:0; }
-  .bank-details .bk-label { font-size:.72rem; color:var(--text-muted); }
-  .bank-details .bk-no { font-size:1.1rem; font-weight:700; letter-spacing:.07em; }
-  .bank-details .bk-name { font-size:.76rem; color:var(--gray-300); }
-  .copy-bank-btn { padding:5px 11px; border-radius:8px; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--gray-400); font-size:.72rem; cursor:pointer; transition:.2s; white-space:nowrap; flex-shrink:0; }
-  .copy-bank-btn:hover { border-color:var(--gold); color:var(--gold); }
-  .pay-total-row { display:flex; align-items:center; justify-content:space-between; }
-  .pay-total-row .pt-label { font-size:.82rem; color:var(--text-muted); }
-  .pay-total-row .pt-amount { font-size:1.25rem; font-weight:700; color:var(--orange); }
-
-  /* ── Summary Box ──────────────────────────────── */
-  .sum-box { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:16px; }
-  .sum-row { display:flex; justify-content:space-between; align-items:flex-start; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:.84rem; gap:12px; }
-  .sum-row:last-child { border-bottom:none; }
-  .sum-row .s-label { color:var(--text-muted); flex-shrink:0; }
-  .sum-row .s-val { text-align:right; font-weight:500; }
-
-  /* ── Auth Gate ────────────────────────────────── */
-  .auth-gate-box { text-align:center; padding:64px 20px; }
-  .agb-icon { font-size:3.5rem; margin-bottom:20px; }
-  .agb-title { font-size:1.5rem; color:var(--gold); margin-bottom:10px; }
-  .agb-sub { color:var(--gray-300); max-width:400px; margin:0 auto 8px; line-height:1.6; font-size:.92rem; }
-  .agb-note { font-size:.8rem; color:var(--text-muted); }
-  .agb-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:24px; }
-  .agb-info { margin:32px auto 0; padding:16px 20px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:12px; max-width:380px; font-size:.78rem; color:var(--text-muted); line-height:1.6; }
-
-  /* ── Success Panel ────────────────────────────── */
-  .success-wrap { text-align:center; padding:48px 20px; }
-  .success-ticket { background:var(--black); border:1px solid rgba(201,162,39,.2); border-radius:20px; padding:36px 28px; max-width:480px; margin:0 auto; position:relative; overflow:hidden; }
-  .success-ticket::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--orange),var(--gold)); }
-  .success-emoji { font-size:3.5rem; margin-bottom:12px; }
-  .success-title { font-size:1.4rem; color:var(--gold); margin-bottom:16px; }
-  .success-no-box { background:rgba(232,114,42,.1); border:1px solid rgba(232,114,42,.25); border-radius:12px; padding:14px 20px; margin:0 0 20px; }
-  .success-no-label { font-size:.72rem; color:var(--text-muted); margin-bottom:4px; }
-  .success-no { font-family:monospace; font-size:1.45rem; font-weight:700; color:var(--orange); letter-spacing:.1em; }
-  .success-note { font-size:.82rem; color:var(--gray-300); line-height:1.6; margin-bottom:8px; }
-  .success-info { font-size:.76rem; color:var(--text-muted); margin-bottom:28px; }
-  .success-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .success-qr-box {
-    margin: 20px auto 24px;
-    padding: 18px 24px;
-    background: rgba(6,199,85,0.06);
-    border: 1px solid rgba(6,199,85,0.25);
-    border-radius: 16px;
+  /* ── Closed Panel ─────────────────────────────── */
+  .closed-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
     text-align: center;
-    max-width: 260px;
   }
-  .success-qr-label {
-    font-size: .78rem; font-weight: 700; color: #06C755;
+  .closed-icon-ring {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(232,114,42,.08);
+    border: 2px solid rgba(232,114,42,.25);
     display: flex; align-items: center; justify-content: center;
-    gap: 6px; margin-bottom: 14px;
+    margin: 0 auto 28px;
+    font-size: 2.6rem;
+    animation: pulseRing 3s ease-in-out infinite;
   }
-  .success-qr-img {
-    width: 180px; height: 180px; object-fit: contain;
-    border-radius: 12px; display: block; margin: 0 auto;
-    border: 1px solid rgba(255,255,255,.08);
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,114,42,.15); }
+    50%       { box-shadow: 0 0 0 14px rgba(232,114,42,0); }
   }
-  .success-qr-hint {
-    font-size: .72rem; color: var(--text-muted); margin-top: 10px;
+  .closed-title {
+    font-size: 2rem; font-weight: 800;
+    color: var(--white);
+    margin-bottom: 10px; line-height: 1.2;
+  }
+  .closed-subtitle {
+    font-size: .95rem; color: var(--text-muted);
+    margin-bottom: 32px; line-height: 1.7;
   }
 
-  /* ── Loading ──────────────────────────────────── */
-  .cf-loading-state { text-align:center; padding:80px 20px; }
-  .cf-loading-state i { font-size:2rem; color:var(--gold); }
-  .cf-loading-state p { margin-top:14px; color:var(--text-muted); font-size:.9rem; }
+  /* Event summary card */
+  .closed-event-card {
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .cec-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cec-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    font-size: .88rem;
+  }
+  .cec-row:last-child { border-bottom: none; }
+  .cec-row i { width: 18px; text-align: center; color: var(--gold); flex-shrink: 0; }
+  .cec-val { font-weight: 500; }
+  .cec-val span { color: var(--text-muted); font-weight: 400; font-size: .82rem; margin-left: 6px; }
 
-  /* ── Misc ─────────────────────────────────────── */
-  .step-nav { display:flex; justify-content:space-between; align-items:center; margin-top:24px; gap:12px; }
-  .step-nav.end { justify-content:flex-end; }
-  .field-req { color:var(--orange); font-size:.85em; }
-  .field-note { font-size:.74rem; color:var(--text-muted); margin-top:4px; }
+  /* Shows mini grid */
+  .closed-shows {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 20px;
+  }
+  .cs-item {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: .82rem; display: flex; align-items: center; gap: 8px;
+  }
+  .cs-item .cs-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .cs-item .cs-info { line-height: 1.35; }
+  .cs-item .cs-name { font-weight: 600; color: var(--white); }
+  .cs-item .cs-date { font-size: .72rem; color: var(--text-muted); }
 
-  /* Light mode overrides */
-  [data-theme="light"] .reg-card { background:#fff; border-color:rgba(100,70,20,.08); }
-  [data-theme="light"] .reg-prog-line { background:rgba(100,70,20,.1); }
-  [data-theme="light"] .member-bar { background:rgba(201,162,39,.04); border-color:rgba(201,162,39,.2); }
-  [data-theme="light"] .slip-zone { border-color:rgba(100,70,20,.18); }
-  [data-theme="light"] .slip-zone:hover { background:rgba(232,114,42,.03); }
-  [data-theme="light"] .slip-preview { background:rgba(0,0,0,.04); }
-  [data-theme="light"] .pay-card { background:rgba(201,162,39,.04); }
-  [data-theme="light"] .sum-box { background:#f9f7f2; border-color:rgba(100,70,20,.08); }
-  [data-theme="light"] .agb-info { background:#f9f7f2; border-color:rgba(100,70,20,.08); }
-  [data-theme="light"] .success-ticket { background:#fff; border-color:rgba(201,162,39,.25); }
-  [data-theme="light"] .copy-bank-btn { background:#f0f0f0; border-color:#ccc; color:#444; }
+  /* Status badge */
+  .closed-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,68,66,.1);
+    border: 1px solid rgba(232,68,66,.25);
+    color: #ff6b6b;
+    padding: 5px 14px; border-radius: 20px;
+    font-size: .78rem; font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: .04em;
+  }
+  .closed-badge::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #ff6b6b;
+    animation: blinkDot 1.4s ease infinite;
+  }
+  @keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:.2} }
 
-  @media(max-width:600px) {
-    .reg-hero { padding:80px 0 40px; }
-    .reg-card { padding:20px; }
-    .reg-progress .rps-label { display:none; }
-    .rps-circle { width:32px; height:32px; font-size:.78rem; }
-    .success-ticket { padding:28px 20px; }
+  /* Action buttons */
+  .closed-actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center; margin-top: 28px;
+  }
+
+  /* Next event teaser */
+  .next-event-box {
+    background: rgba(201,162,39,.05);
+    border: 1px solid rgba(201,162,39,.15);
+    border-radius: 16px; padding: 20px 28px;
+    margin-top: 28px; text-align: center;
+  }
+  .neb-label { font-size: .75rem; color: var(--text-muted); margin-bottom: 6px; }
+  .neb-title { font-size: 1rem; font-weight: 700; color: var(--gold); }
+
+  /* Light mode */
+  [data-theme="light"] .closed-event-card { background: #fff; border-color: rgba(100,70,20,.08); }
+  [data-theme="light"] .cs-item { background: rgba(0,0,0,.02); border-color: rgba(100,70,20,.08); }
+  [data-theme="light"] .next-event-box { background: rgba(201,162,39,.04); }
+
+  @media (max-width: 560px) {
+    .reg-hero { padding: 80px 0 40px; }
+    .closed-shows { grid-template-columns: 1fr; }
+    .closed-event-card { padding: 20px; }
+    .closed-title { font-size: 1.6rem; }
+    .closed-actions { flex-direction: column; align-items: stretch; }
+    .closed-actions .btn { justify-content: center; }
   }
   </style>
 </head>
@@ -305,7 +176,7 @@
         <a href="competitions.html" class="nav-link active" data-page="competitions">การประกวด <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
         <div class="nav-dropdown">
           <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
-          <a href="register.html"               class="nav-dd-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+          <a href="register-closed.html"        class="nav-dd-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
           <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
           <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
         </div>
@@ -356,7 +227,7 @@
       <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">การประกวด <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
       <div class="mobile-nav-sub">
         <a href="competitions.html#calendar" class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
-        <a href="register.html"              class="mobile-nav-sub-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+        <a href="register-closed.html"       class="mobile-nav-sub-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
         <a href="competitions.html#results"  class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
       </div>
     </div>
@@ -385,7 +256,6 @@
           <i class="fa-solid fa-gauge"></i> My Account
         </a>
       </div>
-
       <button class="btn btn-outline-gold btn-login-trigger" onclick="closeMobileNav(); openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
     </div>
   </div>
@@ -411,327 +281,94 @@
 <section class="section" style="background:var(--black-light);padding-top:40px;padding-bottom:80px">
   <div class="container" style="max-width:860px">
 
-    <!-- Loading -->
-    <div id="cf-loading" class="cf-loading-state">
-      <i class="fa-solid fa-spinner fa-spin"></i>
-      <p>กำลังตรวจสอบสถานะสมาชิก...</p>
-    </div>
+    <div class="closed-wrap">
 
-    <!-- Auth Gate -->
-    <div id="auth-gate" class="auth-gate-box" style="display:none">
-      <div class="agb-icon">🔒</div>
-      <h2 class="agb-title">กรุณาเข้าสู่ระบบก่อนสมัครประกวด</h2>
-      <p class="agb-sub">ต้องมีบัญชีสมาชิก SHBA เพื่อสมัครประกวด</p>
-      <p class="agb-note">สมาชิกสามัญสมัครฟรี — ไม่มีค่าใช้จ่าย</p>
-      <div class="agb-actions">
-        <button class="btn btn-orange" style="padding:12px 28px;font-size:1rem" onclick="openModal('login-modal')">
-          <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
-        </button>
-        <a href="membership.html" class="btn btn-outline-gold" style="padding:12px 28px">
-          <i class="fa-solid fa-user-plus"></i> สมัครสมาชิกใหม่ฟรี
+      <!-- Status badge -->
+      <div class="closed-badge">ปิดรับสมัครแล้ว</div>
+
+      <!-- Icon -->
+      <div class="closed-icon-ring">🔒</div>
+
+      <!-- Title -->
+      <h2 class="closed-title">ปิดรับสมัครประกวดแล้ว</h2>
+      <p class="closed-subtitle">
+        การรับสมัคร SHBA Amigo Championship 2026 ได้ปิดลงเรียบร้อยแล้ว<br>
+        ขอบคุณทุกท่านที่ส่งใบสมัครเข้าร่วมงาน — พบกันในวันงานครับ!
+      </p>
+
+      <!-- Event summary -->
+      <div class="closed-event-card">
+        <div class="cec-label"><i class="fa-solid fa-circle-info"></i> ข้อมูลงานประกวด</div>
+
+        <div class="cec-row">
+          <i class="fa-solid fa-calendar-days"></i>
+          <div><div class="cec-val">1–2 สิงหาคม 2569</div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><div class="cec-val">สถานที่จัดงาน <span>รอประกาศ</span></div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-trophy"></i>
+          <div><div class="cec-val">SHBA Amigo Championship <span>: Together Through Friendship</span></div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-gavel"></i>
+          <div><div class="cec-val">NHC Judging Standard</div></div>
+        </div>
+
+        <!-- Shows grid -->
+        <div class="closed-shows">
+          <div class="cs-item">
+            <span class="cs-icon">🌟</span>
+            <div class="cs-info">
+              <div class="cs-name">New Gen Syrian</div>
+              <div class="cs-date">ประกวด 2 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">🐾</span>
+            <div class="cs-info">
+              <div class="cs-name">Dwarf</div>
+              <div class="cs-date">ประกวด 1 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">⬜</span>
+            <div class="cs-info">
+              <div class="cs-name">Special Poly White</div>
+              <div class="cs-date">ประกวด 1 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">🎉</span>
+            <div class="cs-info">
+              <div class="cs-name">Fun Show</div>
+              <div class="cs-date">ประกวด 2 ส.ค. 2569</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next event teaser -->
+      <div class="next-event-box">
+        <div class="neb-label">ติดตามงานประกวดครั้งถัดไปได้ที่</div>
+        <div class="neb-title"><i class="fa-solid fa-bell" style="font-size:.9rem;margin-right:5px"></i> Facebook เพจ SHBA &amp; Line Official</div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="closed-actions">
+        <a href="competitions.html#results" class="btn btn-gold">
+          <i class="fa-solid fa-trophy"></i> ดูผลการประกวด
+        </a>
+        <a href="competitions.html" class="btn btn-outline-gold">
+          <i class="fa-solid fa-calendar-days"></i> ปฏิทินงานประกวด
+        </a>
+        <a href="contact.html" class="btn btn-outline-gold">
+          <i class="fa-solid fa-envelope"></i> ติดต่อสอบถาม
         </a>
       </div>
-      <div class="agb-info">
-        <i class="fa-solid fa-circle-info" style="color:var(--gold)"></i>
-        หลังจากเข้าสู่ระบบ หน้านี้จะแสดงฟอร์มสมัครประกวดโดยอัตโนมัติ
-      </div>
-    </div>
 
-    <!-- Form Body -->
-    <div id="cf-form-body" style="display:none">
-
-      <!-- ── Progress Bar ── -->
-      <div class="reg-progress">
-        <div class="reg-prog-step active" id="cfp-1">
-          <div class="rps-circle">
-            <span class="rps-n">1</span>
-            <i class="fa-solid fa-check rps-chk"></i>
-          </div>
-          <span class="rps-label">ข้อมูลผู้สมัคร</span>
-        </div>
-        <div class="reg-prog-line"></div>
-        <div class="reg-prog-step" id="cfp-2">
-          <div class="rps-circle">
-            <span class="rps-n">2</span>
-            <i class="fa-solid fa-check rps-chk"></i>
-          </div>
-          <span class="rps-label">เลือก Show &amp; Class</span>
-        </div>
-        <div class="reg-prog-line"></div>
-        <div class="reg-prog-step" id="cfp-3">
-          <div class="rps-circle">
-            <span class="rps-n">3</span>
-            <i class="fa-solid fa-check rps-chk"></i>
-          </div>
-          <span class="rps-label">ชำระเงิน</span>
-        </div>
-      </div>
-
-      <!-- ════════════════════════════════════════
-           PANEL 1 — ข้อมูลผู้สมัคร
-      ════════════════════════════════════════ -->
-      <div class="cf-panel" id="cf-panel-1">
-
-        <!-- Member info bar (filled by JS after auth) -->
-        <div class="member-bar" id="member-bar" style="display:none">
-          <div class="mb-avatar" id="mb-avatar">🐹</div>
-          <div class="mb-info">
-            <div class="mb-name" id="mb-name">ชื่อผู้ใช้</div>
-            <div class="mb-email" id="mb-email"></div>
-          </div>
-          <span class="mb-badge" id="mb-badge">Standard Member</span>
-        </div>
-
-        <div class="reg-card">
-          <div class="reg-card-header">
-            <div class="rch-icon orange"><i class="fa-solid fa-user"></i></div>
-            <div class="rch-text">
-              <h4>ข้อมูลผู้สมัคร</h4>
-              <p>ชื่อผู้เพาะพันธุ์ / ฟาร์ม / ช่องทางติดต่อ</p>
-            </div>
-          </div>
-
-          <div class="hamster-form-grid">
-            <div class="form-group">
-              <label>ชื่อ - นามสกุล <span class="field-req">*</span></label>
-              <input id="cf-owner" type="text" class="form-control" placeholder="ชื่อ นามสกุล" autocomplete="name" />
-            </div>
-            <div class="form-group">
-              <label>ชื่อฟาร์ม / ชื่อเพจ <span class="field-req">*</span></label>
-              <input id="cf-farm" type="text" class="form-control" placeholder="ชื่อฟาร์มหรือเพจ Facebook" />
-            </div>
-          </div>
-          <div class="form-group" style="max-width:300px">
-            <label>เบอร์โทรติดต่อ <span class="field-req">*</span></label>
-            <input id="cf-phone" type="tel" class="form-control" placeholder="0XXXXXXXXX" autocomplete="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
-          </div>
-
-          <div class="step-nav end">
-            <button class="btn btn-orange" onclick="cfStep(2)">
-              ถัดไป — เลือก Show <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-      </div><!-- /panel-1 -->
-
-      <!-- ════════════════════════════════════════
-           PANEL 2 — เลือก Show & Class
-      ════════════════════════════════════════ -->
-      <div class="cf-panel" id="cf-panel-2" style="display:none">
-
-        <div class="reg-card">
-          <div class="reg-card-header">
-            <div class="rch-icon gold"><i class="fa-solid fa-list-check"></i></div>
-            <div class="rch-text">
-              <h4>เลือกรายการประกวด</h4>
-              <p>เลือกได้หลาย Show ในครั้งเดียว · 200 บาท/ตัว ทุก Show</p>
-            </div>
-          </div>
-
-          <!-- Show checkboxes -->
-          <div class="show-cards-grid">
-            <label class="show-check-card">
-              <input type="checkbox" id="chk-ng" name="cf-show" value="ng" onchange="cfToggleShow('ng',this)"/>
-              <div class="src-body">
-                <div class="src-icon">🌟</div>
-                <div>
-                  <div class="src-title">New Gen Syrian</div>
-                  <div class="src-sub">Long Hair · Short Hair · Rex · Satin</div>
-                  <div class="src-date"><i class="fa-regular fa-calendar"></i> ประกวดวันที่ 2 ส.ค. 2569</div>
-                  <div class="src-judge"><i class="fa-solid fa-gavel"></i> Teeraphat Yongpraphat</div>
-                  <div class="src-fee">200 บาท/ตัว</div>
-                </div>
-              </div>
-            </label>
-            <label class="show-check-card">
-              <input type="checkbox" id="chk-dw" name="cf-show" value="dw" onchange="cfToggleShow('dw',this)"/>
-              <div class="src-body">
-                <div class="src-icon">🐾</div>
-                <div>
-                  <div class="src-title">Dwarf</div>
-                  <div class="src-sub">Winter White · Campbell</div>
-                  <div class="src-date"><i class="fa-regular fa-calendar"></i> ประกวดวันที่ 1 ส.ค. 2569</div>
-                  <div class="src-judge"><i class="fa-solid fa-gavel"></i> Ratchapong Vittayajaruruch</div>
-                  <div class="src-fee">200 บาท/ตัว</div>
-                </div>
-              </div>
-            </label>
-            <label class="show-check-card">
-              <input type="checkbox" id="chk-pw" name="cf-show" value="pw" onchange="cfToggleShow('pw',this)"/>
-              <div class="src-body">
-                <div class="src-icon">⬜</div>
-                <div>
-                  <div class="src-title">Special Poly White</div>
-                  <div class="src-sub">Agouti · Self</div>
-                  <div class="src-date"><i class="fa-regular fa-calendar"></i> ประกวดวันที่ 1 ส.ค. 2569</div>
-                  <div class="src-judge"><i class="fa-solid fa-gavel"></i> Nattapong Somnabat</div>
-                  <div class="src-fee">200 บาท/ตัว</div>
-                </div>
-              </div>
-            </label>
-            <label class="show-check-card">
-              <input type="checkbox" id="chk-fs" name="cf-show" value="fs" onchange="cfToggleShow('fs',this)"/>
-              <div class="src-body">
-                <div class="src-icon">🎉</div>
-                <div>
-                  <div class="src-title">Fun Show</div>
-                  <div class="src-sub">ไม่อิงกฎเกณฑ์ · ร่วมสนุกได้ทุกสายพันธุ์</div>
-                  <div class="src-date"><i class="fa-regular fa-calendar"></i> ประกวดวันที่ 2 ส.ค. 2569</div>
-                  <div class="src-fee">200 บาท/ตัว</div>
-                </div>
-              </div>
-            </label>
-          </div>
-
-          <!-- Class accordions (built by JS) -->
-          <div id="cls-ng" class="show-class-accordion" style="display:none"></div>
-          <div id="cls-dw" class="show-class-accordion" style="display:none"></div>
-          <div id="cls-pw" class="show-class-accordion" style="display:none"></div>
-          <div id="cls-fs" class="show-class-accordion" style="display:none"></div>
-
-          <!-- Sticky fee footer -->
-          <div id="cf-fee-footer" class="cf-fee-footer" style="display:none"></div>
-
-          <div class="step-nav" style="padding-bottom:90px">
-            <button class="btn btn-outline-gold" onclick="cfStep(1)"><i class="fa-solid fa-arrow-left"></i> กลับ</button>
-            <button class="btn btn-orange" onclick="cfStep(3)">ถัดไป — ชำระเงิน <i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
-
-      </div><!-- /panel-2 -->
-
-      <!-- ════════════════════════════════════════
-           PANEL 3 — ชำระเงิน
-      ════════════════════════════════════════ -->
-      <div class="cf-panel" id="cf-panel-3" style="display:none">
-
-        <div class="reg-card">
-          <div class="reg-card-header">
-            <div class="rch-icon green"><i class="fa-solid fa-money-bill-wave"></i></div>
-            <div class="rch-text">
-              <h4>ยืนยันและชำระเงิน</h4>
-              <p>ตรวจสอบข้อมูล · โอนเงิน · อัปโหลดสลิป</p>
-            </div>
-          </div>
-
-          <!-- Summary + Payment side-by-side on desktop -->
-          <div class="step3-grid">
-
-            <!-- Left: Summary -->
-            <div>
-              <div style="font-size:.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">
-                <i class="fa-solid fa-receipt"></i> สรุปการสมัคร
-              </div>
-              <div id="cf-summary" class="sum-box">
-                <div style="color:var(--text-muted);font-size:.82rem;text-align:center;padding:12px">กำลังโหลดสรุป...</div>
-              </div>
-            </div>
-
-            <!-- Right: Payment info -->
-            <div>
-              <div style="font-size:.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">
-                <i class="fa-solid fa-building-columns"></i> ช่องทางชำระเงิน
-              </div>
-              <div class="pay-card">
-                <div class="pay-bank-row">
-                  <div class="bank-logo-box">
-                    <img src="logo_ks.png" alt="KBank" width="42" height="42" style="display:block;border-radius:50%;object-fit:cover;"/>
-                  </div>
-                  <div class="bank-details">
-                    <div class="bk-label">ธนาคารกสิกรไทย</div>
-                    <div class="bk-no" id="bank-number">213-254-9934</div>
-                    <div class="bk-name">ช่อผกา สอนทา</div>
-                  </div>
-                  <button class="copy-bank-btn" onclick="copyBankNo()" title="คัดลอกเลขบัญชี">
-                    <i class="fa-regular fa-copy"></i> คัดลอก
-                  </button>
-                </div>
-                <div class="pay-total-row">
-                  <span class="pt-label"><i class="fa-solid fa-circle-info" style="color:var(--gold)"></i> ยอดที่ต้องชำระ</span>
-                  <span class="pt-amount" id="cf-pay-amount">0 บาท</span>
-                </div>
-                 </div>
-            </div>
-          </div>
-
-          <!-- Slip upload -->
-          <div class="form-group" style="margin-top:20px">
-            <label style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-              <i class="fa-solid fa-image" style="color:var(--orange)"></i>
-              อัปโหลดสลิปการชำระเงิน <span class="field-req">*</span>
-            </label>
-            <div class="slip-zone" id="slip-zone" onclick="if(event.target.closest('.sp-rm')||event.target.closest('.slip-preview'))return; document.getElementById('cf-slip').click()">
-              <input type="file" id="cf-slip" accept="image/jpeg,image/png,image/webp,application/pdf" onchange="window._handleSlip(this)" style="display:none" />
-              <div id="slip-placeholder">
-                <div class="sz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                <div class="sz-text">ลากไฟล์มาวางที่นี่ หรือ <span>เลือกไฟล์</span></div>
-                <div class="sz-note">รองรับ JPG, PNG, PDF · ขนาดไม่เกิน 10MB</div>
-              </div>
-              <div class="slip-preview" id="slip-preview">
-                <div class="sp-thumb" id="sp-thumb">
-                  <img id="sp-img" src="" alt="" />
-                  <span id="sp-file-icon">📄</span>
-                </div>
-                <div class="sp-info">
-                  <div class="sp-name" id="sp-name"></div>
-                  <div class="sp-size" id="sp-size"></div>
-                </div>
-                <button type="button" class="sp-rm" onclick="removeSlip(event)" title="ลบไฟล์">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Note -->
-          <div class="form-group" style="margin-top:8px">
-            <label>หมายเหตุเพิ่มเติม</label>
-            <textarea id="cf-note" class="form-control" rows="2" placeholder="หมายเหตุ (ถ้ามี)"></textarea>
-          </div>
-
-          <div class="step-nav" style="margin-top:20px">
-            <button class="btn btn-outline-gold" onclick="cfStep(2)"><i class="fa-solid fa-arrow-left"></i> กลับ</button>
-            <button id="cf-submit-btn" class="btn btn-orange" style="min-width:160px;justify-content:center" onclick="submitCompEntry()">
-              <i class="fa-solid fa-paper-plane"></i> ส่งใบสมัคร
-            </button>
-          </div>
-        </div>
-
-      </div><!-- /panel-3 -->
-
-    </div><!-- /cf-form-body -->
-
-    <!-- ── Success Panel ─────────────────────────────── -->
-    <div id="cf-success" class="success-wrap" style="display:none">
-      <div class="success-ticket">
-        <div class="success-emoji">🎉</div>
-        <h2 class="success-title">ส่งใบสมัครสำเร็จ!</h2>
-        <div class="success-no-box">
-          <div class="success-no-label">หมายเลขใบสมัครของคุณ</div>
-          <div class="success-no" id="cf-success-no">SHBA-2026-XXXX</div>
-        </div>
-        <p class="success-note">กรุณาบันทึกหมายเลขนี้ไว้สำหรับอ้างอิง<br>เจ้าหน้าที่จะตรวจสอบสลิปและยืนยันการสมัครภายใน 24–48 ชั่วโมง</p>
-        <p class="success-info">
-          <i class="fa-solid fa-circle-info" style="color:var(--gold)"></i>
-          หากไม่ได้รับการยืนยันภายใน 48 ชั่วโมง กรุณาติดต่อ Facebook เพจ SHBA
-        </p>
-
-        <!-- QR Open Chat -->
-        <div class="success-qr-box">
-          <div class="success-qr-label">
-            <i class="fa-brands fa-line" style="color:#06C755;font-size:1.1rem"></i>
-            เข้าร่วม LINE OpenChat สำหรับผู้เข้าประกวด
-          </div>
-          <img src="Qr_code_openchat.jpg" alt="QR Code OpenChat" class="success-qr-img" />
-          <div class="success-qr-hint">สแกน QR เพื่อเข้ากลุ่มรับข้อมูลงาน</div>
-        </div>
-
-        <div class="success-actions">
-          <a href="competitions.html" class="btn btn-gold"><i class="fa-solid fa-arrow-left"></i> กลับหน้าการประกวด</a>
-          <button class="btn btn-outline-gold" onclick="location.reload()"><i class="fa-solid fa-rotate"></i> สมัครใหม่อีกครั้ง</button>
-        </div>
-      </div>
     </div>
 
   </div><!-- /container -->
@@ -749,9 +386,9 @@
         <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</p>
       </div>
       <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
-        <a href="competitions.html#calendar" class="footer-link">ปฏิทินประกวด</a>
-        <a href="register.html"              class="footer-link">สมัครประกวด</a>
-        <a href="competitions.html#results"  class="footer-link">ผลการแข่งขัน</a>
+        <a href="competitions.html#calendar"  class="footer-link">ปฏิทินประกวด</a>
+        <a href="register-closed.html"        class="footer-link">สมัครประกวด</a>
+        <a href="competitions.html#results"   class="footer-link">ผลการแข่งขัน</a>
         <a href="competitions.html#hall-of-fame" class="footer-link">Hall of Fame</a>
       </div></div>
       <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
@@ -807,12 +444,12 @@
       </button>
       <div class="auth-divider"><span>หรือสมัครด้วยอีเมล</span></div>
       <div class="form-row">
-        <div class="form-group"><label>ชื่อ <span class="field-req">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
-        <div class="form-group"><label>นามสกุล <span class="field-req">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
+        <div class="form-group"><label>ชื่อ <span style="color:var(--orange)">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
+        <div class="form-group"><label>นามสกุล <span style="color:var(--orange)">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
       </div>
-      <div class="form-group"><label>อีเมล <span class="field-req">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
-      <div class="form-group"><label>รหัสผ่าน <span class="field-req">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
-      <div class="form-group"><label>ยืนยันรหัสผ่าน <span class="field-req">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
+      <div class="form-group"><label>อีเมล <span style="color:var(--orange)">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน <span style="color:var(--orange)">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
+      <div class="form-group"><label>ยืนยันรหัสผ่าน <span style="color:var(--orange)">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
       <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
         <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
       </button>
@@ -825,231 +462,12 @@
 
 <script type="module" src="firebase.js"></script>
 <script src="main.js"></script>
-
-<!-- ── AUTH GATE MODULE ───────────────────────────────────── -->
-<script type="module">
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getDoc, doc }        from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-function _waitAuth(cb, attempt = 0) {
-  if (window._firebaseAuth) { cb(); return; }
-  if (attempt > 80) { cb(); return; }
-  setTimeout(() => _waitAuth(cb, attempt + 1), 50);
-}
-
-_waitAuth(() => {
-  onAuthStateChanged(window._firebaseAuth, async (user) => {
-    const loading = document.getElementById('cf-loading');
-    const gate    = document.getElementById('auth-gate');
-    const body    = document.getElementById('cf-form-body');
-    if (loading) loading.style.display = 'none';
-
-    if (user) {
-      if (gate) gate.style.display = 'none';
-      if (body) body.style.display = '';
-
-      // Pre-fill from Firestore
-      let profileData = {};
-      try {
-        const db   = window._firebaseDb;
-        const snap = db ? await getDoc(doc(db, 'users', user.uid)) : null;
-        profileData = snap?.exists() ? snap.data() : {};
-      } catch(_) {}
-
-      const name     = profileData.displayName || user.displayName || '';
-      const memberId = profileData.memberID    || '';
-      const memType  = profileData.memberType  || 'standard';
-
-      // Pre-fill owner field
-      const inp = document.getElementById('cf-owner');
-      if (inp && !inp.value) inp.value = name;
-
-      // Store for submission
-      window._cfCurrentUser = { uid:user.uid, email:user.email||'', memberId, name };
-
-      // Update member bar
-      const bar = document.getElementById('member-bar');
-      if (bar) {
-        bar.style.display = '';
-        const av = document.getElementById('mb-avatar');
-        if (av) {
-          if (user.photoURL) {
-            av.innerHTML = `<img src="${user.photoURL}" onerror="this.style.display='none'" />`;
-          } else {
-            av.textContent = (name || 'U')[0].toUpperCase();
-          }
-        }
-        const mn = document.getElementById('mb-name');  if (mn) mn.textContent = name || 'สมาชิก';
-        const me = document.getElementById('mb-email'); if (me) me.textContent = user.email || '';
-        const mb = document.getElementById('mb-badge');
-        if (mb) {
-          const labels = { pro:'Pro Member 🧬', breeder:'Breeder Member ⭐', standard:'Standard Member 🐾' };
-          mb.textContent = labels[memType] || 'Standard Member 🐾';
-        }
-      }
-
-      if (typeof cfStep === 'function') cfStep(1);
-    } else {
-      if (gate) gate.style.display = '';
-      if (body) body.style.display = 'none';
-      window._cfCurrentUser = null;
-    }
-  });
-});
-</script>
-
-<!-- ── PAGE SCRIPTS ───────────────────────────────────────── -->
 <script>
-/* ── Success callback ── */
-window._cfSuccessCallback = function(entryNo) {
-  const formBody = document.getElementById('cf-form-body');
-  const success  = document.getElementById('cf-success');
-  const noEl     = document.getElementById('cf-success-no');
-  if (formBody) formBody.style.display = 'none';
-  if (success)  success.style.display  = '';
-  if (noEl)     noEl.textContent        = entryNo;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-/* ── Copy bank number ── */
-window.copyBankNo = function() {
-  const no = document.getElementById('bank-number')?.textContent || '213-254-9934';
-  navigator.clipboard.writeText(no.replace(/-/g,'')).then(() => {
-    showToast('success', '✅ คัดลอกเลขบัญชีแล้ว');
-  }).catch(() => {
-    showToast('info', 'เลขบัญชี: ' + no);
-  });
-};
-
-/* ── Slip file preview ── */
 document.addEventListener('DOMContentLoaded', () => {
   SHBA.initNavbar('competitions');
   SHBA.initTheme();
   SHBA.initScrollAnimations();
   SHBA.initScrollTop();
-
-  const slipInput   = document.getElementById('cf-slip');
-  const slipZone    = document.getElementById('slip-zone');
-  const slipPreview = document.getElementById('slip-preview');
-  const spImg       = document.getElementById('sp-img');
-  const spIcon      = document.getElementById('sp-file-icon');
-  const spName      = document.getElementById('sp-name');
-  const spSize      = document.getElementById('sp-size');
-  const spPlaceholder = document.getElementById('slip-placeholder');
-
-  function showSlipPreview(file) {
-    if (!file) return;
-    spName.textContent = file.name;
-    spSize.textContent = (file.size / 1024 < 1000)
-      ? (file.size / 1024).toFixed(1) + ' KB'
-      : (file.size / 1024 / 1024).toFixed(2) + ' MB';
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = e => { spImg.src = e.target.result; spImg.style.display='block'; spIcon.style.display='none'; };
-      reader.readAsDataURL(file);
-    } else {
-      spImg.style.display = 'none';
-      spIcon.textContent = '📄';
-      spIcon.style.display = 'block';
-    }
-    slipPreview.classList.add('show');
-    slipZone.classList.add('has-file');
-    if (spPlaceholder) spPlaceholder.style.display = 'none';
-  }
-
-  // slip change handled by window._handleSlip (onchange attribute)
-
-  if (slipZone) {
-    slipZone.addEventListener('dragover', e => { e.preventDefault(); slipZone.classList.add('dragover'); });
-    slipZone.addEventListener('dragleave', () => slipZone.classList.remove('dragover'));
-    slipZone.addEventListener('drop', e => {
-      e.preventDefault();
-      slipZone.classList.remove('dragover');
-      const file = e.dataTransfer?.files[0];
-      if (file) {
-        // Build new FileList manually via DataTransfer
-        const dt = new DataTransfer();
-        dt.items.add(file);
-        slipInput.files = dt.files;
-        showSlipPreview(file);
-      }
-    });
-  }
-});
-
-/* ── Slip upload handler (global — called from onchange) ── */
-window._handleSlip = function(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const slipZone      = document.getElementById('slip-zone');
-  const slipPreview   = document.getElementById('slip-preview');
-  const spPlaceholder = document.getElementById('slip-placeholder');
-  const spImg  = document.getElementById('sp-img');
-  const spIcon = document.getElementById('sp-file-icon');
-  const spName = document.getElementById('sp-name');
-  const spSize = document.getElementById('sp-size');
-  if (spName) spName.textContent = file.name;
-  if (spSize) spSize.textContent = file.size < 1024000
-    ? (file.size/1024).toFixed(1)+' KB'
-    : (file.size/1024/1024).toFixed(2)+' MB';
-  if (file.type.startsWith('image/') && spImg) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      spImg.src = e.target.result;
-      spImg.style.display = 'block';
-      if (spIcon) spIcon.style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  } else {
-    if (spImg)  { spImg.src=''; spImg.style.display='none'; }
-    if (spIcon) { spIcon.textContent='📄'; spIcon.style.display='block'; }
-  }
-  if (slipPreview)   slipPreview.classList.add('show');
-  if (slipZone)      slipZone.classList.add('has-file');
-  if (spPlaceholder) spPlaceholder.style.display = 'none';
-};
-
-/* ── Remove slip ── */
-window.removeSlip = function(e) {
-  e.stopPropagation();
-  var slipInput     = document.getElementById('cf-slip');
-  var slipZone      = document.getElementById('slip-zone');
-  var slipPreview   = document.getElementById('slip-preview');
-  var spPlaceholder = document.getElementById('slip-placeholder');
-  var spImg         = document.getElementById('sp-img');
-  if (slipInput)     slipInput.value = '';
-  if (slipPreview)   slipPreview.classList.remove('show');
-  if (slipZone)      slipZone.classList.remove('has-file');
-  if (spPlaceholder) spPlaceholder.style.display = '';
-  if (spImg)         { spImg.src = ''; spImg.style.display = 'none'; }
-};
-</script>
-
-<!-- ── Class image lightbox ───────────────────────────────── -->
-<div id="cls-lightbox" onclick="this.classList.remove('open')">
-  <div class="clb-inner" onclick="event.stopPropagation()">
-    <button class="clb-close" onclick="document.getElementById('cls-lightbox').classList.remove('open')">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <img id="clb-img" src="" alt="" style="max-width:100%;max-height:78vh;border-radius:14px;object-fit:contain;display:block;box-shadow:0 24px 80px rgba(0,0,0,.6);" />
-    <div class="clb-caption" id="clb-cap"></div>
-  </div>
-</div>
-
-<script>
-window.openClassImg = function(src, caption) {
-  var lb  = document.getElementById("cls-lightbox");
-  var img = document.getElementById("clb-img");
-  var cap = document.getElementById("clb-cap");
-  if (img) img.src = src;
-  if (cap) cap.textContent = caption || "";
-  if (lb)  lb.classList.add("open");
-};
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    var lb = document.getElementById("cls-lightbox");
-    if (lb) lb.classList.remove("open");
-  }
 });
 </script>
 
