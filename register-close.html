@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ปิดรับสมัครประกวด | Siam Hamster Breeder Association</title>
+  <meta name="description" content="การรับสมัครประกวดแฮมสเตอร์ SHBA Amigo Championship 2026 ปิดรับสมัครแล้ว" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ปิดรับสมัครประกวด | SHBA" />
+  <meta property="og:description" content="การรับสมัคร SHBA Amigo Championship 2026 ปิดรับสมัครแล้ว" />
+  <meta property="og:url" content="https://hamstershba.com/register-closed.html" />
+  <meta property="og:image" content="https://hamstershba.com/og-image.jpg" />
+  <meta property="og:locale" content="th_TH" />
+  <link rel="icon" type="image/jpeg" href="Logo.jpg" />
+  <link rel="apple-touch-icon" href="Logo.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+  /* ── Hero ─────────────────────────────────────── */
+  .reg-hero { background:var(--gradient-hero); padding:100px 0 56px; position:relative; overflow:hidden; }
+  .reg-hero-back { display:inline-flex; align-items:center; gap:6px; color:var(--text-muted); font-size:.82rem; text-decoration:none; margin-bottom:16px; transition:color .2s; }
+  .reg-hero-back:hover { color:var(--gold); }
+  .reg-hero-meta { display:flex; gap:20px; justify-content:center; margin-top:18px; flex-wrap:wrap; font-size:.81rem; color:var(--gold); }
+  .reg-hero-meta span { display:flex; align-items:center; gap:5px; }
+
+  /* ── Closed Panel ─────────────────────────────── */
+  .closed-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+    text-align: center;
+  }
+  .closed-icon-ring {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(232,114,42,.08);
+    border: 2px solid rgba(232,114,42,.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 2.6rem;
+    animation: pulseRing 3s ease-in-out infinite;
+  }
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,114,42,.15); }
+    50%       { box-shadow: 0 0 0 14px rgba(232,114,42,0); }
+  }
+  .closed-title {
+    font-size: 2rem; font-weight: 800;
+    color: var(--white);
+    margin-bottom: 10px; line-height: 1.2;
+  }
+  .closed-subtitle {
+    font-size: .95rem; color: var(--text-muted);
+    margin-bottom: 32px; line-height: 1.7;
+  }
+
+  /* Event summary card */
+  .closed-event-card {
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .cec-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cec-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    font-size: .88rem;
+  }
+  .cec-row:last-child { border-bottom: none; }
+  .cec-row i { width: 18px; text-align: center; color: var(--gold); flex-shrink: 0; }
+  .cec-val { font-weight: 500; }
+  .cec-val span { color: var(--text-muted); font-weight: 400; font-size: .82rem; margin-left: 6px; }
+
+  /* Shows mini grid */
+  .closed-shows {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 20px;
+  }
+  .cs-item {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: .82rem; display: flex; align-items: center; gap: 8px;
+  }
+  .cs-item .cs-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .cs-item .cs-info { line-height: 1.35; }
+  .cs-item .cs-name { font-weight: 600; color: var(--white); }
+  .cs-item .cs-date { font-size: .72rem; color: var(--text-muted); }
+
+  /* Status badge */
+  .closed-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,68,66,.1);
+    border: 1px solid rgba(232,68,66,.25);
+    color: #ff6b6b;
+    padding: 5px 14px; border-radius: 20px;
+    font-size: .78rem; font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: .04em;
+  }
+  .closed-badge::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #ff6b6b;
+    animation: blinkDot 1.4s ease infinite;
+  }
+  @keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+  /* Action buttons */
+  .closed-actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center; margin-top: 28px;
+  }
+
+  /* Next event teaser */
+  .next-event-box {
+    background: rgba(201,162,39,.05);
+    border: 1px solid rgba(201,162,39,.15);
+    border-radius: 16px; padding: 20px 28px;
+    margin-top: 28px; text-align: center;
+  }
+  .neb-label { font-size: .75rem; color: var(--text-muted); margin-bottom: 6px; }
+  .neb-title { font-size: 1rem; font-weight: 700; color: var(--gold); }
+
+  /* Light mode */
+  [data-theme="light"] .closed-event-card { background: #fff; border-color: rgba(100,70,20,.08); }
+  [data-theme="light"] .cs-item { background: rgba(0,0,0,.02); border-color: rgba(100,70,20,.08); }
+  [data-theme="light"] .next-event-box { background: rgba(201,162,39,.04); }
+
+  @media (max-width: 560px) {
+    .reg-hero { padding: 80px 0 40px; }
+    .closed-shows { grid-template-columns: 1fr; }
+    .closed-event-card { padding: 20px; }
+    .closed-title { font-size: 1.6rem; }
+    .closed-actions { flex-direction: column; align-items: stretch; }
+    .closed-actions .btn { justify-content: center; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/>
+      <div class="nav-logo-text">SHBA<span>Siam Hamster Breeder Association</span></div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">หน้าหลัก</a></li>
+      <li class="nav-item has-dropdown">
+        <a href="about.html" class="nav-link" data-page="about">เกี่ยวกับ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="about.html#history"   class="nav-dd-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม SHBA</a>
+          <a href="about.html#vision"    class="nav-dd-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์ &amp; พันธกิจ</a>
+          <a href="about.html#committee" class="nav-dd-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+          <a href="about.html#ethics"    class="nav-dd-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณผู้เพาะพันธุ์</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="membership.html" class="nav-link" data-page="membership">สมาชิก <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="membership.html#membership"      class="nav-dd-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก &amp; สิทธิประโยชน์</a>
+          <a href="membership.html#upgrade-section" class="nav-dd-link"><i class="fa-solid fa-rotate"></i> ต่ออายุสมาชิก</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="competitions.html" class="nav-link active" data-page="competitions">การประกวด <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="competitions.html#calendar"  class="nav-dd-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+          <a href="register-closed.html"        class="nav-dd-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+          <a href="competitions.html#standards" class="nav-dd-link"><i class="fa-solid fa-star"></i> มาตรฐานการประกวด</a>
+          <a href="competitions.html#results"   class="nav-dd-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+        </div>
+      </li>
+      <li class="nav-item has-dropdown">
+        <a href="knowledge.html" class="nav-link" data-page="knowledge">คลังความรู้ <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
+        <div class="nav-dropdown">
+          <a href="genetics.html"           class="nav-dd-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน<span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="genescalculator.html"    class="nav-dd-link"><i class="fa-solid fa-calculator"></i> เครื่องมือคำนวณยีน<span class="nav-soon-badge">เร็วๆ นี้</span></a>
+          <a href="knowledge.html#care"     class="nav-dd-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+          <a href="knowledge.html#articles" class="nav-dd-link"><i class="fa-solid fa-book-open"></i> บทความ &amp; วิจัย<span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="news.html"    class="nav-link" data-page="news">ข่าวสาร</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">ติดต่อเรา</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-outline-gold btn-sm btn-login-trigger" onclick="openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="เปลี่ยนธีม"><i class="fa-solid fa-sun"></i></button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── MOBILE NAV ──────────────────────────────────────────── -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+  <div class="mobile-nav-scroll">
+    <a href="index.html" class="mobile-nav-link">หน้าหลัก</a>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">เกี่ยวกับสมาคม <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="about.html#history"   class="mobile-nav-sub-link"><i class="fa-solid fa-landmark"></i> ประวัติสมาคม</a>
+        <a href="about.html#vision"    class="mobile-nav-sub-link"><i class="fa-solid fa-eye"></i> วิสัยทัศน์</a>
+        <a href="about.html#committee" class="mobile-nav-sub-link"><i class="fa-solid fa-users"></i> คณะกรรมการ</a>
+        <a href="about.html#ethics"    class="mobile-nav-sub-link"><i class="fa-solid fa-scale-balanced"></i> จรรยาบรรณ</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">สมาชิก <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="membership.html#membership" class="mobile-nav-sub-link"><i class="fa-solid fa-id-card"></i> ประเภทสมาชิก</a>
+        <a href="membership.html#register"   class="mobile-nav-sub-link"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+        <a href="myaccount.html"             class="mobile-nav-sub-link"><i class="fa-solid fa-gauge"></i> My Account</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">การประกวด <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="competitions.html#calendar" class="mobile-nav-sub-link"><i class="fa-solid fa-calendar-days"></i> ปฏิทินการประกวด</a>
+        <a href="register-closed.html"       class="mobile-nav-sub-link" style="color:var(--orange)"><i class="fa-solid fa-pen-to-square"></i> สมัครประกวดออนไลน์</a>
+        <a href="competitions.html#results"  class="mobile-nav-sub-link"><i class="fa-solid fa-trophy"></i> ผลการประกวด</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn" onclick="toggleMobileGroup(this)">คลังความรู้ <i class="fa-solid fa-chevron-down mnav-arrow"></i></button>
+      <div class="mobile-nav-sub">
+        <a href="genetics.html"        class="mobile-nav-sub-link"><i class="fa-solid fa-dna"></i> Genetics &amp; สีสัน<span class="nav-soon-badge">เร็วๆ นี้</span></a>
+        <a href="knowledge.html#care"  class="mobile-nav-sub-link"><i class="fa-solid fa-heart"></i> การดูแลทั่วไป</a>
+        <a href="knowledge.html#articles" class="mobile-nav-sub-link"><i class="fa-solid fa-book-open"></i> บทความ<span class="nav-soon-badge">เร็วๆ นี้</span></a>
+      </div>
+    </div>
+    <a href="news.html"    class="mobile-nav-link">ข่าวสาร</a>
+    <a href="contact.html" class="mobile-nav-link">ติดต่อเรา</a>
+    <div class="mobile-nav-divider"></div>
+    <div class="mobile-nav-btns">
+      <div id="mobile-user-info" style="display:none;margin-bottom:4px">
+        <div class="mobile-user-row">
+          <div class="mobile-user-avatar-ph" id="mu-avatar-ph"><i class="fa-solid fa-user"></i></div>
+          <img class="mobile-user-avatar" id="mu-avatar-img" src="" alt="" style="display:none" />
+          <div class="mobile-user-text">
+            <div class="mobile-user-name" id="mu-name">สมาชิก</div>
+            <div class="mobile-user-badge" id="mu-badge"></div>
+          </div>
+        </div>
+        <a href="myaccount.html" class="btn btn-gold" style="width:100%;justify-content:center;font-size:.88rem;margin-top:8px">
+          <i class="fa-solid fa-gauge"></i> My Account
+        </a>
+      </div>
+      <button class="btn btn-outline-gold btn-login-trigger" onclick="closeMobileNav(); openModal('login-modal')"><i class="fa-regular fa-user"></i> เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<div class="reg-hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center">
+    <a href="competitions.html" class="reg-hero-back"><i class="fa-solid fa-arrow-left"></i> กลับหน้าการประกวด</a>
+    <div class="tag" style="display:inline-block;margin-bottom:16px">SHBA HAMSTER SHOW 2026</div>
+    <h1 style="margin-bottom:12px">สมัคร<span class="text-gradient-orange">ประกวด</span>ออนไลน์</h1>
+    <p style="max-width:540px;margin:0 auto 4px;color:var(--gray-300)">SHBA Amigo Championship: Together Through Friendship</p>
+    <div class="reg-hero-meta">
+      <span><i class="fa-solid fa-calendar-check"></i> 1–2 สิงหาคม 2569</span>
+      <span><i class="fa-solid fa-trophy"></i> NHC Judging Standard</span>
+      <span><i class="fa-solid fa-layer-group"></i> 4 Shows · 200 บาท/ตัว</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN SECTION ───────────────────────────────────────── -->
+<section class="section" style="background:var(--black-light);padding-top:40px;padding-bottom:80px">
+  <div class="container" style="max-width:860px">
+
+    <div class="closed-wrap">
+
+      <!-- Status badge -->
+      <div class="closed-badge">ปิดรับสมัครแล้ว</div>
+
+      <!-- Icon -->
+      <div class="closed-icon-ring">🔒</div>
+
+      <!-- Title -->
+      <h2 class="closed-title">ปิดรับสมัครประกวดแล้ว</h2>
+      <p class="closed-subtitle">
+        การรับสมัคร SHBA Amigo Championship 2026 ได้ปิดลงเรียบร้อยแล้ว<br>
+        ขอบคุณทุกท่านที่ส่งใบสมัครเข้าร่วมงาน — พบกันในวันงานครับ!
+      </p>
+
+      <!-- Event summary -->
+      <div class="closed-event-card">
+        <div class="cec-label"><i class="fa-solid fa-circle-info"></i> ข้อมูลงานประกวด</div>
+
+        <div class="cec-row">
+          <i class="fa-solid fa-calendar-days"></i>
+          <div><div class="cec-val">1–2 สิงหาคม 2569</div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><div class="cec-val">สถานที่จัดงาน <span>รอประกาศ</span></div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-trophy"></i>
+          <div><div class="cec-val">SHBA Amigo Championship <span>: Together Through Friendship</span></div></div>
+        </div>
+        <div class="cec-row">
+          <i class="fa-solid fa-gavel"></i>
+          <div><div class="cec-val">NHC Judging Standard</div></div>
+        </div>
+
+        <!-- Shows grid -->
+        <div class="closed-shows">
+          <div class="cs-item">
+            <span class="cs-icon">🌟</span>
+            <div class="cs-info">
+              <div class="cs-name">New Gen Syrian</div>
+              <div class="cs-date">ประกวด 2 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">🐾</span>
+            <div class="cs-info">
+              <div class="cs-name">Dwarf</div>
+              <div class="cs-date">ประกวด 1 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">⬜</span>
+            <div class="cs-info">
+              <div class="cs-name">Special Poly White</div>
+              <div class="cs-date">ประกวด 1 ส.ค. 2569</div>
+            </div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-icon">🎉</span>
+            <div class="cs-info">
+              <div class="cs-name">Fun Show</div>
+              <div class="cs-date">ประกวด 2 ส.ค. 2569</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next event teaser -->
+      <div class="next-event-box">
+        <div class="neb-label">ติดตามงานประกวดครั้งถัดไปได้ที่</div>
+        <div class="neb-title"><i class="fa-solid fa-bell" style="font-size:.9rem;margin-right:5px"></i> Facebook เพจ SHBA &amp; Line Official</div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="closed-actions">
+        <a href="competitions.html#results" class="btn btn-gold">
+          <i class="fa-solid fa-trophy"></i> ดูผลการประกวด
+        </a>
+        <a href="competitions.html" class="btn btn-outline-gold">
+          <i class="fa-solid fa-calendar-days"></i> ปฏิทินงานประกวด
+        </a>
+        <a href="contact.html" class="btn btn-outline-gold">
+          <i class="fa-solid fa-envelope"></i> ติดต่อสอบถาม
+        </a>
+      </div>
+
+    </div>
+
+  </div><!-- /container -->
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="Logo.jpg" class="nav-logo-icon" alt="SHBA Logo" style="width:46px;height:46px;object-fit:cover;border-radius:12px;"/>
+          <div class="nav-logo-text">Siam Hamster Breeder Association<span>สมาคมสยามแฮมสเตอร์บรีดเดอร์</span></div>
+        </div>
+        <p>ศูนย์กลางความเป็นเลิศด้านแฮมสเตอร์แห่งประเทศไทย</p>
+      </div>
+      <div class="footer-col"><h4>การประกวด</h4><div class="footer-links">
+        <a href="competitions.html#calendar"  class="footer-link">ปฏิทินประกวด</a>
+        <a href="register-closed.html"        class="footer-link">สมัครประกวด</a>
+        <a href="competitions.html#results"   class="footer-link">ผลการแข่งขัน</a>
+        <a href="competitions.html#hall-of-fame" class="footer-link">Hall of Fame</a>
+      </div></div>
+      <div class="footer-col"><h4>สมาชิก</h4><div class="footer-links">
+        <a href="membership.html"          class="footer-link">สมัครสมาชิก</a>
+        <a href="membership.html#register" class="footer-link">ลงทะเบียน</a>
+        <a href="myaccount.html"           class="footer-link">Dashboard</a>
+      </div></div>
+      <div class="footer-col"><h4>ความรู้</h4><div class="footer-links">
+        <a href="genetics.html"  class="footer-link">คลังข้อมูลยีน</a>
+        <a href="knowledge.html" class="footer-link">คลังความรู้</a>
+        <a href="news.html"      class="footer-link">ข่าวสาร</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Siam Hamster Breeder Association. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">นโยบายความเป็นส่วนตัว</a><a href="#">ข้อกำหนด</a><a href="contact.html">ติดต่อเรา</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── LOGIN MODAL ─────────────────────────────────────────── -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.2rem;margin-bottom:6px">🐹</div>
+      <h3 style="margin-bottom:4px"><i class="fa-solid fa-lock text-gold"></i> เข้าสู่ระบบ / สมัครสมาชิก</h3>
+      <p style="font-size:.82rem;color:var(--text-muted)">Siam Hamster Breeder Association</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+      <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">สมัครสมาชิกใหม่</button>
+    </div>
+    <div id="auth-panel-login">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือใช้อีเมล</span></div>
+      <div class="form-group"><label>อีเมล</label><input type="email" id="li-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน</label><input type="password" id="li-password" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleEmailLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
+      </button>
+      <p style="text-align:center;margin-top:12px;font-size:.82rem">
+        <a href="#" style="color:var(--text-muted)" onclick="handleForgotPassword(event)">ลืมรหัสผ่าน?</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <button class="btn-google-signin" onclick="signInWithGoogle()" style="margin-bottom:16px">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" height="20"/>
+        Sign in with Google
+      </button>
+      <div class="auth-divider"><span>หรือสมัครด้วยอีเมล</span></div>
+      <div class="form-row">
+        <div class="form-group"><label>ชื่อ <span style="color:var(--orange)">*</span></label><input type="text" id="su-firstname" class="form-control" placeholder="ชื่อจริง" /></div>
+        <div class="form-group"><label>นามสกุล <span style="color:var(--orange)">*</span></label><input type="text" id="su-lastname" class="form-control" placeholder="นามสกุล" /></div>
+      </div>
+      <div class="form-group"><label>อีเมล <span style="color:var(--orange)">*</span></label><input type="email" id="su-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>รหัสผ่าน <span style="color:var(--orange)">*</span></label><input type="password" id="su-password" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" /></div>
+      <div class="form-group"><label>ยืนยันรหัสผ่าน <span style="color:var(--orange)">*</span></label><input type="password" id="su-password2" class="form-control" placeholder="••••••••" /></div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px" onclick="handleQuickSignup()">
+        <i class="fa-solid fa-user-plus"></i> สร้างบัญชี (สมาชิกสามัญฟรี)
+      </button>
+    </div>
+  </div>
+</div>
+
+<button id="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast-container" id="toast-container"></div>
+
+<script type="module" src="firebase.js"></script>
+<script src="main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  SHBA.initNavbar('competitions');
+  SHBA.initTheme();
+  SHBA.initScrollAnimations();
+  SHBA.initScrollTop();
+});
+</script>
+
+</body>
+</html>

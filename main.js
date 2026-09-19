@@ -204,7 +204,125 @@ const SPECIES_DATA = [
 ];
 const HOF_DATA = [];
 const NEWS_DATA = [];
-const RESULTS_DATA = [];
+
+// RESULTS_DATA — โครงสร้าง: [{ year, shows: [{ no, name, type, date, winners: [{ award, hamster, breeder, show }] }] }]
+const RESULTS_DATA = [
+  {
+    year: '2569',
+    shows: [
+      {
+        no: 1,
+        name: 'SHBA Amigo Championship 2026',
+        type: 'New Gen Syrian Show',
+        date: '30 ก.ค. – 3 ส.ค. 2569 · Pet Expo Thailand 2026',
+        winners: [
+          // ── Overall ──────────────────────────────────────────────
+          { award: '🏆 Best in Show',         hamster: '',              breeder: "Party's Hamstery",                show: 'Overall' },
+          { award: '🏆 Reserve Best in Show', hamster: '',              breeder: "Party's Hamstery",                show: 'Overall' },
+          // ── Satin Hair ───────────────────────────────────────────
+          { award: 'Best of Group',            hamster: 'Self Solid',    breeder: 'K.โซ่',                           show: 'Satin Hair' },
+          { award: 'Best opposite sex of Group', hamster: 'Agouti Pattern', breeder: 'K.โซ่',                        show: 'Satin Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Solid',  breeder: 'Cookie Hamster',                  show: 'Satin Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Pattern', breeder: 'โซ่',                       show: 'Satin Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Solid',    breeder: 'โซ่',                             show: 'Satin Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Solid', breeder: 'Little Hamster จตุจักรพลาซ่า', show: 'Satin Hair' },
+          { award: 'Best opposite sex of Variety', hamster: '',          breeder: 'K.Gif',                           show: 'Satin Hair' },
+          // ── Rex Hair ─────────────────────────────────────────────
+          { award: 'Best of Group',            hamster: 'Self Solid',    breeder: 'Little Hamster',                  show: 'Rex Hair' },
+          { award: 'Best opposite sex of Group', hamster: 'Agouti Solid', breeder: 'Little Hamster',                 show: 'Rex Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Solid',  breeder: 'Mommii Pear แม่หมีมีลูก',        show: 'Rex Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Solid',    breeder: 'Little Hamster',                  show: 'Rex Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Pattern',  breeder: 'K.Pong',                          show: 'Rex Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Solid', breeder: 'Little Hamster',              show: 'Rex Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Solid', breeder: 'บ้านตุ๋นซิง',                   show: 'Rex Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Pattern', breeder: 'Ham House - บ้านแฮม',         show: 'Rex Hair' },
+          // ── Short Hair ───────────────────────────────────────────
+          { award: 'Best of Group',            hamster: 'Agouti Pattern', breeder: "Party's Hamstery",               show: 'Short Hair' },
+          { award: 'Best opposite sex of Group', hamster: 'Self Solid',  breeder: 'บ้านตุ๋นซิง',                    show: 'Short Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Solid',  breeder: 'บ้านตุ๋นซิง',                    show: 'Short Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Pattern', breeder: "Party's Hamstery",               show: 'Short Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Solid',    breeder: 'บ้านตุ๋นซิง',                    show: 'Short Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Pattern',  breeder: 'เหล่าจ้าว',                      show: 'Short Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Solid', breeder: 'บ้านตุ๋นซิง',                show: 'Short Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Solid', breeder: 'บ้านตุ๋นซิง',                  show: 'Short Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Pattern', breeder: 'บ้านตุ๋นซิง',                show: 'Short Hair' },
+          // ── Long Hair ────────────────────────────────────────────
+          { award: 'Best of Group',            hamster: 'Self Solid',    breeder: "Party's Hamstery",                show: 'Long Hair' },
+          { award: 'Best opposite sex of Group', hamster: 'Self Solid',  breeder: 'บ้านตุ๋นซิง',                    show: 'Long Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Solid',  breeder: 'Little Hamster',                  show: 'Long Hair' },
+          { award: 'Best of Variety',          hamster: 'Agouti Pattern', breeder: 'K.Chaoraihub',                   show: 'Long Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Solid',    breeder: "Party's Hamstery",                show: 'Long Hair' },
+          { award: 'Best of Variety',          hamster: 'Self Pattern',  breeder: 'K.โซ่',                           show: 'Long Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Solid', breeder: 'หนูจะเป็นหมูที่แข็งแรง',     show: 'Long Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Pattern', breeder: 'Cookie Hamster',             show: 'Long Hair' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Solid', breeder: 'บ้านตุ๋นซิง',                   show: 'Long Hair' },
+        ]
+      },
+      // ── Show #2 ─────────────────────────────────────────────────────
+      {
+        no: 2,
+        name: 'SHBA Amigo Championship 2026',
+        type: 'Spacial Dwarf Show',
+        date: '30 ก.ค. – 3 ส.ค. 2569 · Pet Expo Thailand 2026',
+        winners: [
+          { award: '🏆 Best in Show',              hamster: '',               breeder: 'Little Hamster จตุจักรพลาซ่า', show: 'Overall' },
+          { award: '🏆 Reserve Best in Show',      hamster: '',               breeder: 'Hamsterบ้านลูกคนจีน',          show: 'Overall' },
+          // Campbell — Agouti Solid
+          { award: 'Best of Breed',                hamster: 'Agouti Solid',  breeder: 'Little Hamster',                show: 'Campbell' },
+          { award: 'Best of Group',                hamster: 'Agouti Solid',  breeder: 'Little Hamster',                show: 'Campbell' },
+          { award: 'Best of Variety',              hamster: 'Agouti Solid',  breeder: 'Little Hamster',                show: 'Campbell' },
+          { award: 'Best opposite sex of Group',   hamster: 'Agouti Solid',  breeder: 'Syrian Hamster Baan Itsara',    show: 'Campbell' },
+          { award: 'Best opposite sex of Variety', hamster: 'Agouti Solid',  breeder: 'Syrian Hamster Baan Itsara',    show: 'Campbell' },
+          // Campbell — Agouti Pattern
+          { award: 'Best of Group',                hamster: 'Agouti Pattern', breeder: 'Hamstudio',                    show: 'Campbell' },
+          { award: 'Best of Variety',              hamster: 'Agouti Pattern', breeder: 'Hamstudio',                    show: 'Campbell' },
+          // Campbell — Self Solid
+          { award: 'Best of Group',                hamster: 'Self Solid',    breeder: 'Hamstudio',                     show: 'Campbell' },
+          { award: 'Best of Variety',              hamster: 'Self Solid',    breeder: 'Hamstudio',                     show: 'Campbell' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Solid',    breeder: 'Lollipop Hamstery',             show: 'Campbell' },
+          // Campbell — Self Pattern
+          { award: 'Best opposite sex of Breed',   hamster: 'Self Pattern',  breeder: 'Jirachaya Sumkum',              show: 'Campbell' },
+          { award: 'Best opposite sex of Group',   hamster: 'Self Pattern',  breeder: 'Jirachaya Sumkum',              show: 'Campbell' },
+          { award: 'Best of Variety',              hamster: 'Self Pattern',  breeder: 'Jirachaya Sumkum',              show: 'Campbell' },
+          { award: 'Best opposite sex of Variety', hamster: 'Self Pattern',  breeder: 'Little Hamster',                show: 'Campbell' },
+          // Winter White — Normal
+          { award: 'Best of Breed',                hamster: 'Normal',        breeder: 'Hamsterบ้านลูกคนจีน',          show: 'Winter White' },
+          { award: 'Best of Group',                hamster: 'Normal',        breeder: 'Hamsterบ้านลูกคนจีน',          show: 'Winter White' },
+          { award: 'Best of Variety',              hamster: 'Normal',        breeder: 'Hamsterบ้านลูกคนจีน',          show: 'Winter White' },
+          // Winter White — Pearl
+          { award: 'Best opposite sex of Breed',   hamster: 'Pearl',         breeder: 'Hamstudio',                     show: 'Winter White' },
+          { award: 'Best opposite sex of Group',   hamster: 'Pearl',         breeder: 'Hamstudio',                     show: 'Winter White' },
+          { award: 'Best opposite sex of Variety', hamster: 'Pearl',         breeder: 'Hamstudio',                     show: 'Winter White' },
+        ]
+      },
+      // ── Show #3 ─────────────────────────────────────────────────────
+      {
+        no: 3,
+        name: 'SHBA Amigo Championship 2026',
+        type: 'Spacial PolyWhite Show',
+        date: '30 ก.ค. – 3 ส.ค. 2569 · Pet Expo Thailand 2026',
+        winners: [
+          { award: '🏆 Best in Show',              hamster: '', breeder: 'Hamster station',             show: 'Overall' },
+          { award: '🏆 Reserve Best in Show',      hamster: '', breeder: 'Sammy Hamster',               show: 'Overall' },
+          // Self — Best of Variety (placements)
+          { award: 'Best of Variety',              hamster: '', breeder: 'Hamster station',             show: 'Self', place: 1 },
+          { award: 'Best of Variety',              hamster: '', breeder: 'Cookie Hamster',              show: 'Self', place: 2 },
+          { award: 'Best of Variety',              hamster: '', breeder: 'Little Hamster จตุจักรพลาซ่า', show: 'Self', place: 3 },
+          // Self — Best opposite sex of Variety (placements)
+          { award: 'Best opposite sex of Variety', hamster: '', breeder: "Party's Hamstery",           show: 'Self', place: 1 },
+          // Agouti — Best of Variety (placements)
+          { award: 'Best of Variety',              hamster: '', breeder: 'Sammy Hamster',               show: 'Agouti', place: 1 },
+          { award: 'Best of Variety',              hamster: '', breeder: 'Sammy Hamster',               show: 'Agouti', place: 2 },
+          { award: 'Best of Variety',              hamster: '', breeder: 'Cookie Hamster',              show: 'Agouti', place: 3 },
+          // Agouti — Best opposite sex of Variety (placements)
+          { award: 'Best opposite sex of Variety', hamster: '', breeder: 'Hamsterบ้านลูกคนจีน',       show: 'Agouti', place: 1 },
+          { award: 'Best opposite sex of Variety', hamster: '', breeder: 'Cookie Hamster',             show: 'Agouti', place: 2 },
+          { award: 'Best opposite sex of Variety', hamster: '', breeder: "Party's Hamstery",           show: 'Agouti', place: 3 },
+        ]
+      },
+    ]
+  },
+];
 
 /* ─── SHARED NAVBAR INIT ─────────────────────────────────────────── */
 function initNavbar(activePage) {
